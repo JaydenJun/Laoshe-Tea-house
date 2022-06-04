@@ -101,7 +101,7 @@ export default {
 .swiper {
   .swiper-slides {
     margin: 0px auto;
-    background-color: #bd9c71;
+    background-color: #eee;
   }
   div {
     width: 100%;
