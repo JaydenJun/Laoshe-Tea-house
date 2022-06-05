@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <my-header />
-    <h1>测试1</h1>
     <router-view />
     <my-footer />
   </div>
