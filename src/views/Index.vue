@@ -36,12 +36,12 @@
     </swiper>
     <!-- 茶馆特色：组件 -->
     <index-ts/>
-    <!-- 热销商品组件 -->
-    <index-hot/>
-    <!-- 茶馆资讯和组件 -->
-    <index-zx/>
     <!-- 茶友圈：组件 -->
     <index-cyq/>
+    <!-- 茶馆资讯和组件 -->
+    <index-zx/>
+    <!-- 热销商品组件 -->
+    <index-hot/>
   </div>
 </template>
 

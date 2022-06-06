@@ -14,10 +14,10 @@
               <ul>
                 <li><router-link to="/">首页</router-link></li>
                 <li><router-link to="/">茶馆特色</router-link></li>
-                <li><router-link to="/">茶友圈</router-link></li>
-                <li><router-link to="/">茶商城</router-link></li>
-                <li><router-link to="/">茶百科</router-link></li>
-                <li><router-link to="/">关于我们</router-link></li>
+                <li><router-link to="/teah">茶友圈</router-link></li>
+                <li><router-link to="/product">茶闻资讯</router-link></li>
+                <li><router-link to="/tea">茶百科</router-link></li>
+                <li><router-link to="/culture">关于我们</router-link></li>
               </ul>
             </div>
           </div></el-col
@@ -26,8 +26,8 @@
           ><div class="grid-content bg-purple-light">
             <div style="padding-top:3px">
               <ul>
-                <li><router-link to="/">登录</router-link></li>
-                <li><router-link to="/">注册</router-link></li>
+                <li><router-link to="/login">登录</router-link></li>
+                <li><router-link to="/register">注册</router-link></li>
               </ul>
             </div>
           </div></el-col
