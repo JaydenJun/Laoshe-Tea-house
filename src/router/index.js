@@ -6,6 +6,33 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/teah',
+    name: 'teah',
+    component: () => import('../views/TeahCilcle.vue'),
+    redirect: '/teah/hottest',
+    children: [{
+        path: 'hottest',
+        name: 'hottest',
+        component: () => import('../views/Hottest.vue'),
+      },
+      {
+        path: 'latest',
+        name: 'latest',
+        component: () => import('../views/Latest.vue'),
+      },
+      {
+        path: 'week',
+        name: 'week',
+        component: () => import('../views/Week.vue'),
+      },
+      {
+        path: 'month',
+        name: 'month',
+        component: () => import('../views/Month.vue'),
+      },
+    ]
+  },
+  {
     path: '/product',
     name: 'product',
     component: () => import('../views/Product.vue'),

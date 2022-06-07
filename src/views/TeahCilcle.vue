@@ -4,7 +4,9 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <div class="top-logo"></div>
+          <div class="top-logo">
+            <!-- <img src="" alt="" /> -->
+          </div>
           <div class="top-title">
             <span class="span-1">茶艺圈 以茶会友 </span>
             <span class="span-2"> “振兴古国茶文化， 扶植民族艺术花”</span>
@@ -16,7 +18,7 @@
     <!-- 内容区域 -->
     <el-row :gutter="20">
       <!-- 左边内容 -->
-      <el-col :span="4" :xs="0">
+      <el-col :span="6" :xs="0">
         <div class="grid-content bg-purple">
           <div class="left-1">
             <p>茶友圈</p>
@@ -31,8 +33,8 @@
         </div>
       </el-col>
       <!-- 中间内容 -->
-      <el-col :span="16" :xs="24"
-        ><div class="grid-content bg-purple-light">
+      <el-col :span="12" :xs="24">
+        <div class="grid-content bg-purple-light">
           <!-- 公告区域 -->
           <div class="center-1">
             <el-carousel height="50px" direction="vertical" :autoplay="true">
@@ -43,57 +45,18 @@
           </div>
           <!-- 热点选择区域 -->
           <div class="center-2">
-            <router-link to="" class="active">热帖</router-link>
-            <router-link to="">最新发布</router-link>
-            <router-link to="">最新评论</router-link>
-            <router-link to="">最新回复</router-link>
+            <el-menu :default-active="$route.path" router mode="horizontal">
+              <el-menu-item index="/teah/hottest">热帖</el-menu-item>
+              <el-menu-item index="/teah/latest">最新发布</el-menu-item>
+              <el-menu-item index="/teah/week">周热点</el-menu-item>
+              <el-menu-item index="/teah/month">月热点</el-menu-item>
+            </el-menu>
           </div>
-          <!-- 用户发帖区域 -->
-          <div class="center-3">
-            <!-- 用户头像上传区域 -->
-            <div class="center-3-1">
-              <div class="center-3-1-1">
-                <el-upload
-                  class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload"
-                >
-                  <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-              </div>
-              <router-link to="">人在草木</router-link>
-            </div>
-            <p>三榜达人，连中三元，万里挑一，一二人也！找找都有谁？</p>
-            <div>
-              <div class="block">
-                <span class="demonstration"></span>
-                <el-image :src="src1"></el-image>
-              </div>
-            </div>
-            <div class="center-3-2">
-              <router-link to="">评论</router-link>
-              <span>5</span>
-              <i class="el-icon-chat-line-square"> </i>
-              <el-input
-                type="textarea"
-                :autosize="{ minRows: 2, maxRows: 4 }"
-                placeholder="请输入内容"
-                v-model="textarea"
-              >
-              </el-input>
-
-              <i class="el-icon-thumb"> </i>
-              <router-link to="">点赞</router-link>
-              <span>8</span>
-            </div>
-          </div>
+          <router-view />
         </div>
       </el-col>
       <!-- 右边内容 -->
-      <el-col :span="4" :xs="0">
+      <el-col :span="6" :xs="0">
         <div class="grid-content bg-purple">
           <div class="right-1">
             <p>热门圈子</p>
@@ -164,6 +127,7 @@ export default {
   width: 88vw;
   margin: 0 auto;
   background-image: linear-gradient(#f6f7fb, #ffffff);
+  text-align: center;
   a {
     text-decoration: none;
   }
@@ -269,23 +233,23 @@ export default {
       }
     }
     // 中间热点区域
-    .center-2 {
-      display: flex;
-      justify-content: space-between;
-      background-color: #ffffff;
-      border: 1px solid #e8ebf3;
-      padding: 20px;
-      a {
-        color: #a7b4c9;
-        padding: 10px 10px;
-        text-align: center;
-        &.active {
-          background-color: #3390ff;
-          color: white;
-          border-radius: 4px;
-        }
-      }
-    }
+    // .center-2 {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   background-color: #ffffff;
+    //   border: 1px solid #e8ebf3;
+    //   padding: 20px;
+    //   a {
+    //     color: #a7b4c9;
+    //     padding: 10px 10px;
+    //     text-align: center;
+    //     &.active {
+    //       background-color: #3390ff;
+    //       color: white;
+    //       border-radius: 4px;
+    //     }
+    //   }
+    // }
     // 用户发帖区域
     .center-3 {
       flex-direction: column;
