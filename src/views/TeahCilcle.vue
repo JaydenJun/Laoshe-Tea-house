@@ -125,6 +125,7 @@ export default {
 <style lang="scss" scoped>
 .teah {
   width: 88vw;
+  
   margin: 0 auto;
   background-image: linear-gradient(#f6f7fb, #ffffff);
   text-align: center;
