@@ -23,14 +23,6 @@ const routes = [
       path: 'chadao',
       name: 'chaodao',
       component: () => import('../views/ChaDao.vue')
-    }, {
-      path: 'chade',
-      name: 'chade',
-      component: () => import('../views//ChaWh/ChaDe.vue')
-    }, {
-      path: 'chagushi',
-      name: 'chafushi',
-      component: () => import('../views/ChaWh/ChaGushi.vue')
     }]
   },
   {
