@@ -3,6 +3,7 @@
     <my-header />
     <router-view />
     <my-footer />
+    
   </div>
 </template>
 

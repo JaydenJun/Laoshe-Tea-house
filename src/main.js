@@ -3,6 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+
+// 全局引入bootstrap
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
+
+
+
 // 引入axios
 // 使用前提,安装模块: npm i axios vue-axios
 import axios from 'axios';
