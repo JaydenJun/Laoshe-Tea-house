@@ -5,7 +5,6 @@
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
           <div class="top-logo">
-            <img src="../assets/logo.png" alt="" />
           </div>
           <div class="top-title">
             <span class="span-1">茶艺圈 以茶会友 </span>
