@@ -14,8 +14,14 @@ const routes = [
     path: '/teah',
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
-    redirect: '/teah/hottest',
+    redirect: '/teah/latest',
     children: [{
+        path: 'play',
+        name: 'play',
+        component: () => import('../views/Play.vue'),
+      },
+
+      {
         path: 'hottest',
         name: 'hottest',
         component: () => import('../views/Hottest.vue'),

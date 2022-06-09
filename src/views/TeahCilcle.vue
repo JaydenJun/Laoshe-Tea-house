@@ -5,7 +5,7 @@
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
           <div class="top-logo">
-            <!-- <img src="" alt="" /> -->
+            <img src="../assets/logo.png" alt="" />
           </div>
           <div class="top-title">
             <span class="span-1">茶艺圈 以茶会友 </span>
@@ -46,10 +46,11 @@
           <!-- 热点选择区域 -->
           <div class="center-2">
             <el-menu :default-active="$route.path" router mode="horizontal">
-              <el-menu-item index="/teah/hottest">热帖</el-menu-item>
               <el-menu-item index="/teah/latest">最新发布</el-menu-item>
+              <el-menu-item index="/teah/hottest">热帖</el-menu-item>
               <el-menu-item index="/teah/week">周热点</el-menu-item>
               <el-menu-item index="/teah/month">月热点</el-menu-item>
+              <el-menu-item index="/teah/play">发帖</el-menu-item>
             </el-menu>
           </div>
           <router-view />
@@ -125,10 +126,8 @@ export default {
 <style lang="scss" scoped>
 .teah {
   width: 88vw;
-  
   margin: 0 auto;
   background-image: linear-gradient(#f6f7fb, #ffffff);
-  text-align: center;
   a {
     text-decoration: none;
   }
