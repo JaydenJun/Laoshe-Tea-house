@@ -21,16 +21,44 @@ const routes = [
     name: 'Trait',
     component: () => import('../views/Trait.vue'),
   },
-  
+
   {
     path: '/product',
     name: 'product',
     component: () => import('../views/Product.vue'),
   },
-  {
+   {
     path: '/teah',
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
+    redirect:'/teah/latest',
+    children:[
+      {
+         path: 'hottest',
+    name: 'hottest',
+    component: () => import('../views/Hottest.vue'),
+      },
+       {
+         path: 'latest',
+    name: 'latest',
+    component: () => import('../views/Latest.vue'),
+      },
+       {
+         path: 'week',
+    name: 'week',
+    component: () => import('../views/Week.vue'),
+      },
+       {
+         path: 'month',
+    name: 'month',
+    component: () => import('../views/Month.vue'),
+      },
+       {
+         path: 'play',
+    name: 'play',
+    component: () => import('../views/Play.vue'),
+      },
+    ]
   },
   {
     path: '/culture',
