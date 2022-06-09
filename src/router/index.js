@@ -10,39 +10,7 @@ const routes = [
     name: 'Trait',
     component: () => import('../views/Trait.vue'),
   },
-  {
-    path: '/teah',
-    name: 'teah',
-    component: () => import('../views/TeahCilcle.vue'),
-    redirect: '/teah/latest',
-    children: [{
-        path: 'play',
-        name: 'play',
-        component: () => import('../views/Play.vue'),
-      },
-
-      {
-        path: 'hottest',
-        name: 'hottest',
-        component: () => import('../views/Hottest.vue'),
-      },
-      {
-        path: 'latest',
-        name: 'latest',
-        component: () => import('../views/Latest.vue'),
-      },
-      {
-        path: 'week',
-        name: 'week',
-        component: () => import('../views/Week.vue'),
-      },
-      {
-        path: 'month',
-        name: 'month',
-        component: () => import('../views/Month.vue'),
-      },
-    ]
-  },
+  
   {
     path: '/product',
     name: 'product',
@@ -128,12 +96,20 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    meta:{
+      title:"登录页面",
+      hide:true
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../views/Register.vue')
+    component: () => import('../views/Register.vue'),
+    meta:{
+      title:"注册页面",
+      hide:true
+    }
   },
   {
     path: '/jc',

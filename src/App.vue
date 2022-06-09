@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <my-header />
+    <my-header v-if="!$route.meta.hide"/>
     <router-view />
-    <my-footer />
+    <my-footer v-if="!$route.meta.hide"/>
     
   </div>
 </template>
@@ -12,6 +12,7 @@ import MyFooter from "./components/MyFooter.vue";
 import MyHeader from "./components/MyHeader.vue";
 export default {
   components: { MyHeader, MyFooter },
+  
 };
 </script>
 
