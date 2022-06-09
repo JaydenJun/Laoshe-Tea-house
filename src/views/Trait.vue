@@ -6,7 +6,7 @@
           <div class="ticket">
             <div class="img">
               <a href="" target="_blank" title="天命"
-                ><img src="/01.jpg" alt="天命"
+                ><img src="/1.jpg" alt="天命"
               /></a>
             </div>
             <div class="info">
