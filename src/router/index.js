@@ -6,6 +6,17 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+		path: "/teadetails",
+		name: "teadetails",
+		component: () => import("../views/TeaDetails.vue"),
+	},
+
+	{
+		path: "/tea",
+		name: "tea",
+		component: () => import("../views/Tea.vue"),
+	},
+  {
     path: '/trait',
     name: 'Trait',
     component: () => import('../views/Trait.vue'),
@@ -52,36 +63,6 @@ const routes = [
     path: '/teah',
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
-  },
-  {
-    path: '/teaculture',
-    name: 'teaculture',
-    component: () => import('../views/TeaCulture.vue'),
-    children: [{
-      path: 'chadao',
-      name: 'chaodao',
-      component: () => import('../views/ChaDao.vue')
-    }]
-  },
-  {
-    path: '/teabase',
-    name: 'teabase',
-    component: () => import('../views/TeaBase.vue'),
-  },
-  {
-    path: '/tentea',
-    name: 'tentea',
-    component: () => import('../views/TenTea.vue'),
-  },
-  {
-    path: '/teaintroduce',
-    name: 'routeName',
-    component: () => import('../views/TeaIntroduce.vue'),
-  },
-  {
-    path: '/tea',
-    name: 'tea',
-    component: () => import('../components/Tea.vue'),
   },
   {
     path: '/culture',
