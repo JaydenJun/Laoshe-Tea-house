@@ -25,9 +25,6 @@
             <span
               >话题互动，分享感受与发现，聚集茶行业海量亲历者、内行人、学者专家、爱好者，沟通交流，建立信任和连接，发现更多志同道合</span
             >
-            <p>
-              <el-button type="primary">免费加入</el-button>
-            </p>
           </div>
         </div>
       </el-col>
@@ -59,7 +56,7 @@
       <el-col :span="6" :xs="0">
         <div class="grid-content bg-purple">
           <div class="right-1">
-            <p>热门圈子</p>
+            <p>热门帖子</p>
             <router-link to=""> 更多 </router-link>
 
             <el-divider></el-divider>

@@ -1,7 +1,6 @@
 <template>
   <!-- 用户发帖区域 -->
   <div class="center-3">
-    <span>我是热帖</span>
     <!-- 用户头像上传区域 -->
     <div class="center-3-1">
       <div class="center-3-1-1">
@@ -26,9 +25,6 @@
       </div>
     </div>
     <div class="center-3-2">
-      <router-link to="">评论</router-link>
-      <span>5</span>
-      <i class="el-icon-chat-line-square"> </i>
       <el-input
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 4 }"
@@ -36,10 +32,25 @@
         v-model="textarea"
       >
       </el-input>
+      <router-link to="">点击发表评论</router-link>
+    </div>
+    <div>
+      <el-button
+        @click="drawer = true"
+        type="primary"
+        style="margin-left: 16px"
+      >
+        点击查看评论信息
+      </el-button>
 
-      <i class="el-icon-thumb"> </i>
-      <router-link to="">点赞</router-link>
-      <span>8</span>
+      <el-drawer
+        title="历史评论信息"
+        :visible.sync="drawer"
+        :direction="direction"
+        :before-close="handleClose"
+      >
+        <span>我来啦!</span>
+      </el-drawer>
     </div>
   </div>
 </template>
@@ -54,9 +65,26 @@ export default {
       textarea: "",
       // 用户上传头像双向绑定变量
       imageUrl: "",
+      activeNames: ["1"],
+
+      // 历史评论信息
+      drawer: false,
+      direction: "rtl",
     };
   },
   methods: {
+    // 历史评论信息
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
+    },
+    // 评论框
+    handleChange(val) {
+      console.log(val);
+    },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
     },
@@ -83,7 +111,7 @@ export default {
   justify-items: center;
   background-color: #ffffff;
   border: 1px solid #e8ebf3;
-  padding: 20px;
+  padding: 30px;
   margin-top: 50px;
   .center-3-1 {
     display: flex;
@@ -127,9 +155,7 @@ export default {
   }
   // 评论区域样式
   .center-3-2 {
-    display: flex;
-    justify-content: space-between;
-
+    padding: 20px;
     i {
       margin: 10px;
     }
@@ -137,7 +163,6 @@ export default {
       color: #3390ff;
     }
     span {
-      display: inline-block;
       margin-top: 10px;
     }
   }

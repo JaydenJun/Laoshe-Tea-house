@@ -60,6 +60,9 @@ export default {
 .play {
   background-color: #ffffff;
   margin-top: 10px;
+  h1 {
+    color: gray;
+  }
   .play-input {
     margin: 20px 20px;
   }
