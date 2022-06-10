@@ -10,12 +10,14 @@ const routes = [
 		name: "teadetails",
 		component: () => import("../views/TeaDetails.vue"),
 	},
-
+// 茶百科
 	{
 		path: "/tea",
 		name: "tea",
 		component: () => import("../views/Tea.vue"),
 	},
+
+  // 茶馆特色
   {
     path: '/trait',
     name: 'Trait',
@@ -27,6 +29,7 @@ const routes = [
     name: 'product',
     component: () => import('../views/Product.vue'),
   },
+  // 茶友圈
    {
     path: '/teah',
     name: 'teah',
@@ -60,6 +63,8 @@ const routes = [
       },
     ]
   },
+
+  // 
   {
     path: '/culture',
     name: 'culture',
@@ -75,7 +80,7 @@ const routes = [
       component: () => import("../views/Room.vue"),
     },]
   },
-
+// 个人中心
   {
     path: '/personal',
     name: 'Personal',
@@ -102,6 +107,7 @@ const routes = [
       component: () => import('../components/Myforum.vue'),
     }]
   },
+  // 登录
   {
     path: '/login',
     name: 'login',
@@ -111,6 +117,7 @@ const routes = [
       hide:true
     }
   },
+  // 注册
   {
     path: '/register',
     name: 'Register',
