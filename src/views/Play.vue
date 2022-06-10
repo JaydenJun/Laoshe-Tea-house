@@ -13,20 +13,7 @@
       >
       </el-input>
     </div>
-    <div>
-      <el-upload
-        action="https://jsonplaceholder.typicode.com/posts/"
-        list-type="picture-card"
-        :on-preview="handlePictureCardPreview"
-        :on-remove="handleRemove"
-      >
-        <i class="el-icon-plus"></i>
-      </el-upload>
-      <el-dialog :visible.sync="dialogVisible">
-        <img width="100%" :src="dialogImageUrl" alt="" />
-      </el-dialog>
-    </div>
-    <div class="play-button">
+    <div class="btn">
       <span>发布</span>
     </div>
   </div>
@@ -39,19 +26,7 @@ export default {
       // 评论框值
       text: "",
       textarea: "",
-      // 照片墙值
-      dialogImageUrl: "",
-      dialogVisible: false,
     };
-  },
-  methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
   },
 };
 </script>
@@ -66,10 +41,12 @@ export default {
   .play-input {
     margin: 20px 20px;
   }
-  .play-button {
-    user-select: none;
-    text-align: center;
-    margin-top: 40px;
+
+  .btn {
+    margin-top: 20px;
+    background-color: #ffffff;
+    height: 50px;
+
     span {
       background-color: rgb(62, 168, 218);
       color: white;
