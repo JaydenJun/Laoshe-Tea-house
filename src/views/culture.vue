@@ -1,12 +1,8 @@
 <template>
   <div>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-container>
-        <el-aside width="200px" class="headerul">
-          <div>
-            <h2>走进老舍</h2>
-          </div>
+    <!-- <el-container>
+       
+          
           <div>
             <ul> 
               <li>茶馆简介</li>
@@ -15,10 +11,33 @@
               <li><router-link to="/culture/room">文化介绍</router-link></li>
             </ul>
           </div>
-        </el-aside>
-        <el-main><router-view/> </el-main>
+      
+        <router-view/>
       </el-container>
+     -->
+    
+    <el-container>
+  
+      <div class="headerul">
+      
+        <ul>
+        
+          <li>茶馆简介</li>
+        
+          <li><router-link to="/culture/history">茶馆历史</router-link></li>
+      
+          <li><router-link to="/culture/person">茶馆宣传片</router-link></li>
+          
+          <li><router-link to="/culture/room">文化介绍</router-link></li>
+          
+        </ul>
+        
+      </div>
+    
+     
+    
     </el-container>
+     <router-view />
   </div>
 </template>
 
@@ -30,13 +49,19 @@ export default {};
 .headerul {
   ul {
     padding-left: 0;
+    display: flex;
     li {
-      margin: 2px 0;
+      margin:1rem 1rem;
       padding: 1rem 0;
       border: none;
       list-style: none;
-      border: 2px solid black;
+    
     }
   }
+}
+.el-container{
+  // margin:0 auto;
+  //因为脱离了文档流，所以不可以i
+  justify-content: center;
 }
 </style>

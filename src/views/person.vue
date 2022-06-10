@@ -2,13 +2,16 @@
     <div>
             
         <el-container>
-            <el-header>Header</el-header>
+           
             <el-container>
             
-            <el-main>
+            <el-main class="mainn">
                     <h2>老舍茶馆宣传片</h2>
-                    <video src="/宣传片.mp4"  loop="loop" controls="controls"  class="video">
+                    <div class="videomi">
+                    <video src=""  loop="loop" controls="controls"  class="video">
+                    
                     </video>
+                    </div>
             </el-main>
             </el-container>
         </el-container>
@@ -22,8 +25,23 @@
 </script>
 
 <style lang="scss" scoped>
+.videomi{
+    display: block;
+    // margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.mainn{
+    // margin: 0 auto;
+    // display: flex;
+//    margin-left: 10vw;
+    h2{
+        text-align: center;
+    }
+}
 .video{
     width: 80%;
+   
 }
 .headerul {
   ul{

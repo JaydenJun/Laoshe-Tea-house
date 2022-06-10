@@ -6,6 +6,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+		path: "/zixun",
+		name: "zixun",
+		component: () => import("../views/ZiXun.vue"),
+	},
+
+
+  {
 		path: "/teadetails",
 		name: "teadetails",
 		component: () => import("../views/TeaDetails.vue"),
@@ -66,8 +73,10 @@ const routes = [
   },
   {
     path: '/culture',
-    name: 'culture',
+    name: 'guanyushou',
     component: () => import("../views/culture.vue"),
+    // component: () => import("../views/guanyushou.vue"),
+    
     children: [{
       path: 'person',//信息
       component: () => import('../views/person.vue'),
@@ -77,7 +86,7 @@ const routes = [
     }, {
       path: 'room',
       component: () => import("../views/Room.vue"),
-    },]
+    }]
   },
 
   {

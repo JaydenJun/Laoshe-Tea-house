@@ -15,7 +15,7 @@
                 <li><router-link to="/">首页</router-link></li>
                 <li><router-link to="/trait">茶馆特色</router-link></li>
                 <li><router-link to="/teah">茶友圈</router-link></li>
-                <li><router-link to="/product">茶闻资讯</router-link></li>
+                <li><router-link to="/zixun">茶闻资讯</router-link></li>
                 <li><router-link to="/tea">茶百科</router-link></li>
                 <li><router-link to="/culture">关于我们</router-link></li>
               </ul>

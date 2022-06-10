@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 固定定位 -->
-        <div class="share">
+        <!-- <div class="share">
             <ul>
                 <li><i class="el-icon-share"></i></li>
                 <li><i class="el-icon-delete"></i></li>
@@ -9,9 +9,9 @@
                 <li><i class="el-icon-delete"></i></li>
                 <li><i class="el-icon-delete"></i></li>
             </ul>
-        </div>
+        </div> -->
         <el-container>
-            <el-header>Header</el-header>
+            <!-- <el-header>Header</el-header> -->
             <el-container>
                 <el-main>
                     <el-container>
