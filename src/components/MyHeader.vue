@@ -17,11 +17,11 @@
                 <li><router-link to="/teah">茶友圈</router-link></li>
                 <li><router-link to="/zixun">茶闻资讯</router-link></li>
                 <li><router-link to="/tea">茶百科</router-link></li>
-                <li><router-link to="/culture">关于我们</router-link></li>
+                <li><router-link to="/culture">关于我们</router-link></li> 
               </ul>
             </div>
-          </div></el-col
-        >
+            
+          </div></el-col>
         <el-col :xs="24" :sm="5" :md="4"
           ><div class="grid-content bg-purple-light">
             <div>

@@ -17,60 +17,61 @@ const routes = [
 		name: "teadetails",
 		component: () => import("../views/TeaDetails.vue"),
 	},
-
+// 茶百科
 	{
 		path: "/tea",
 		name: "tea",
 		component: () => import("../views/Tea.vue"),
 	},
+
+  // 茶馆特色
   {
     path: '/trait',
     name: 'Trait',
     component: () => import('../views/Trait.vue'),
   },
-  {
-    path: '/teah',
-    name: 'teah',
-    component: () => import('../views/TeahCilcle.vue'),
-    redirect: '/teah/latest',
-    children: [{
-        path: 'play',
-        name: 'play',
-        component: () => import('../views/Play.vue'),
-      },
 
-      {
-        path: 'hottest',
-        name: 'hottest',
-        component: () => import('../views/Hottest.vue'),
-      },
-      {
-        path: 'latest',
-        name: 'latest',
-        component: () => import('../views/Latest.vue'),
-      },
-      {
-        path: 'week',
-        name: 'week',
-        component: () => import('../views/Week.vue'),
-      },
-      {
-        path: 'month',
-        name: 'month',
-        component: () => import('../views/Month.vue'),
-      },
-    ]
-  },
   {
     path: '/product',
     name: 'product',
     component: () => import('../views/Product.vue'),
   },
-  {
+  // 茶友圈
+   {
     path: '/teah',
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
+    redirect:'/teah/latest',
+    children:[
+      {
+         path: 'hottest',
+    name: 'hottest',
+    component: () => import('../views/Hottest.vue'),
+      },
+       {
+         path: 'latest',
+    name: 'latest',
+    component: () => import('../views/Latest.vue'),
+      },
+       {
+         path: 'week',
+    name: 'week',
+    component: () => import('../views/Week.vue'),
+      },
+       {
+         path: 'month',
+    name: 'month',
+    component: () => import('../views/Month.vue'),
+      },
+       {
+         path: 'play',
+    name: 'play',
+    component: () => import('../views/Play.vue'),
+      },
+    ]
   },
+
+  // 
   {
     path: '/culture',
     name: 'guanyushou',
@@ -88,7 +89,7 @@ const routes = [
       component: () => import("../views/Room.vue"),
     }]
   },
-
+// 个人中心
   {
     path: '/personal',
     name: 'Personal',
@@ -115,15 +116,25 @@ const routes = [
       component: () => import('../components/Myforum.vue'),
     }]
   },
+  // 登录
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    meta:{
+      title:"登录页面",
+      hide:true
+    }
   },
+  // 注册
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../views/Register.vue')
+    component: () => import('../views/Register.vue'),
+    meta:{
+      title:"注册页面",
+      hide:true
+    }
   },
   {
     path: '/jc',

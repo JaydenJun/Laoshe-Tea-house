@@ -83,7 +83,7 @@ export default {};
   margin-top: 50px;
 }
 .container {
-  width: 1280px;
+  width: 88vw;
   margin: 0 auto;
   text-align: center;
   .guanyu {

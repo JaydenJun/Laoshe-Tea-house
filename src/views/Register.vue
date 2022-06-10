@@ -3,7 +3,9 @@
     <div class="register_box">
       <!-- 头像 -->
       <div class="logo">
-        <img src="../assets/img/bt.png" alt="" />
+        <router-link to="/"
+          ><img src="../assets/img/bt.png" alt=""
+        /></router-link>
       </div>
       <!-- 表单 -->
       <el-form
@@ -163,6 +165,17 @@ body {
   margin: 0;
   padding: 0;
 }
+.register {
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(https://img1.baidu.com/it/u=2042976038,4015865224&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500)
+    no-repeat;
+  background-size: cover;
+}
 .register_box {
   position: absolute;
   top: 50%;
@@ -204,7 +217,8 @@ body {
   }
   .btns {
     display: flex;
-    justify-content: flex-end;
+
+    justify-content: center;
   }
 }
 </style>

@@ -1,22 +1,35 @@
 <template>
   <div class="login">
     <!-- 外框 -->
+
     <div class="login_box">
-      <!-- 头像 -->
-      <div class="logo">
-        <img src="../assets/img/bt.png" alt="" />
-      </div>
       <!-- 表单 -->
+      <div
+        style="
+          width: 100%;
+          text-align: center;
+          background-color: #eee;
+          margin-bottom: 50px;
+        "
+      >
+        <router-link to="/"
+          ><img style="width: 50%" src="../assets/log2.png" alt=""
+        /></router-link>
+      </div>
       <el-form
         :model="ruleForm"
         status-icon
         :rules="rules"
         ref="ruleForm"
         label-width="100px"
-        class="sigin"
-        ><p><router-link to="/register">立即注册</router-link></p>
+      >
+        <p class="biao">
+          <span>账号登录</span
+          ><router-link to="/register">没有账号？立即注册</router-link>
+        </p>
         <el-form-item label="手机号" prop="phone">
           <el-input
+            placeholder="请输入手机号"
             type="text"
             v-model="ruleForm.phone"
             autocomplete="off"
@@ -25,16 +38,19 @@
 
         <el-form-item label="密码" prop="pass">
           <el-input
+            placeholder="请输入密码"
             type="password"
             v-model="ruleForm.pass"
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item class="btns">
+        <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
-            >提交</el-button
+            >立即登录</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button style="width: 98px" @click="resetForm('ruleForm')"
+            >重置</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -113,55 +129,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login_box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  border-radius: 14px;
-  background-color: rgba(255, 255, 255, 0.8);
+.login {
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(https://img1.baidu.com/it/u=2042976038,4015865224&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500)
+    no-repeat;
+  background-size: cover;
+  .login_box {
+    padding: 50px 50px 50px 0;
+    text-align: center;
+    width: 400px;
+    background-color: #eee;
+    opacity: 0.95;
+    margin: 120px auto;
+    border-radius: 10px;
+  }
   .logo {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -110%);
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 1px solid #eee;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px #ddd;
-    img {
-      height: 100%;
-      width: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
-    p {
-      margin: 5px;
-      transform: translateX(180px);
-      a {
-        text-decoration: none;
-        color: #409eff;
-      }
-    }
+    width: 100%;
+    display: block;
+    text-align: center;
   }
-  .sigin {
-    width: 470px;
-    margin-top: 18px;
-    p {
-      margin: 5px;
-      transform: translateX(400px);
-      a {
-        text-decoration: none;
-        color: #409eff;
-      }
-    }
-  }
-  .btns {
+  .biao {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
+    span {
+      font-size: 30px;
+    }
+    a {
+      text-decoration: none;
+      line-height: 50px;
+    }
   }
 }
 </style>

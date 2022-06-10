@@ -4,8 +4,7 @@
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <div class="top-logo">
-          </div>
+          <div class="top-logo"></div>
           <div class="top-title">
             <span class="span-1">茶艺圈 以茶会友 </span>
             <span class="span-2"> “振兴古国茶文化， 扶植民族艺术花”</span>
@@ -124,6 +123,7 @@ export default {
   width: 88vw;
   margin: 0 auto;
   background-image: linear-gradient(#f6f7fb, #ffffff);
+  text-align: center;
   a {
     text-decoration: none;
   }
