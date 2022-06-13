@@ -30,10 +30,21 @@ const routes = [
 	},
 
   // 茶馆特色
+ 
   {
     path: '/trait',
-    name: 'Trait',
-    component: () => import('../views/Trait.vue'),
+    name: 'trait',
+    component: () => import('../views/Trait copy.vue'),
+    redirect:"/trait/xiangsheng",
+    children:[{
+      path:"xiangsheng",
+      name:"xiangsheng",
+      component:()=>import("../views/Xiangsheng.vue")
+    } ,{
+    path: 'traits',
+    name: 'routeName',
+    component: () => import('../views/tarit_item.vue'),
+  },]
   },
 
   {
