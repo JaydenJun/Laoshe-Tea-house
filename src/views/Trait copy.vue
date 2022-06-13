@@ -2,131 +2,8 @@
   <div class="tarit">
     <el-tabs type="border-card">
       <el-tab-pane :label="i" v-for="i in lab" :key="i">
-        <router-view/>
-        <!-- <div class="yc_list" style="border-top: none">
-          <div class="ticket">
-            <div class="img">
-              <a href="" target="_blank" title="天命"
-                ><img src="/1.jpg" alt="天命"
-              /></a>
-            </div>
-            <div class="info">
-              <dl>
-                <dt>
-                  <a href="" title="天命" target="_blank">天命</a>
-                </dt>
-                <dd>时间：2022.06.09</dd>
-                <dd class="address">
-                  楼层：<a href="" title="一楼东区" target="_blank">一楼东区</a>
-                </dd>
-                <dd>状态：售票中</dd>
-                <dd class="price">票价：<span>100</span> 起</dd>
-                <dd class="order">
-                  <a href="#" title="" target="_blank">订 票</a>
-                </dd>
-              </dl>
-            </div>
-          </div>
-        </div> -->
+        <router-view />
       </el-tab-pane>
-      <!-- <el-tab-pane label="评书专场">
-        <div class="ticket">
-            <div class="img">
-              <a href="" target="_blank" title="天命"
-                ><img src="/2.jpg" alt="天命"
-              /></a>
-            </div>
-            <div class="info">
-              <dl>
-                <dt>
-                  <a href="" title="天命" target="_blank">天命</a>
-                </dt>
-                <dd>时间：2022.06.09</dd>
-                <dd class="address">
-                  楼层：<a href="" title="一楼东区" target="_blank">一楼东区</a>
-                </dd>
-                <dd>状态：售票中</dd>
-                <dd class="price">票价：<span>100</span> 起</dd>
-                <dd class="order">
-                  <a href="" title="" target="_blank">订 票</a>
-                </dd>
-              </dl>
-            </div>
-          </div>
-      </el-tab-pane>
-      <el-tab-pane label="相声专场">
-        <div class="ticket">
-            <div class="img">
-              <a href="" target="_blank" title="天命"
-                ><img src="/01.jpg" alt="天命"
-              /></a>
-            </div>
-            <div class="info">
-              <dl>
-                <dt>
-                  <a href="" title="天命" target="_blank">天命</a>
-                </dt>
-                <dd>时间：2022.06.09</dd>
-                <dd class="address">
-                  楼层：<a href="" title="一楼东区" target="_blank">一楼东区</a>
-                </dd>
-                <dd>状态：售票中</dd>
-                <dd class="price">票价：<span>100</span> 起</dd>
-                <dd class="order">
-                  <a href="" title="" target="_blank">订 票</a>
-                </dd>
-              </dl>
-            </div>
-          </div>
-      </el-tab-pane>
-      <el-tab-pane label="京剧专场"><div class="ticket">
-            <div class="img">
-              <a href="" target="_blank" title="天命"
-                ><img src="/2.jpg" alt="天命"
-              /></a>
-            </div>
-            <div class="info">
-              <dl>
-                <dt>
-                  <a href="" title="天命" target="_blank">天命</a>
-                </dt>
-                <dd>时间：2022.06.09</dd>
-                <dd class="address">
-                  楼层：<a href="" title="一楼东区" target="_blank">一楼东区</a>
-                </dd>
-                <dd>状态：售票中</dd>
-                <dd class="price">票价：<span>100</span> 起</dd>
-                <dd class="order">
-                  <a href="" title="" target="_blank">订 票</a>
-                </dd>
-              </dl>
-            </div>
-          </div></el-tab-pane>
-      <el-tab-pane label="鼓曲专场"><div class="ticket">
-            <div class="img">
-              <a href="" target="_blank" title="天命"
-                ><img src="/3.jpg" alt="天命"
-              /></a>
-            </div>
-            <div class="info">
-              <dl>
-                <dt>
-                  <a href="" title="天命" target="_blank">天命</a>
-                </dt>
-                <dd>时间：2022.06.09</dd>
-                <dd class="address">
-                  楼层：<a href="" title="一楼东区" target="_blank">一楼东区</a>
-                </dd>
-                <dd>状态：售票中</dd>
-                <dd class="price">票价：<span>100</span> 起</dd>
-                <dd class="order">
-                  <a href="" title="" target="_blank">订 票</a>
-                </dd>
-              </dl>
-            </div>
-          </div></el-tab-pane>
-      <el-tab-pane label="更多"></el-tab-pane>
-      <el-tab-pane label="更多"></el-tab-pane> -->
     </el-tabs>
   </div>
 </template>
@@ -135,8 +12,8 @@
 export default {
   data() {
     return {
-      lab: ["曲艺杂谈","评书专场","相声专场","京剧专场","鼓曲专场","更多"]
-    }
+      lab: ["曲艺杂谈", "评书专场", "相声专场", "京剧专场", "鼓曲专场"],
+    };
   },
 };
 </script>

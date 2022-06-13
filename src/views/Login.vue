@@ -97,7 +97,7 @@ export default {
           {
             min: 8,
             max: 16,
-            pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z\\W]{6,18}$/,
+            // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z\\W]{6,18}$/,
             message: "密码必须包含字母和数字，且在8-15位之间",
             trigger: "blur",
           },
@@ -109,12 +109,23 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$message({
-            message: "登录成功！",
-            type: "success",
-          }); //提示成功信息
           console.log(this.ruleForm); //登录成功，这里判断数据库有没有  手机号
-          //   this.$router.push("/login"); //成功跳转 到主页或者购物界面
+          const params = `user_phone=${this.ruleForm.phone}&user_pwd=${this.ruleForm.pass}`;
+          const url = "http://localhost:3000/v1/users/login";
+          this.axios.post(url, params).then((res) => {
+            console.log(res);
+            if (res.code == 200) {
+              this.$message({
+                //提示成功信息
+                message: "登录成功！",
+                type: "success",
+                //   this.$router.push("/login"); //成功跳转 到主页或者购物界面
+              });
+            } else {
+              this.$message.error("账号有误，请从新输入"); //，这里提示
+              return false;
+            }
+          });
         } else {
           this.$message.error("账号有误，请从新输入"); //，这里提示
           return false;
