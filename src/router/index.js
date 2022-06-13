@@ -141,7 +141,7 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../views/Register.vue'),
+    component: () => import('../views/Registers.vue'),
     meta:{
       title:"注册页面",
       hide:true
