@@ -28,7 +28,7 @@
     </el-row>
     <!-- 茶类小盒子 -->
     <el-row class="teacell" :gutter="10">
-      <el-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6" v-for="i in 8" :key="i">
+      <el-col  :xs="12" :sm="6" :md="6" :lg="6" :xl="6" v-for="i in 8" :key="i">
         <router-link to="/teadetails">
           <div>
             <img src="/img/西湖龙井.webp" alt="">
