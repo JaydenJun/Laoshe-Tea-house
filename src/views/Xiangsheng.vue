@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="yc_list" style="border-top: none">
+  <div class="tarit">
+    <div class="yc_list" style="border-top: none" v-for="i in 10" :key="i">
       <div class="ticket">
         <div class="img">
           <router-link to="/trait/traits" target="_blank" title="天命"
@@ -49,17 +49,14 @@ a {
   margin: 0 auto;
 }
 .yc_list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  display: inline-flex;
   padding: 5px 20px;
   padding-right: 0px;
   overflow: hidden;
 }
 .ticket {
   margin: 10px 5px;
-  width: 360px;
+  width: 340px;
   height: 180px;
   overflow: hidden;
   text-align: left;
