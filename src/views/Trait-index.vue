@@ -1,17 +1,25 @@
 <template>
   <div class="tarit">
     <el-menu
+      v-if="data"
       :default-active="selected"
       background-color="#fff"
       text-color="#333"
       active-text-color="#f5d"
       mode="horizontal"
     >
-      <el-menu-item index="0">综艺演出 </el-menu-item>
-      <el-menu-item index="1">综艺演出 </el-menu-item>
+      <template>
+        <el-menu-item
+          :index="item.family_id"
+          v-for="item in data.data"
+          :key="item.family_sid"
+          @click="y = item.family_id"
+          >{{ item.family_title }}
+        </el-menu-item>
+      </template>
     </el-menu>
     
-    <trait-item :item="selected"/>
+    <trait-item v-for="x in data" :item="x" :y="y" :key="x" />
   </div>
 </template>
 
@@ -21,19 +29,29 @@ export default {
   components: { TraitItem },
   data() {
     return {
-      selected: "0",
-      lab: [
-        "综艺演出",
-        "相声专场",
-        "京剧专场",
-        "评书专场",
-        "鼓曲专场",
-        "儿童剧",
-        "体验类",
-      ],
+      selected: 1,
+      y: "1",
+      data: null,
     };
   },
- 
+  mounted() {
+    this.list();
+  },
+  methods: {
+    list() {
+      let url = "http://127.0.0.1:3000/v1/users/shopps";
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.data = res.data;
+      });
+    },
+  },
+  watch: {
+    y() {
+      this.list();
+      // console.log(this.selected);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

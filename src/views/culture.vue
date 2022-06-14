@@ -22,7 +22,7 @@
       
         <ul>
         
-          <li>茶馆简介</li>
+          <!-- <li>茶馆简介</li> -->
         
           <li><router-link to="/culture/history">茶馆历史</router-link></li>
       

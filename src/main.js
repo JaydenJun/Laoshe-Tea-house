@@ -15,6 +15,11 @@ import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios)
 
 
+// 引入moment
+import moment from "moment"
+Vue.prototype.moment=moment
+
+
 // 引入swiper
 // 集成swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper';

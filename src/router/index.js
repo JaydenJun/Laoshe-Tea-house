@@ -11,35 +11,36 @@ const routes = [
     component: () => import('../views/TraitDetails.vue'),
   },
   {
-		path: "/zixun",
-		name: "zixun",
-		component: () => import("../views/ZiXun.vue"),
-	},
+    path: "/zixun",
+    name: "zixun",
+    component: () => import("../views/ZiXun.vue"),
+  },
 
 
   {
-		path: "/teadetails",
-		name: "teadetails",
-		component: () => import("../views/TeaDetails.vue"),
-	},
-// 茶百科
-	{
-		path: "/tea",
-		name: "tea",
-		component: () => import("../views/Tea.vue"),
-	},
+    path: "/teadetails",
+    name: "teadetails",
+    component: () => import("../views/TeaDetails.vue"),
+  },
+  // 茶百科
+  {
+    path: "/tea",
+    name: "tea",
+    component: () => import("../views/Tea.vue"),
+  },
 
   // 茶馆特色
- 
+
   {
     path: '/trait',
     name: 'trait',
     component: () => import('../views/Trait-index.vue'),
-    children:[{
-    path: 'traits',
+    // children: []
+  }, {
+    path: '/traits/:id',
     name: 'routeName',
+    props:true,
     component: () => import('../views/tarit_item.vue'),
-  },]
   },
 
   {
@@ -48,36 +49,36 @@ const routes = [
     component: () => import('../views/Product.vue'),
   },
   // 茶友圈
-   {
+  {
     path: '/teah',
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
-    redirect:'/teah/latest',
-    children:[
+    redirect: '/teah/latest',
+    children: [
       {
-         path: 'hottest',
-    name: 'hottest',
-    component: () => import('../views/Hottest.vue'),
+        path: 'hottest',
+        name: 'hottest',
+        component: () => import('../views/Hottest.vue'),
       },
-       {
-         path: 'latest',
-    name: 'latest',
-    component: () => import('../views/Latest.vue'),
+      {
+        path: 'latest',
+        name: 'latest',
+        component: () => import('../views/Latest.vue'),
       },
-       {
-         path: 'week',
-    name: 'week',
-    component: () => import('../views/Week.vue'),
+      {
+        path: 'week',
+        name: 'week',
+        component: () => import('../views/Week.vue'),
       },
-       {
-         path: 'month',
-    name: 'month',
-    component: () => import('../views/Month.vue'),
+      {
+        path: 'month',
+        name: 'month',
+        component: () => import('../views/Month.vue'),
       },
-       {
-         path: 'play',
-    name: 'play',
-    component: () => import('../views/Play.vue'),
+      {
+        path: 'play',
+        name: 'play',
+        component: () => import('../views/Play.vue'),
       },
     ]
   },
@@ -86,9 +87,10 @@ const routes = [
   {
     path: '/culture',
     name: 'guanyushou',
+    redirect:"/culture/history",
     component: () => import("../views/culture.vue"),
     // component: () => import("../views/guanyushou.vue"),
-    
+
     children: [{
       path: 'person',//信息
       component: () => import('../views/person.vue'),
@@ -100,7 +102,7 @@ const routes = [
       component: () => import("../views/Room.vue"),
     }]
   },
-// 个人中心
+  // 个人中心
   {
     path: '/personal',
     name: 'Personal',
@@ -132,9 +134,9 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../views/Login.vue'),
-    meta:{
-      title:"登录页面",
-      hide:true
+    meta: {
+      title: "登录页面",
+      hide: true
     }
   },
   // 注册
@@ -142,9 +144,9 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue'),
-    meta:{
-      title:"注册页面",
-      hide:true
+    meta: {
+      title: "注册页面",
+      hide: true
     }
   },
   {

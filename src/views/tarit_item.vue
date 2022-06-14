@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 88vw; margin: 0 auto">
     <el-row>
       <el-col :span="24"
         ><div class="grid-content bg-purple-dark">
@@ -12,8 +12,8 @@
                       src="https://img.alicdn.com/imgextra/i1/2251059038/O1CN019X1cxL2GdSLnjQVjL_!!2251059038.png"
                   /></a>
                 </div>
-                <div >
-                  <p>京味综艺演出《四季北京.茶》</p>
+                <div>
+                  <h3>京味综艺演出《四季北京.茶》</h3>
                   <div>
                     <p>
                       <img
@@ -27,10 +27,7 @@
                     </p>
                   </div>
                   <!---->
-                  <div>
-                    <label>优惠：</label>
-                    <div></div>
-                  </div>
+                  
 
                   <div>
                     <label>场次时间：</label>
@@ -69,12 +66,12 @@
                     </ul>
                   </div>
                   <div>
-                    <label>选择票价：</label>
+                    <label>选择专区：</label>
                     <ul>
-                      <li>
-                        <span>学生票(￥100)</span>
+                      <li v-for="n in data.data" :key="n.spec_id">
+                        <span>{{n.spec_region}} (￥{{n.spec_price}}元)</span>
                       </li>
-                      <li>
+                      <!-- <li>
                         <span>特惠区(￥200)</span>
                       </li>
                       <li>
@@ -85,21 +82,21 @@
                       </li>
                       <li>
                         <span>VIP区(￥500)</span>
-                      </li>
+                      </li> -->
                       <!---->
                     </ul>
                   </div>
                   <!---->
-                  <div>
+                  <!-- <div>
                     <i></i>
                     <span
                       >学生票仅限学生购买，请持本人有效学生证件换票和入场</span
                     >
-                  </div>
-                  <div>
+                  </div> -->
+                  <!-- <div> -->
                     <!---->
-                    <a> 选座购买 </a>
-                  </div>
+                    <!-- <a> 选座购买 </a> -->
+                  <!-- </div> -->
                 </div>
               </div>
             </div>
@@ -366,20 +363,46 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["id"],
+  data() {
+    return {
+      data: null,
+    };
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      let url = "http://127.0.0.1:3000/v1/users/shopp?show_sid=" + this.id;
+      this.axios.get(url).then((res) => {
+        this.data = res.data;
+        console.log(res);
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .dingbu {
   display: inline-flex;
+  >div:nth-child(2){
+    padding: 10px;
+    li{
+      list-style: none;
+    }
+  }
 }
 .biaoti {
   display: inline-flex;
   padding: 20px;
   width: 100%;
-  margin: 10px 0;
+  margin: 20px 0;
   border-bottom: 1px solid #333;
   background-image: linear-gradient(#666, #eee);
+  
   h4 {
     margin: 5px 20px;
   }
