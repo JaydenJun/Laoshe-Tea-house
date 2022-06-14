@@ -29,13 +29,8 @@ const routes = [
   {
     path: '/trait',
     name: 'trait',
-    component: () => import('../views/Trait copy.vue'),
-    redirect:"/trait/xiangsheng",
+    component: () => import('../views/Trait-index.vue'),
     children:[{
-      path:"xiangsheng",
-      name:"xiangsheng",
-      component:()=>import("../views/Xiangsheng.vue")
-    } ,{
     path: 'traits',
     name: 'routeName',
     component: () => import('../views/tarit_item.vue'),

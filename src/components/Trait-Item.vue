@@ -3,6 +3,7 @@
     <div class="yc_list" style="border-top: none" v-for="i in 10" :key="i">
       <div class="ticket">
         <div class="img">
+          
           <router-link to="/trait/traits" target="_blank" title="天命"
             ><img src="/1.jpg" alt="天命"
           /></router-link>
@@ -11,7 +12,7 @@
           <dl>
             <dt>
               <router-link to="/trait/traits" title="天命" target="_blank"
-                >天命</router-link
+                >{{item}}天命</router-link
               >
             </dt>
             <dd>时间：2022.06.09</dd>
@@ -31,7 +32,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:["item"],
+  watch(){
+    this.item
+  }
+};
 </script>
 
 <style lang="scss" scoped>
