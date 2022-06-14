@@ -21,7 +21,8 @@
                 <dd>状态：售票中</dd>
                 <dd class="price">票价：<span>100</span> 起</dd>
                 <dd class="order">
-                  <a href="#" title="" target="_blank">订 票</a>
+                  <router-link to="/traitdetails">订 票</router-link>
+                
                 </dd>
               </dl>
             </div>

@@ -268,7 +268,7 @@ create table lscg_orders(
 	show_oid int(8),												#所属商品
 	spec_oid int(8),												#商品类型
 	order_count int(3),												#购买数量
-	order_pice int(6)												#实付价格
+	order_pice decimal(6,2)												#实付价格
 );
 insert into lscg_orders values
 (1,1,1,2,1,388.8),
