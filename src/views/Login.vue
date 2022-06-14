@@ -45,6 +45,13 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
+          <img
+            src="http://127.0.0.1:3000/v1/users/v1/code"
+            id="code2"
+            
+            title="看不清点击换一张"
+          /><br />
+          <input type="text" id="code" v-model="ruleForm.code" value="" />
           <el-button type="primary" @click="submitForm('ruleForm')"
             >立即登录</el-button
           >
@@ -82,6 +89,7 @@ export default {
       ruleForm: {
         phone: "",
         pass: "",
+        code:""
       },
       rules: {
         phone: [
@@ -110,8 +118,8 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log(this.ruleForm); //登录成功，这里判断数据库有没有  手机号
-          const params = `user_phone=${this.ruleForm.phone}&user_pwd=${this.ruleForm.pass}`;
-          const url = "http://localhost:3000/v1/users/login";
+          const params = `user_phone=${this.ruleForm.phone}&user_pwd=${this.ruleForm.pass}&code=${this.ruleForm.code}`;
+          const url = "http://127.0.0.1:3000/v1/users/login";
           this.axios.post(url, params).then((res) => {
             console.log(res);
             if (res.code == 200) {

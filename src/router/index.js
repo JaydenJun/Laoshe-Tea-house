@@ -39,7 +39,7 @@ const routes = [
   }, {
     path: '/traits/:id',
     name: 'routeName',
-    props:true,
+    props: true,
     component: () => import('../views/tarit_item.vue'),
   },
 
@@ -87,7 +87,7 @@ const routes = [
   {
     path: '/culture',
     name: 'guanyushou',
-    redirect:"/culture/history",
+    redirect: "/culture/history",
     component: () => import("../views/culture.vue"),
     // component: () => import("../views/guanyushou.vue"),
 
@@ -159,6 +159,48 @@ const routes = [
     name: 'Index',
     component: Index,
   },
+
+  // 管理员路由
+
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../admin/Admin.vue'),
+    // redirect意味着重定向，当浏览器跳转到/components时将会自动重定向到/components/container
+    redirect: '/admin/users',
+    meta:{
+      hide:true
+    },
+    children: [{
+      path: 'news',
+      name: 'news',
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/News.vue')
+    }, {
+      path: 'shows',
+      name: 'shows',
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/Shows.vue')
+    }, {
+      path: 'users',
+      name: 'users',
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/Users.vue')
+    }, {
+      path: 'teas',
+      name: 'teas',
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/Teas.vue')
+    }]
+  }
 ]
 
 const router = new VueRouter({

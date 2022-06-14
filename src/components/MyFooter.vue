@@ -1,16 +1,14 @@
 <template>
   <div class="footer">
     <div class="container">
-     
       <el-row :gutter="10">
-        <el-col :xs="24"  :md="8" :lg="6"
+        <el-col :xs="24" :md="8" :lg="6"
           ><div class="flog grid-content bg-purple">
             <p>
               <img src="../assets/log2.png" alt="" />
-            </p>
-            </div
+            </p></div
         ></el-col>
-        <el-col :xs="24"  :md="16" :lg="9"
+        <el-col :xs="24" :md="16" :lg="9"
           ><div class="grid-content bg-purple-light">
             <div class="guanyu">
               <ul>
@@ -122,7 +120,7 @@ export default {};
 }
 .yedi {
   width: 100vw;
-  padding:2px 5px 2px 0; 
+  padding: 2px 5px 2px 0;
   text-align: center;
 }
 </style>
