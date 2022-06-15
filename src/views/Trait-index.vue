@@ -1,7 +1,7 @@
 <template>
-  <div class="tarit">
+  <div class="tarit" v-if="data">
     <el-menu
-      v-if="data"
+      
       :default-active="selected"
       background-color="#fff"
       text-color="#333"
@@ -12,21 +12,21 @@
         <el-menu-item
           :index="item.family_id"
           v-for="item in data.data"
-          :key="item.family_sid"
+          :key="item.family_id"
           @click="y = item.family_id"
           >{{ item.family_title }}
         </el-menu-item>
       </template>
     </el-menu>
     
-    <trait-item v-for="x in data" :item="x" :y="y" :key="x" />
+    <trait-item v-for="x in data" :item="x" :y="y" :key="x.family_id" />
   </div>
 </template>
 
 <script>
 import TraitItem from "@/components/Trait-Item.vue";
 export default {
-  components: { TraitItem },
+  components: { "TraitItem":TraitItem },
   data() {
     return {
       selected: 1,

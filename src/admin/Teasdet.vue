@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ["show_id"],
+  props: ["tea_id"],
   data() {
     return {
       data: null,
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     getData() {
-      const url = "http://127.0.0.1:3000/v1/admin/details/" + this.show_id;
+      const url = "http://127.0.0.1:3000/v1/admin/detailsb/" + this.tea_id;
       console.log(url);
       this.axios.get(url).then((res) => {
         console.log(res);

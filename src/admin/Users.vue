@@ -56,7 +56,7 @@ export default {
   methods: {
     deleteRow(index, rows) {
       console.log(index);
-      const url = `http://127.0.0.1:3000/v1/admin/${rows}`;
+      const url = `http://127.0.0.1:3000/v1/admin/u/${rows}`;
       console.log("url", url);
       this.axios.delete(url).then((res) => {
         console.log(res);
