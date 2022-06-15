@@ -10,17 +10,17 @@ const admin=require('./joggle/admin.js');
 //创建web服务器
 const app=express();
 
-// app.use(cors({
-// 	origin:['http://localhost:8080','http://127.0.0.1:8080',
-// 	'http://localhost:5500','http://127.0.0.1:5500'],  //指定接收的地址
-//     methods:['GET','POST','DELETE','PUT'],  //指定接收的请求类型
-//     alloweHeaders:['Content-Type','Authorization']  //指定header
-// }))
+app.use(cors({
+	origin:['http://localhost:8080','http://127.0.0.1:8080',
+	'http://localhost:5500','http://127.0.0.1:5500'],  //指定接收的地址
+    methods:['GET','POST','DELETE','PUT'],  //指定接收的请求类型
+    alloweHeaders:['Content-Type','Authorization']  //指定header
+}))
 
-app.all('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-   next()
-})
+// app.all('*', (req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*')
+//    next()
+// })
 
 //配置multer中间件
 const multer = require('multer')

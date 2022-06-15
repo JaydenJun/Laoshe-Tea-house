@@ -185,7 +185,27 @@ const routes = [
         hide:true
       },
       component: () => import('../admin/Shows.vue')
-    }, {
+    },
+    {
+      path: 'showdet/:show_id',
+      name: 'showdet',
+      props:true,
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/Show_details.vue'),
+    }, 
+    
+    {
+      path: 'teasdet/:tea_id',
+      name: 'teasdet',
+      props:true,
+      meta:{
+        hide:true
+      },
+      component: () => import('../admin/Teasdet.vue'),
+    },
+    {
       path: 'users',
       name: 'users',
       meta:{

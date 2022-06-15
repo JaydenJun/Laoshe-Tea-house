@@ -262,6 +262,7 @@ insert into lscg_users values
 (4,'mengmeng','123456789','18626489633','2899464517@qq.com',0,'1999-11-18','***'),
 (5,'chenlanglang','123456789','18626489694','2899467517@qq.com',1,'2000-10-22','***');
 
+#订单表
 create table lscg_orders(
 	order_id int(10) primary key auto_increment,					#由系统生成的唯一标识
 	user_oid int(8),												#所属用户

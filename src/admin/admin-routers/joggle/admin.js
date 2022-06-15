@@ -69,14 +69,14 @@ router.get('/list', (req, res, next) => {
     }
     console.log(r);
     //查询到的是数组，直接把数组响应过去
-    res.send({ code: 200, msg: '查询成功', data: r });
+    res.send({ code: 200, msg: '查询成功', data: {users:r,user:r}});
   });
 });
 
 //(3)删除用户接口(delete /编号)
-//接口地址：http://127.0.0.1:3000/v1/admin/6
+//接口地址：http://127.0.0.1:3000/v1/admin/u/6
 //请求方式：delete
-router.delete('/:user_id', (req, res, next) => {
+router.delete('/u/:user_id', (req, res, next) => {
   //获取路由传递的参数
   var obj = req.params;
   console.log(obj);
@@ -100,7 +100,7 @@ router.delete('/:user_id', (req, res, next) => {
 
 
 //用户详情接口(get /detail/编号)
-//接口地址：http://127.0.0.1:3000/v1/users/detail/1
+//接口地址：http://127.0.0.1:3000/v1/admin/detail/1
 //请求方式：get
 router.get('/detail/:user_id', (req, res, next) => {
   //获取路由传参的值
@@ -146,9 +146,9 @@ router.post("/inserts", (req, res, next) => {
 
 //特色演出列表
 // 删除信息接口(delete /编号)
-//接口地址：http://127.0.0.1:3000/v1/admin/5
+//接口地址：http://127.0.0.1:3000/v1/admin/t/5
 //请求方式：delete
-router.delete("/:show_id", (req, res, next) => {
+router.delete("/t/:show_id", (req, res, next) => {
   var obj = req.params;
   console.log(obj);
   pool.query("delete from show_details where show_id=? ", [obj.show_id], (err, result) => {
@@ -248,9 +248,9 @@ router.post("/insertsb", (req, res, next) => {
 
 //查百科列表
 // 删除信息接口(delete /编号)
-//接口地址：http://127.0.0.1:3000/v1/admin/5
+//接口地址：http://127.0.0.1:3000/v1/admin/b/5
 //请求方式：delete
-router.delete("/:tea_id", (req, res, next) => {
+router.delete("/b/:tea_id", (req, res, next) => {
   var obj = req.params;
   console.log(obj);
   pool.query("delete from lscg_tea where tea_id=? ", [obj.tea_id], (err, result) => {
@@ -259,7 +259,7 @@ router.delete("/:tea_id", (req, res, next) => {
       return;
     }
     console.log(result);
-    if (result.affectedRows === 0) {
+    if (result.affectedRows == 0) {
       res.send({ code: 500, msg: '删除失败' });
     } else {
       res.send({ code: 200, msg: '删除成功' });
@@ -306,7 +306,7 @@ router.get('/listsb', (req, res, next) => {
 //茶百科接口(get /detailsb/编号)
 //接口地址：http://127.0.0.1:3000/v1/admin/detailsb/1
 //请求方式：get
-router.get('/detailsb/:show_id', (req, res, next) => {
+router.get('/detailsb/:tea_id', (req, res, next) => {
   //获取路由传参的值
   var obj = req.params;
   console.log(obj);
@@ -319,7 +319,7 @@ router.get('/detailsb/:show_id', (req, res, next) => {
     console.log(r);
     //结果是数组，如果是空数组，说明用户不存在，否则存在
     if (r.length === 0) {
-      res.send({ code: 500, msg: '没有此演出' });
+      res.send({ code: 500, msg: '没有数据' });
     } else {
       res.send({ code: 200, msg: '查询成功', data: r });
     }
@@ -351,9 +351,9 @@ router.post("/insertsbd", (req, res, next) => {
 
 //(6)查百科列表
 // 删除信息接口(delete /编号)
-//接口地址：http://127.0.0.1:3000/v1/admin/5
+//接口地址：http://127.0.0.1:3000/v1/admin/n/5
 //请求方式：delete
-router.delete("/:new_id", (req, res, next) => {
+router.delete("/n/:new_id", (req, res, next) => {
   var obj = req.params;
   console.log(obj);
   pool.query("delete from new_details where new_id=? ", [obj.new_id], (err, result) => {

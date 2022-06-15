@@ -1,67 +1,82 @@
 <template>
   <div>
-    <el-form>
-      <el-form-item label="身份证">
-        <el-upload
-          class="upload-demo"
-          drag
-          action="http://localhost:3000/upload"
-          name="uploadFile"
-          multiple
-          :on-success="handleUploadSuccess"
-        >
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">
-            只能上传jpg/png文件，且不超过500kb
-          </div>
-        </el-upload>
-      </el-form-item>
-    </el-form>
-    <hr />
-    <!-- 验证码 -->
-    <div>
-      <h1 id="msg" style="color: red">&nbsp;</h1>
-      <h1 id="ename" style="color: red"></h1>
-      <input
-        type="text"
-        id="uname"
-        value="dingding"
-      /><br />
+    <h1 style="font-size: 30px; text-align: center">茶百科列表</h1>
+    <el-table :data="tableData" style="width: 100%" max-height="650">
+      <el-table-column fixed prop="tea_id" label="编号" width="150">
+      </el-table-column>
+      <el-table-column prop="tea_name" label="名称" width="120">
+      </el-table-column>
+      <el-table-column prop="tea_subtitle" label="标题" width="120">
+      </el-table-column>
+      <el-table-column prop="tea_details" label="简介" width="480">
+      </el-table-column>
 
-      <input type="text" id="upwd" value="123456" /><br />
-      <img
-        src="http://127.0.0.1:3000/pro2/v1/code"
-        id="code2"
-        @click="cha3"
-        title="看不清点击换一张"
-      /><br />
-      <input type="text" id="code" value="" />
-      <button @click="login">用户注册</button>
-    </div>
+      <el-table-column fixed="right" label="操作" width="120" prop="tea_id">
+        <template slot-scope="scope">
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, scope.row.tea_id)"
+            type="text"
+            size="small"
+          >
+            移除
+          </el-button>
+          <el-button
+            @click.native.prevent="deleteRows(scope.$index, scope.row.tea_id)"
+            type="text"
+            size="small"
+          >
+            详情
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    handleUploadSuccess(res) {
-      // 当文件上传成功后触发
-      console.log(res);
-    },
+  data() {
+    return {
+      tableData: [],
+      d: "",
+    };
+  },
+  mounted() {
+    this.getData();
   },
   methods: {
-    cha3() {
-      console.log(123);
-      var code2 = document.getElementById("code2");
-      code2.src =
-        "http://127.0.0.1:3000/pro2/v1/code?t=" + new Date().getTime();
+    getData() {
+      const url = "http://127.0.0.1:3000/v1/admin/listsb?pno=1&count=10";
+      this.axios.get(url).then((res) => {
+        console.log(res.data.data);
+        this.tableData = res.data.data;
+      });
     },
-    login(){
-
+    deleteRow(index, rows) {
+      const url = `http://127.0.0.1:3000/v1/admin/b/${rows}`;
+      console.log(url);
+      this.axios.delete(url).then((res) => {
+        console.log(res);
+        if (res.data.code == 200) {
+          alert(res.data.msg);
+          this.d = true;
+        } else {
+          alert(res.data.msg);
+        }
+      });
+    },
+    deleteRows(index,rows){
+      this.$router.push("/admin/teasdet/"+rows)
     }
+  },
+  watch: {
+    d(newValue, oldValue) {
+      if (newValue == true) {
+        this.getData();
+        this.d = false;
+      }
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
+<style lang="" scoped></style>
