@@ -11,11 +11,18 @@ const admin = require('./joggle/admin.js');
 const app = express();
 
 app.use(cors({
+<<<<<<< HEAD
   origin: ['http://localhost:8080', 'http://127.0.0.1:8080',
     'http://localhost:5500', 'http://127.0.0.1:5500'
   ], //指定接收的地址
   methods: ['GET', 'POST', 'DELETE', 'PUT'], //指定接收的请求类型
   alloweHeaders: ['Content-Type', 'Authorization'] //指定header
+=======
+	origin:['http://localhost:8080','http://127.0.0.1:8080',
+	'http://localhost:5500','http://127.0.0.1:5500'],  //指定接收的地址
+    methods:['GET','POST','DELETE','PUT'],  //指定接收的请求类型
+    alloweHeaders:['Content-Type','Authorization']  //指定header
+>>>>>>> b33de42771c7a7794a47a2a0e6b9ed421a338bc8
 }))
 
 // app.all('*', (req, res, next) => {

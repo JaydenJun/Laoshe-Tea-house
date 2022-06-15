@@ -16,34 +16,34 @@ const svgCaptcha = require('svg-captcha');
 //所有图形验证,服务器node一个程序出生一张图
 s.get('/v1/code',(req, res)=>{
 
-	//第一个版本:图形类型的验证码
-	// const cap = svgCaptcha.create({
-	// 		// 翻转颜色
-	// 		inverse: false,
-	// 		// 字体大小
-	// 		fontSize: 36,
-	// 		// 噪声线条数
-	// 		noise: 3,
-	// 		// 宽度
-	// 		width: 80,
-	// 		// 高度
-	// 		height: 30,
-	// 		//是否是彩色
-	// 		color:true,
-	// 		ignoreChars:"0o1i",
-	// 		size:4,//验证码长度
-	// 	});
+	// 第一个版本:图形类型的验证码
+	const cap = svgCaptcha.create({
+			// 翻转颜色
+			inverse: false,
+			// 字体大小
+			fontSize: 36,
+			// 噪声线条数
+			noise: 5,
+			// 宽度
+			width: 80,
+			// 高度
+			height: 30,
+			//是否是彩色
+			color:true,
+			ignoreChars:"0o1i",
+			size:5,//验证码长度
+		});
 
-	//第二个版本:算术计算
-	const cap = svgCaptcha.createMathExpr({
-		fontSize: 45,
-		mathMin:1,
-		mathMax:9,
-		mathOperator:"+-",
-		width: 110,
-	    height: 45,
-		color:true,
-	})	
+	// //第二个版本:算术计算
+	// const cap = svgCaptcha.createMathExpr({
+	// 	fontSize: 45,
+	// 	mathMin:1,
+	// 	mathMax:9,
+	// 	mathOperator:"+-",
+	// 	width: 110,
+	//     height: 45,
+	// 	color:true,
+	// })	
 	a=req.session.captcha = cap.text; // session 存储验证码数值 1+5 = 6
 	console.log(req.session.captcha)
 

@@ -44,14 +44,33 @@
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item>
-          <img
-            src="http://127.0.0.1:3000/v1/users/v1/code"
-            id="code2"
-            
-            title="看不清点击换一张"
-          /><br />
-          <input type="text" id="code" v-model="ruleForm.code" value="" />
+        <el-form-item style="display:flex:">
+          <div
+            @click="chat"
+            style="background-color: #333; margin-bottom: 10px"
+          >
+            <img
+              width="150px"
+              :src="ruleForm.a"
+              id="code2"
+              title="看不清点击换一张"
+            />
+          </div>
+          <div style="margin-left: -100px; width: 300px">
+            <el-form-item
+              label="验证码"
+              prop="code"
+              style="margin: 0 50px 30px 0"
+            >
+              <el-input
+                style="display: inline-block"
+                placeholder="验证码"
+                type="text"
+                v-model="ruleForm.code"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+          </div>
           <el-button type="primary" @click="submitForm('ruleForm')"
             >立即登录</el-button
           >
@@ -89,7 +108,8 @@ export default {
       ruleForm: {
         phone: "",
         pass: "",
-        code:""
+        code: "",
+        a: "http://127.0.0.1:3000/v1/users/v1/code",
       },
       rules: {
         phone: [
@@ -113,7 +133,13 @@ export default {
       },
     };
   },
+
   methods: {
+    chat() {
+      this.ruleForm.a =
+        "http://127.0.0.1:3000/v1/users/v1/code?t=" + Date.now();
+    },
+
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -164,7 +190,7 @@ export default {
     width: 400px;
     background-color: #eee;
     opacity: 0.95;
-    margin: 120px auto;
+    margin: 100px auto;
     border-radius: 10px;
   }
   .logo {
