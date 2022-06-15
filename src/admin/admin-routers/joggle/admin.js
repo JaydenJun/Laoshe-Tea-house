@@ -265,7 +265,7 @@ router.get('/details/:show_id', (req, res, next) => {
 // 茶百科接口#######################
 //茶百科列表
 // 录入信息接口(post /insertsb)
-//接口地址：http://127.0.0.1:3000/v1/admin/insertsb    
+//接口地址：http://127.0.0.1:3000/v1/admin/insertsb
 // 传参   params=tea_id=${}&tea_name=${}&···   具体看数据要什么
 //请求方式：post
 router.post("/insertsb", (req, res, next) => {
@@ -388,7 +388,7 @@ router.get('/detailsb/:tea_id', (req, res, next) => {
 // 新闻接口#######################
 //(5)新闻列表
 // 录入信息接口(post /insertsbd)
-//接口地址：http://127.0.0.1:3000/v1/admin/insertsbd   
+//接口地址：http://127.0.0.1:3000/v1/admin/insertsbd
 // 传参   params=new_id=${}&new_title=${}&···   具体看数据要什么
 //请求方式：post
 router.post("/insertsbd", (req, res, next) => {
@@ -411,9 +411,9 @@ router.post("/insertsbd", (req, res, next) => {
 
 //(6)茶新闻列表
 // 删除信息接口(delete /编号)
-//接口地址：http://127.0.0.1:3000/v1/admin/b/5
+//接口地址：http://127.0.0.1:3000/v1/admin/5
 //请求方式：delete
-router.delete("/b/:new_id", (req, res, next) => {
+router.delete("/:new_id", (req, res, next) => {
   var obj = req.params;
   console.log(obj);
   pool.query("delete from new_details where new_id=? ", [obj.new_id], (err, result) => {

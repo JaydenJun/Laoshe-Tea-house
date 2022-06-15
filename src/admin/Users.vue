@@ -60,8 +60,12 @@ export default {
       console.log("url", url);
       this.axios.delete(url).then((res) => {
         console.log(res);
-        // return true;
-        this.a = true;
+        if (res.data.code == 200) {
+          alert("删除成功");
+          this.a = true;
+        } else {
+          alert("删除失败");
+        }
       });
     },
     deleteRows(index, rows) {

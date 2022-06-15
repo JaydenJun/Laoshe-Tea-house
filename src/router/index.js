@@ -81,7 +81,7 @@ const routes = [{
   ]
 },
 
-// 
+//
 {
   path: '/culture',
   name: 'guanyushou',
@@ -170,7 +170,18 @@ const routes = [{
   meta: {
     hide: true
   },
-  children: [{
+  children: [
+    {
+       meta: {
+      hide: true
+    },
+      props:true,
+      path: 'newss/:new_id',
+      name: 'newss',
+      component: () => import('../admin/NewsDetaill.vue'),
+    },
+
+    {
     path: 'news',
     name: 'news',
     meta: {
