@@ -4,8 +4,7 @@ import Index from '../views/Index.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/traitdetails',
     name: 'traitdetails',
     component: () => import('../views/TraitDetails.vue'),
@@ -54,8 +53,7 @@ const routes = [
     name: 'teah',
     component: () => import('../views/TeahCilcle.vue'),
     redirect: '/teah/latest',
-    children: [
-      {
+    children: [{
         path: 'hottest',
         name: 'hottest',
         component: () => import('../views/Hottest.vue'),
@@ -92,7 +90,7 @@ const routes = [
     // component: () => import("../views/guanyushou.vue"),
 
     children: [{
-      path: 'person',//信息
+      path: 'person', //信息
       component: () => import('../views/person.vue'),
     }, {
       path: 'history',
@@ -109,25 +107,26 @@ const routes = [
     component: () => import('../views/Personal.vue'),
     redirect: '/personal/myper',
     children: [{
-      path: 'myper',//信息
-      component: () => import('../components/Myper.vue'),
-    },
-    {
-      path: 'myorder',//订单
-      component: () => import('../components/Myorder.vue'),
-    },
-    {
-      path: 'myaddress',//地址
-      component: () => import('../components/Myaddress.vue'),
-    },
-    {
-      path: 'mycollect',//收藏
-      component: () => import('../components/Mycollect.vue'),
-    },
-    {
-      path: 'myforum',//帖子
-      component: () => import('../components/Myforum.vue'),
-    }]
+        path: 'myper', //信息
+        component: () => import('../components/Myper.vue'),
+      },
+      {
+        path: 'myorder', //订单
+        component: () => import('../components/Myorder.vue'),
+      },
+      {
+        path: 'myaddress', //地址
+        component: () => import('../components/Myaddress.vue'),
+      },
+      {
+        path: 'mycollect', //收藏
+        component: () => import('../components/Mycollect.vue'),
+      },
+      {
+        path: 'myforum', //帖子
+        component: () => import('../components/Myforum.vue'),
+      }
+    ]
   },
   // 登录
   {
@@ -168,38 +167,51 @@ const routes = [
     component: () => import('../admin/Admin.vue'),
     // redirect意味着重定向，当浏览器跳转到/components时将会自动重定向到/components/container
     redirect: '/admin/users',
-    meta:{
-      hide:true
+    meta: {
+      hide: true
     },
     children: [{
-      path: 'news',
-      name: 'news',
-      meta:{
-        hide:true
+        props: true,
+        path: 'userss/:user_id',
+        name: 'userss',
+
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/UserDetaill.vue'),
       },
-      component: () => import('../admin/News.vue')
-    }, {
-      path: 'shows',
-      name: 'shows',
-      meta:{
-        hide:true
-      },
-      component: () => import('../admin/Shows.vue')
-    }, {
-      path: 'users',
-      name: 'users',
-      meta:{
-        hide:true
-      },
-      component: () => import('../admin/Users.vue')
-    }, {
-      path: 'teas',
-      name: 'teas',
-      meta:{
-        hide:true
-      },
-      component: () => import('../admin/Teas.vue')
-    }]
+
+      {
+        path: 'news',
+        name: 'news',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/News.vue')
+      }, {
+        path: 'shows',
+        name: 'shows',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Shows.vue')
+      }, {
+
+        path: 'users',
+        name: 'users',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Users.vue')
+      }, {
+        path: 'teas',
+        name: 'teas',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Teas.vue')
+      }
+    ]
   }
 ]
 
