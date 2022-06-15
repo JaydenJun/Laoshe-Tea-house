@@ -171,7 +171,7 @@ insert into tea_class values
 #创建茶百科lscg_tea数据表
 create table lscg_tea(
 	tea_id int(5) primary key auto_increment,					#由系统生成的唯一标识
-	teaclass_sid int(2),											#所属茶分类
+	teaclass_sid int(2),										#所属茶分类
 	tea_name varchar(32),										#茶名称
 	tea_subtitle varchar(64),									#茶副标题
 	tea_details varchar(800),									#茶详情
@@ -266,13 +266,8 @@ create table lscg_orders(
 	order_id int(10) primary key auto_increment,					#由系统生成的唯一标识
 	user_oid int(8),												#所属用户
 	show_oid int(8),												#所属商品
-	spec_oid int(8),												#商品类型
+	show_name varchar(100),											#商品名称
+	show_spec varchar(100),											#商品规格
 	order_count int(3),												#购买数量
-	order_pice decimal(6,2)												#实付价格
+	order_pice decimal(6,2)											#实付价格
 );
-insert into lscg_orders values
-(1,1,1,2,1,388.8),
-(2,2,1,2,1,388.8),
-(3,3,1,2,1,388.8),
-(4,4,1,2,1,388.8),
-(5,5,1,2,1,388.8);
