@@ -50,6 +50,9 @@
             <tr v-for="i in data.data" :key="i.new_id">
               <td v-html="i.new_content"></td>
               <td>
+                <el-image :src="i.new_pic"></el-image>
+              </td>
+              <td>
                 <el-button
                   @click.native.prevent="deleteRow(i.new_id)"
                   type="text"

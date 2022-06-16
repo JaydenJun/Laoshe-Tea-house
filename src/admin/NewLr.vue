@@ -13,9 +13,9 @@
           <el-input type="text" v-model="ruleForm.new_title"></el-input>
         </el-form-item>
 
-        <el-form-item label="图片" prop="new_pic">
+        <!-- <el-form-item label="图片" prop="new_pic">
           <el-input v-model="ruleForm.new_pic"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="时间" prop="new_time">
           <el-input
             v-model="ruleForm.new_time"
@@ -30,7 +30,18 @@
         <el-form-item label="咨询内容" prop="new_content">
           <el-input v-model="ruleForm.new_content"></el-input>
         </el-form-item>
-
+        <el-upload
+          class="upload-demo"
+          drag
+          action="http://127.0.0.1:3000/upload"
+          name="uploadFile"
+          multiple
+          :on-success="handleUploadSuccess"
+        >
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          <div class="el-upload__tip" slot="tip"></div>
+        </el-upload>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
             >提交</el-button
@@ -56,10 +67,17 @@ export default {
     };
   },
   methods: {
+    // 图片上传
+    handleUploadSuccess(res) {
+      // 当文件上传成功后触发
+      this.ruleForm.new_pic = res.urls[0];
+      console.log(res.urls[0]);
+    },
+
     submitForm(formName) {
       console.log(this.ruleForm);
       const url = "http://127.0.0.1:3000/v1/admin/insertsbd";
-      const params = `new_title=${this.ruleForm.new_title}&new_content=${this.ruleForm.new_content}&new_time=${this.ruleForm.new_time}&new_subtitle=${this.ruleForm.new_subtitle}`;
+      const params = `new_title=${this.ruleForm.new_title}&new_content=${this.ruleForm.new_content}&new_time=${this.ruleForm.new_time}&new_subtitle=${this.ruleForm.new_subtitle}&new_pic=${this.ruleForm.new_pic}`;
 
       this.axios.post(url, params).then((res) => {
         console.log(res);
