@@ -5,50 +5,37 @@
       <!-- logo -->
       <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
         <div class="tealogo">
-          <img src="/img/logo_baike@2x.png" alt="">
+          <img src="/img/logo.png" alt="">
         </div>
       </el-col>
       <!-- 搜索框 -->
       <el-col :xs="16" :sm="16" :md="16" :lg="16" :xl="16">
         <div class="input">
-          <el-input v-model="selected" placeholder="请输入内容" class="input-with-select" value="">
-            <el-button slot="append" icon="el-icon-search">搜索</el-button>
+          <el-input v-model="kw" @keyup.enter.native="gocell" placeholder="请输入内容" class="input-with-select" value="">
+            <el-button slot="append" @click="gocell" icon="el-icon-search">搜索</el-button>
           </el-input>
         </div>
       </el-col>
     </el-row>
 
     <!-- 茶类 -->
-    <el-row class="teatype">
-      <el-col :xs="8" :sm="8" :md="8" :lg="4" :xl="4" v-for="n in 6" :key="n">
-        <span class="">
-          普洱茶
+    <el-row class="teatype" v-if="data1">
+      <el-col :xs="8" :sm="8" :md="8" :lg="4" :xl="4" v-for="{ teaclass_name, teaclass_id, i } in data1.data" :key="i">
+        <span class="" @click="n = teaclass_id" :class="{ active: n == teaclass_id }">
+          {{ teaclass_name }}
         </span>
       </el-col>
     </el-row>
     <!-- 茶类小盒子 -->
-    <el-row class="teacell" :gutter="10">
-      <el-col  :xs="12" :sm="6" :md="6" :lg="6" :xl="6" v-for="i in 8" :key="i">
-        <router-link to="/teadetails">
-          <div>
-            <img src="/img/西湖龙井.webp" alt="">
-            <h2>
-              西湖龙井
-            </h2>
-            <p>
-              西湖龙井是中国十大名茶之一，属绿茶，其产于浙江省杭州市西湖龙井村周围群山，并因此得名，具有1200多年历史；清乾隆游览杭州西湖时，盛赞西湖龙井茶，把狮峰山下胡公庙前的十八棵茶树封为“御茶”。西湖龙井按外形和内质的优次分作1～8级。
-              特级西湖龙井茶扁平光滑挺直，色泽嫩绿光润，香气鲜嫩清高，滋味鲜爽甘醇，叶底细嫩呈朵。清明节前采制的龙井茶简称明前龙井，美称女儿红，“院外风荷西子笑，明前龙井女儿红。”西湖龙井茶与西湖一样，是人、自然、文化三者的完美结晶，是西湖地域文化的重要载体。
-            </p>
-          </div>
-        </router-link>
-      </el-col>
+    <el-row class=" teacell" :gutter="10" v-if="data">
+      <tea-cell v-for="item in data.data" :key="item.tea_id" :items="item" />
     </el-row>
 
     <!-- 大图 -->
     <el-row :gutter="10" class="bigpic">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <div class="grid-content bg-purple">
-          <img class="bigpic" src="/img/tea2.jpeg" alt="">
+          <img class="bigpic" src="/img/bigpic.jpeg" alt="">
         </div>
       </el-col>
     </el-row>
@@ -56,12 +43,58 @@
 </template>
 
 <script>
+import TeaCell from '../components/TeaCell.vue'
 export default {
+  components: { TeaCell },
   data() {
     return {
-      selected: ''
+      kw: '',
+      data: null,
+      data1: null,
+      n: '1'
     }
   },
+  watch: {
+    n() {
+      this.getdata3()
+    }
+  },
+  mounted() {
+    this.getdata1()
+    this.getdata3()
+  },
+  methods: {
+    gocell() {
+      this.getdata2();
+      this.kw = ''
+      // this.n = ''
+    },
+    // 茶分类请求
+    getdata1() {
+      const url = 'http://localhost:3000/v1/users/teas'
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.data1 = res.data
+      })
+    },
+    // 搜索请求
+    getdata2() {
+      const url = 'http://localhost:3000/v1/users/s?tea_name=' + this.kw
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.data = res.data
+      })
+    },
+    //点击茶分类的请求
+    getdata3() {
+      const url = 'http://localhost:3000/v1/users/teatype?teaclass_sid=' + this.n
+      console.log(url);
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.data = res.data
+      })
+    }
+  }
 }
 </script>
 
@@ -99,6 +132,15 @@ export default {
 
       span {
         font-size: 1.2em;
+        user-select: none;
+
+        &.active {
+          background-color: #1BAD5B;
+          border: 1px solid #eee;
+          border-radius: 2vw;
+          padding: 0.6vh 2vw;
+
+        }
       }
     }
   }

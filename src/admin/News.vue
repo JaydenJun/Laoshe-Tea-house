@@ -1,8 +1,6 @@
 <template>
   <div v-if="data">
     <!-- 茶新闻 -->
-    <router-link to="/admin/newlr"><span>录入</span></router-link>
-
     <el-descriptions title="茶新闻管理" :column="1">
       <el-descriptions-item>
         <fieldset style="boder: 5px solid gray">
@@ -130,10 +128,6 @@ table {
     user-select: none;
     margin: 20px;
 
-    td:first-child {
-      width: 20px;
-    }
-
     td:not(:first-child) {
       text-align: center;
       width: 300px;
@@ -152,13 +146,6 @@ table {
       height: 150px;
       line-height: 150px;
     }
-  }
-}
-div {
-  span {
-    font-size: 20px;
-    float: right;
-    margin-right: 20px;
   }
 }
 </style>
