@@ -65,7 +65,9 @@ export default {
   },
   methods: {
     gocell() {
-      this.getdata2()
+      this.getdata2();
+      this.kw = ''
+      // this.n = ''
     },
     // 茶分类请求
     getdata1() {

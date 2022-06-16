@@ -2,9 +2,7 @@
   <div class="teadetails">
     <el-row>
       <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
-        <div class="teatype" v-if="data">
-          <h2>{{ data.data[0].tea_name }}</h2>
-          <p>{{ data.data[0].tea_subtitle }}</p>
+        <div class="teatype" v-if="data" v-html="data.data[0].tea_details">
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
@@ -46,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .teadetails {
   width: 88vw;
   margin: 0 auto;
@@ -71,29 +69,28 @@ export default {
     }
 
     .teatype {
-      background: #d3dce6;
       border-radius: 4px;
       height: 100%;
 
-      h2 {
-        padding: 2vh 8vw 2vh 8vw;
+      h3 {
+        padding: 2vh 5vw 2vh 5vw;
         margin: 0;
       }
 
       p {
-        padding: 0 8vw 2vh 8vw;
+        padding: 0 5vw 2vh 5vw;
         margin: 0;
         font-size: 1em;
+        text-indent: 2em
       }
     }
 
     .img {
-      background: #e5e9f2;
       border-radius: 4px;
       height: 100%;
       display: flex;
       align-items: center;
-      margin-top: 8vh;
+      margin-top: 10vh;
     }
   }
 }

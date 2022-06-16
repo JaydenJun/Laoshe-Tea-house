@@ -55,6 +55,12 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 3vh;
+
+    &:hover {
+      text-overflow: inherit;
+      overflow: visible;
+      white-space: pre-line;
+    }
   }
 }
 </style>
