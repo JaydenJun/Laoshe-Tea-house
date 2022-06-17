@@ -1,7 +1,6 @@
 <template>
   <div class="tarit" v-if="data">
     <el-menu
-      
       :default-active="selected"
       background-color="#fff"
       text-color="#333"
@@ -9,16 +8,16 @@
       mode="horizontal"
     >
       <template>
-        <el-menu-item
-          :index="item.family_id"
-          v-for="item in data.data"
-          :key="item.family_id"
-          @click="y = item.family_id"
-          >{{ item.family_title }}
-        </el-menu-item>
+        <el-menu-item index="1" @click="y = '综艺演出'">综艺演出</el-menu-item>
+        <el-menu-item index="2" @click="y = '相声专场'">相声专场</el-menu-item>
+        <el-menu-item index="3" @click="y = '京剧专场'">京剧专场</el-menu-item>
+        <el-menu-item index="4" @click="y = '评书专场'">评书专场</el-menu-item>
+        <el-menu-item index="5" @click="y = '鼓曲专场'">鼓曲专场</el-menu-item>
+        <el-menu-item index="6" @click="y = '儿童剧'">儿童类</el-menu-item>
+        <el-menu-item index="7" @click="y = '体验类'">体验类</el-menu-item>
       </template>
     </el-menu>
-    
+
     <trait-item v-for="x in data" :item="x" :y="y" :key="x.family_id" />
   </div>
 </template>
@@ -26,11 +25,11 @@
 <script>
 import TraitItem from "@/components/Trait-Item.vue";
 export default {
-  components: { "TraitItem":TraitItem },
+  components: { TraitItem: TraitItem },
   data() {
     return {
-      selected: 1,
-      y: "1",
+      selected: "1",
+      y: "综艺演出",
       data: null,
     };
   },
@@ -39,6 +38,7 @@ export default {
   },
   methods: {
     list() {
+      console.log(this.y);
       let url = "http://127.0.0.1:3000/v1/users/shopps";
       this.axios.get(url).then((res) => {
         console.log(res);

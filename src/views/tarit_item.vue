@@ -14,90 +14,49 @@
                 </div>
                 <div>
                   <h3>京味综艺演出《四季北京.茶》</h3>
-                  <div>
+                  <div style="display: inline-flex">
                     <p>
                       <img
+                        style="vertical-align: middle"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAUVBMVEUAAACZmZmampqampqZmZmampqbm5uZmZmZmZmZmZmfn5+ampqampqampqampqampqZmZmbm5uampqhoaGcnJyZmZmdnZ2ZmZmZmZmampqZmZmTZYcKAAAAGnRSTlMA0+GMX6Y79KAjCO3p2ce/gnRREw62HH1zR8odNq8AAADzSURBVDjLlZPpcsMgDITDZZz4io+k7ff+D9rUbthAM8N0fzAYrYW0Wk7/QeOmIcZhcs276GXuSejnSxlfLMAYnAsjgF3y+BUwfj0+Vm+A62s8QOdfD3wHIfvfnPOUZ4NyLGC2Y/vVPombgeW3fkv3PDa4lKPDHr3MkO63tKoD5n3TY045IaXrd/3AFwSl+NHUwfqesLJXNDGeMoIwMj3WgVASpN/wWKM6KwmO+JdwywnlFTcwTXZFUeTWAuGuIlObspWB+JHalFCy1mcEn4SS1MI92EZSa1iChlWMW9C4ZRhBhqlZrmbauu3rD6f+9OqPt45v41EVRLtD0nwAAAAASUVORK5CYII="
-                      /><span>2022.07.01 - 2022.07.05</span>
+                      />场次时间：<span>2022.07.01 - 2022.07.05</span>
                     </p>
                     <p>
                       <img
+                        style="vertical-align: middle"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAgCAMAAAA2a+hwAAAAhFBMVEUAAACZmZmcnJzp6embm5ukpKSZmZmampqcnJycnJyampqampqZmZmbm5uampqhoaGZmZmZmZmampqZmZmampqbm5ubm5ubm5udnZ2ampqampqampqcnJyampqampqampqampqampqZmZmampqampqZmZmampqampqampqampqbm5uZmZn5NGtbAAAAK3RSTlMA8ycCLwfmoRsV+O/bclgO6+HGvoiCZTYgznpsTD3LsI5F1dG1rZyYkVBe5pWuUAAAAV5JREFUKM91kul2gjAQhRMRkKXIKiJWrXXt9/7vVyYBBY/eH5NM7py5s0Q94G6veZwei6p21AuWlWZAnEzpnxTI/HJz2Gtgtx5xX8B53qe/N5B+P7gVeE9POW2InvVOHfK7mKh8a+KlvTZERmPmx9FvaR4TKG0xkBjhEEFmBHwiE3Umc2xwdKn2oEViBishParOBmknbOVO8rrD7+wC7rbi+dCWBF05dnZuXw9knbUJf7pjg/ckbyNy+yDXNnIFtu8WpLGSWOah+ZKCNPlSEkUUElNwliPnNMzw0F76ybmazag8VWGQbsX561WCsB9VfYrwroGZfcNOGfiEww6c554Se1tocleNMYvIh3sL/pgLYkLpfUjM5sm5BSSf3AtUL4l0PXwoEZlgneLZr7KFwlVT1JrGjE9zlHOKO+wdFWR46ykxaJVuLtrvcINGlvkWzh5o1Qe4Ow7qI4KbM3b/Aa8RJmh4dvkeAAAAAElFTkSuQmCC"
-                      /><span><span>北京市 | </span>北京老舍茶馆</span>
+                      />地址：<span><span>北京市 </span>北京老舍茶馆</span>
                     </p>
                   </div>
                   <!---->
-                  
 
                   <div>
-                    <label>场次时间：</label>
+                    <label style="padding: 20px">选择服务：</label>
                     <ul>
-                      <li>
-                        <div>
-                          <span>2022-07-01 星期五 19:50</span>
+                      <li v-for="n in data.data" :key="n.spec_id">
+                        <div style="padding:10px;display:inline-flex">
+                          <span>{{ n.show_subtitle }}</span>
                         </div>
                         <!---->
                       </li>
-                      <li>
-                        <div>
-                          <span>2022-07-02 星期六 19:50</span>
-                        </div>
-                        <!---->
-                      </li>
-                      <li>
-                        <div>
-                          <span>2022-07-03 星期日 19:50</span>
-                        </div>
-                        <!---->
-                      </li>
-                      <li>
-                        <div>
-                          <span>2022-07-04 星期一 19:50</span>
-                        </div>
-                        <!---->
-                      </li>
-                      <li>
-                        <div>
-                          <span>2022-07-05 星期二 19:50</span>
-                        </div>
-                        <!---->
-                      </li>
+
                       <!---->
                     </ul>
                   </div>
                   <div>
-                    <label>选择专区：</label>
-                    <ul>
-                      <li v-for="n in data.data" :key="n.spec_id">
-                        <span>{{n.spec_region}} (￥{{n.spec_price}}元)</span>
+                    <label style="padding: 20px">价格介绍：</label>
+                    <ul style="display:inline-flex;margin:0;padding:0">
+                      <li style="margin:6px" v-for="n in data.data" :key="n.spec_id">
+                        <span
+                          >{{ n.spec_region }} (￥{{ n.spec_price }}元)</span
+                        >
                       </li>
-                      <!-- <li>
-                        <span>特惠区(￥200)</span>
-                      </li>
-                      <li>
-                        <span>优享区(￥300)</span>
-                      </li>
-                      <li>
-                        <span>中心区(￥400)</span>
-                      </li>
-                      <li>
-                        <span>VIP区(￥500)</span>
-                      </li> -->
-                      <!---->
                     </ul>
                   </div>
-                  <!---->
-                  <!-- <div>
-                    <i></i>
-                    <span
-                      >学生票仅限学生购买，请持本人有效学生证件换票和入场</span
-                    >
-                  </div> -->
-                  <!-- <div> -->
-                    <!---->
-                    <!-- <a> 选座购买 </a> -->
-                  <!-- </div> -->
                 </div>
+              </div>
+              <div style="display: inline-block;position: absolute;top:200px;right:150px">
+                <button style="padding:20px 40px">立即预定</button>
               </div>
             </div>
             <div>
@@ -388,9 +347,15 @@ export default {
 <style lang="scss" scoped>
 .dingbu {
   display: inline-flex;
-  >div:nth-child(2){
+  h3 {
+    margin: 5px 20px;
+  }
+  p {
+    margin: 20px;
+  }
+  > div:nth-child(2) {
     padding: 10px;
-    li{
+    li {
       list-style: none;
     }
   }
@@ -399,12 +364,9 @@ export default {
   display: inline-flex;
   padding: 20px;
   width: 100%;
+  
   margin: 20px 0;
   border-bottom: 1px solid #333;
   background-image: linear-gradient(#666, #eee);
-  
-  h4 {
-    margin: 5px 20px;
-  }
 }
 </style>
