@@ -38,7 +38,7 @@ export default {};
   width: 88vw;
   margin: 0 auto;
   h3 {
-    padding: 10vh 0;
+    // padding: 10vh 0;
     text-align: center;
   }
   .box {

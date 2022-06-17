@@ -3,22 +3,22 @@
     <div
       class="ticket"
       v-for="n in item"
-      :key="n.family_sid"
+      :key="n.show_id"
       v-show="n.family_title == y"
     >
       <div class="img">
-        <router-link :to="'/traits/' + n.show_id" target="_blank" title=""
+        <router-link :to="'/traits/' + n.show_title+n.show_id" target="_blank" title=""
           ><img src="/1.jpg" />
         </router-link>
       </div>
       <div class="info">
         <div>
-          <router-link class="aa" to="/traits" title="" target="_blank">{{
+          <router-link class="aa" :to="'/traits/' + n.show_id" title="" target="_blank">{{
             n.show_title
           }}</router-link>
         </div>
         <!-- <dd>{{ moment.unix(n.show_time).format("yyyy年MM月DD日") }}</dd> -->
-        <div>{{ n.show_time.slice(0, 7) }}</div>
+        <div>{{ n.show_time }}</div>
         <div class="address">
           {{ n.show_address }}
         </div>
@@ -27,7 +27,7 @@
           票价：￥<span>{{ n.show_predict }}</span> 元 起
         </div>
         <div class="order">
-          <a href="#" title="" target="_blank">订 票</a>
+          <router-link :to="'/traits/' + n.show_id" title="" target="_blank">订 票</router-link>
         </div>
       </div>
     </div>
@@ -37,6 +37,7 @@
 <script>
 export default {
   props: ["item", "y"],
+  
 };
 </script>
 

@@ -1,35 +1,15 @@
 <template>
   <div v-if="data">
-    <el-descriptions title="演出信息详情" :column="1">
+    <el-image src="http://127.0.0.1:3000/img/0fdc58a9-787b-40a2-8af8-41a34ee0e621.jpg"></el-image>
+    <el-descriptions :title="data[0].tea_details" :column="1">
       <el-descriptions-item label="编号">{{
-        data[0].show_id
+        data[0].tea_id
+      }}</el-descriptions-item>
+      <el-descriptions-item label="茶名称">{{
+        data[0].tea_name
       }}</el-descriptions-item>
       <el-descriptions-item label="标题">{{
-        data[0].show_title
-      }}</el-descriptions-item>
-      <el-descriptions-item label="开始时间">{{
-        data[0].show_star
-      }}</el-descriptions-item>
-      <el-descriptions-item label="简介">
-        {{ data[0].show_content }}</el-descriptions-item
-      >
-      <el-descriptions-item label="地址">{{
-        data[0].show_address
-      }}</el-descriptions-item>
-      <el-descriptions-item label="时间">{{
-        data[0].show_time
-      }}</el-descriptions-item>
-      <el-descriptions-item label="价格">{{
-        data[0].show_product
-      }}</el-descriptions-item>
-      <el-descriptions-item label="surplus">{{
-        data[0].show_surplus
-      }}</el-descriptions-item>
-      <el-descriptions-item label="notice">{{
-        data[0].show_notice
-      }}</el-descriptions-item>
-      <el-descriptions-item label="notes">{{
-        data[0].show_notes
+        data[0].tea_subtitle
       }}</el-descriptions-item>
     </el-descriptions>
   </div>

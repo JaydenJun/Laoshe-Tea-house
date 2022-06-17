@@ -24,7 +24,7 @@ export default {};
   margin-bottom: 15vh;
   h3 {
     text-align: center;
-    padding: 8vh 0;
+    // padding: 8vh 0;
   }
   img {
     width: 100%;

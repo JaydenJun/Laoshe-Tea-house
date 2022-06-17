@@ -1,5 +1,12 @@
 <template>
   <div v-if="data">
+     <div style="text-align:right;padding:15px" >
+      <router-link
+        to="/admin/newlr"
+        style="text-decoration: none;padding:10px:display:block;font-size:20px"
+        >插入数据</router-link
+      >
+    </div>
     <!-- 茶新闻 -->
     <el-descriptions title="茶新闻管理" :column="1">
       <el-descriptions-item>

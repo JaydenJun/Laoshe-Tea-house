@@ -43,6 +43,12 @@ const routes = [
 		// children: []
 	},
 	{
+		path: "/taritditu",
+		name: "taritditu",
+		component: () => import("../views/Trait-ditu.vue"),
+		// children: []
+	},
+	{
 		path: "/traits/:id",
 		name: "routeName",
 		props: true,
@@ -193,6 +199,15 @@ const routes = [
 				name: "newss",
 				component: () => import("../admin/NewsDetaill.vue"),
 			},
+			
+			{
+				path: "newlr",
+				name: "newlr",
+				meta: {
+					hide: true,
+				},
+				component: () => import("../admin/NewLr.vue"),
+			},
 
 			{
 				path: "news",
@@ -201,43 +216,33 @@ const routes = [
 					hide: true,
 				},
 				component: () => import("../admin/News.vue"),
-			},
-			{
-				path: "shows",
-				name: "shows",
-				meta: {
-					hide: true,
-				},
-				component: () => import("../admin/Shows.vue"),
-			},
-			{
-				path: "showdet/:show_id",
-				name: "showdet",
-				props: true,
-				meta: {
-					hide: true,
-				},
-				component: () => import("../admin/Show_details.vue"),
-			},
-			{
-				props: true,
-				path: "userss/:user_id",
-				name: "userss",
-				meta: {
-					hide: true,
-				},
-				component: () => import("../admin/UserDetaill.vue"),
-			},
+			},{
+        path: 'shows',
+        name: 'shows',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Shows.vue')
+      },
+      {
+        path: 'showdet/:show_id',
+        name: 'showdet',
+        props: true,
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Show_details.vue'),
+      },
 
 			{
-				path: "teasdet/:tea_id",
-				name: "teasdet",
-				props: true,
-				meta: {
-					hide: true,
-				},
-				component: () => import("../admin/Teasdet.vue"),
-			},
+        path: 'teasdet/:tea_id',
+        name: 'teasdet',
+        props: true,
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Teasdet.vue'),
+      },
 			{
 				path: "users",
 				name: "users",
@@ -245,15 +250,14 @@ const routes = [
 					hide: true,
 				},
 				component: () => import("../admin/Users.vue"),
-			},
-			{
-				path: "teas",
-				name: "teas",
-				meta: {
-					hide: true,
-				},
-				component: () => import("../admin/Teas.vue"),
-			},
+			}, {
+        path: 'teas',
+        name: 'teas',
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Teas.vue')
+      }
 		],
 	},
 ];

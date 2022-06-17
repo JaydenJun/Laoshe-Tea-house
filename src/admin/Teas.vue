@@ -1,6 +1,13 @@
 <template>
   <div>
     <h1 style="font-size: 30px; text-align: center">茶百科列表</h1>
+    <div style="text-align: right; padding: 15px">
+      <router-link
+        to="/admin/teasset"
+        style="text-decoration: none;padding:10px:display:block;font-size:20px"
+        >插入数据</router-link
+      >
+    </div>
     <el-table :data="tableData" style="width: 100%" max-height="650">
       <el-table-column fixed prop="tea_id" label="编号" width="150">
       </el-table-column>
@@ -65,9 +72,9 @@ export default {
         }
       });
     },
-    deleteRows(index,rows){
-      this.$router.push("/admin/teasdet/"+rows)
-    }
+    deleteRows(index, rows) {
+      this.$router.push("/admin/teasdet/" + rows);
+    },
   },
   watch: {
     d(newValue, oldValue) {

@@ -62,7 +62,7 @@ export default {};
   margin: 0 auto;
   text-align: center;
   h3{
-    padding: 10vh 0;
+    // padding: 10vh 0;
   }
   div {
     position: relative;

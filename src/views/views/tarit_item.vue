@@ -375,7 +375,7 @@ export default {
       console.log(res);
       if(res.data.code==200){
         alert(res.data.msg)
-        this.$router.push("/taritditu")
+        this.$router.push("/traitditu")
       }else{
         alert(res.data.msg)
       }

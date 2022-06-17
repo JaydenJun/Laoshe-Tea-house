@@ -32,7 +32,7 @@ export default {};
   margin: 0 auto;
   text-align: center;
   h2 {
-    padding: 10vh 0;
+    // padding: 10vh 0;
     margin: 30px 0;
   }
   div {

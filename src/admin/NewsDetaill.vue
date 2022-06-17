@@ -1,5 +1,6 @@
 <template>
   <div v-if="data">
+   
     <el-descriptions title="用户详情" direction="vertical" :column="1" border>
       <el-descriptions-item label="新闻内容">
         <fieldset style="boder: 5px solid gray">

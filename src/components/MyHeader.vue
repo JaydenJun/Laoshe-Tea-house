@@ -50,7 +50,7 @@ export default {};
 .container {
   max-width: 85vw;
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   div:first-child {
     text-align: right;
 
