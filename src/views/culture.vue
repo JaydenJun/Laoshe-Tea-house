@@ -24,11 +24,11 @@
         
           <!-- <li>茶馆简介</li> -->
         
-          <li><router-link to="/culture/history">茶馆历史</router-link></li>
+          <li><i class="el-icon-present"></i><router-link to="/culture/history">茶馆历史</router-link></li>
       
-          <li><router-link to="/culture/person">茶馆宣传片</router-link></li>
+          <li><i class="el-icon-first-aid-kit"></i><router-link to="/culture/person">茶馆宣传片</router-link></li>
           
-          <li><router-link to="/culture/room">文化介绍</router-link></li>
+          <li><i class="el-icon-edit"></i><router-link to="/culture/room">文化介绍</router-link></li>
           
         </ul>
         

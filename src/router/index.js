@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
+		path: "/xiaoyin",
+		name: "xiaoyin",
+		component: () => import("../views/xiaoyin.vue"),
+	},
+	{
 		path: "/traitdetails",
 		name: "traitdetails",
 		component: () => import("../views/TraitDetails.vue"),
