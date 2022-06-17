@@ -13,8 +13,20 @@
       >
       </el-input>
     </div>
+    <el-upload
+      class="upload-demo"
+      drag
+      action="http://127.0.0.1:3000/upload"
+      name="uploadFile"
+      multiple
+      :on-success="handleUploadSuccess"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+      <div class="el-upload__tip" slot="tip"></div>
+    </el-upload>
     <div class="btn">
-      <span>发布</span>
+      <button>发布</button>
     </div>
   </div>
 </template>
@@ -24,9 +36,17 @@ export default {
   data() {
     return {
       // 评论框值
-      text: "",
+      ring_pic: "",
       textarea: "",
     };
+  },
+  methods: {
+    // 图片上传
+    handleUploadSuccess(res) {
+      // 当文件上传成功后触发
+
+      console.log(res);
+    },
   },
 };
 </script>
@@ -47,12 +67,13 @@ export default {
     background-color: #ffffff;
     height: 50px;
 
-    span {
+    button {
       background-color: rgb(62, 168, 218);
       color: white;
       border-radius: 4px;
-      padding: 15px 40px;
+      padding: 15px 20px;
       font-size: 20px;
+      border: 1px solid rgb(62, 168, 218);
     }
   }
 }

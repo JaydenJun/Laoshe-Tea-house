@@ -43,8 +43,6 @@
             <el-menu :default-active="$route.path" router mode="horizontal">
               <el-menu-item index="/teah/latest">最新发布</el-menu-item>
               <el-menu-item index="/teah/hottest">热帖</el-menu-item>
-              <el-menu-item index="/teah/week">周热点</el-menu-item>
-              <el-menu-item index="/teah/month">月热点</el-menu-item>
               <el-menu-item index="/teah/play">发帖</el-menu-item>
             </el-menu>
           </div>
