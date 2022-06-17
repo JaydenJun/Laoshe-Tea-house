@@ -40,7 +40,7 @@
               特色演出列表
             </el-menu-item>
             <el-menu-item index="/admin/news">
-             <i class="el-icon-s-grid"></i>
+              <i class="el-icon-s-grid"></i>
               新闻列表
             </el-menu-item>
             <el-menu-item index="/admin/teas">
@@ -65,7 +65,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+* {
+  user-select: none;
+}
 .mheader {
   background-color: #303133;
 }
