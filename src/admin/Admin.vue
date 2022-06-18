@@ -47,6 +47,10 @@
               <i class="el-icon-s-grid"></i>
               茶百科列表
             </el-menu-item>
+            <el-menu-item index="/admin/tearing">
+              <i class="el-icon-s-grid"></i>
+              茶友圈话题列表
+            </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main class="mmain">

@@ -199,7 +199,7 @@ const routes = [
 				name: "newss",
 				component: () => import("../admin/NewsDetaill.vue"),
 			},
-			
+
 			{
 				path: "newlr",
 				name: "newlr",
@@ -216,33 +216,33 @@ const routes = [
 					hide: true,
 				},
 				component: () => import("../admin/News.vue"),
-			},{
-        path: 'shows',
-        name: 'shows',
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Shows.vue')
-      },
-      {
-        path: 'showdet/:show_id',
-        name: 'showdet',
-        props: true,
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Show_details.vue'),
-      },
+			}, {
+				path: 'shows',
+				name: 'shows',
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Shows.vue')
+			},
+			{
+				path: 'showdet/:show_id',
+				name: 'showdet',
+				props: true,
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Show_details.vue'),
+			},
 
 			{
-        path: 'teasdet/:tea_id',
-        name: 'teasdet',
-        props: true,
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Teasdet.vue'),
-      },
+				path: 'teasdet/:tea_id',
+				name: 'teasdet',
+				props: true,
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Teasdet.vue'),
+			},
 			{
 				path: "users",
 				name: "users",
@@ -250,14 +250,24 @@ const routes = [
 					hide: true,
 				},
 				component: () => import("../admin/Users.vue"),
-			}, {
-        path: 'teas',
-        name: 'teas',
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Teas.vue')
-      }
+			},
+			{
+				path: 'teas',
+				name: 'teas',
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Teas.vue')
+			},
+			{
+				path: 'tearing',
+				props: true,
+				name: 'tearing',
+				meta:{
+					hide: true
+				},
+				component: () => import('../admin/TeaRing.vue')
+			}
 		],
 	},
 ];
