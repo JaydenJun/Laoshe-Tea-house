@@ -15,7 +15,10 @@
       <el-table-column prop="ring_prise" label="点赞量"> </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row.ring_id)" type="text" size="small"
+          <el-button
+            @click="handleClick(scope.row.ring_id)"
+            type="text"
+            size="small"
             >删除</el-button
           >
         </template>
@@ -42,17 +45,22 @@ export default {
         this.tableData = res.data.data;
       });
     },
-     handleClick(row) {
-        let url = 'http://127.0.0.1:3000/v1/admin/bss/'+row
-        console.log('url',url)
-        this.axios.delete(url).then(res=>{
-            console.log(res.data.code)
-            if(res.data.code == 200){
-                alert('删除成功')
-                this.getData()
-            }
-        })
-      },
+    handleClick(row) {
+      let rs = confirm("是否删除");
+      if (!rs) {
+        return;
+      } else {
+        let url = "http://127.0.0.1:3000/v1/admin/bss/" + row;
+        console.log("url", url);
+        this.axios.delete(url).then((res) => {
+          console.log(res.data.code);
+          if (res.data.code == 200) {
+            alert("删除成功");
+            this.getData();
+          }
+        });
+      }
+    },
   },
 };
 </script>
