@@ -11,7 +11,7 @@
       <!-- 搜索框 -->
       <el-col :xs="16" :sm="16" :md="16" :lg="16" :xl="16">
         <div class="input">
-          <el-input v-model="kw" @keyup.enter.native="gocell" placeholder="请输入内容" class="input-with-select" value="">
+          <el-input v-model="kw" @keyup.enter.native="gocell" placeholder="请输入搜索内容" class="input-with-select" value="">
             <el-button slot="append" @click="gocell" icon="el-icon-search">搜索</el-button>
           </el-input>
         </div>
@@ -67,7 +67,7 @@ export default {
     gocell() {
       this.getdata2();
       this.kw = ''
-      // this.n = ''
+      this.n = ''
     },
     // 茶分类请求
     getdata1() {
@@ -133,6 +133,7 @@ export default {
       span {
         font-size: 1.2em;
         user-select: none;
+        padding: 1px 15px !important;
 
         &.active {
           background-color: #1BAD5B;

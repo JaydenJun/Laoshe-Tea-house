@@ -7,13 +7,14 @@
       </el-col>
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
         <div class="img">
-          <img src="/img/西湖龙井.webp" alt="">
+          <img :src="imgBase + data.data[0].tea_spic" alt="">
         </div>
         <div class="img">
-          <img src="/img/西湖龙井.webp" alt="">
+          <img :src="imgBase + data.data[0].tea_sspic" alt="">
         </div>
         <div class="img">
-          <img src="/img/西湖龙井.webp" alt="">
+          <img :src="imgBase + data.data[0].tea_ssspic" alt="">
+
         </div>
       </el-col>
     </el-row>
@@ -21,7 +22,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState(['imgBase'])
+  },
   props: ['tea_id'],
   data() {
     return {
@@ -63,8 +68,8 @@ export default {
     img {
       display: block;
       margin: 0 auto;
-      width: 65%;
-      height: 35vh;
+      width: 75%;
+      height: 34vh;
       border-radius: 1vh;
     }
 
