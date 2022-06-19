@@ -86,8 +86,8 @@ s.post('/login', (req, res, next) => {
 // 2.注册接口 http://127.0.0.1:3000/v1/users/register --- 用户名/用户密码/用户手机号必填
 s.post('/register', (req, res, next) => {
     //获取用户输入验证码
-    var codes = req.body.codes;
-    console.log(codes, b)
+    let codes = req.body.codes;
+    // console.log(codes, b)
     //与系统验证 和用户输入验证码比较
     if (codes != b) {
         res.send("400");    //不一样返回-1验证码输入错误
@@ -100,7 +100,8 @@ s.post('/register', (req, res, next) => {
         return;
     }
     let obj = req.body
-    sql.query('insert into lscg_users set user_phone=? and user_pwd=?', [obj.user_phone,obj.user_pwd], (err, r) => {
+    console.log(obj);
+    sql.query('INSERT INTO lscg_users (user_id,user_name,user_pwd,user_phone) VALUES(null,?,?,?)', [obj.user_name,obj.user_pwd,obj.user_phone], (err, r) => {
         if (err) {
             next(err)
             return;
@@ -477,6 +478,23 @@ s.get("/detailss/:user_phone",(req,res,next)=>{
 	}
 	});
 });
+
+// 手机号查询接口 http://127.0.0.1:3000/v1/users/userph
+s.get('/userph', (req, res, next) => {
+    let obj = req.query
+    sql.query('select * from lscg_users where user_phone=?', [obj.user_phone], (err, data) => {
+        if (err) {
+            next(err)
+            return;
+        }
+        if (!data.length) {
+            res.send({ code: 505, msg: '查询失败' })
+        } else {
+            res.send({ code: 200, msg: '查询成功', data: data })
+        }
+    })
+});
+
 
 //暴露路由对象
 module.exports = s;

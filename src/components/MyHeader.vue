@@ -23,7 +23,7 @@
           </div></el-col
         >
         <el-col :xs="24" :sm="5" :md="6"
-          ><div class="grid-content bg-purple-light" v-if="!uname">
+          ><div class="grid-content bg-purple-light" v-if="!loginname">
             <div>
               <ul>
                 <li style="width: 32px">
@@ -40,7 +40,8 @@
             <div style="text-align:left;">
               <ul style="display:flex;">
                 <li style="width:145px">
-                 <span style="color:blue">欢迎{{ uname }}</span>  
+                 <span style="color:blue">欢迎{{ loginname}}</span>
+                   
                 </li>|
                 <li style="width:80px;padding:0 5px">
                   <button style="background-color:red;border:1px solid #fff;color:#fff" @click="personal()">个人中心</button>
@@ -58,10 +59,10 @@
 import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["uname"]),
+    ...mapState(["loginname"]),
   },
   methods: {
-    ...mapMutations(["updateUname"]),
+    ...mapMutations(["updateLoginState"]),
     personal(i){
       this.$router.push("/personal")
     }

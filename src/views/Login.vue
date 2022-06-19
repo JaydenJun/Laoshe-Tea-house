@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations} from "vuex";
 export default {
   data() {
     var phones = (rule, value, callback) => {
@@ -105,11 +105,15 @@ export default {
         callback();
       }
     };
+    
     return {
+      userid:"",
+      user_name:"",
       ruleForm: {
         phone: "",
         pass: "",
         code: "",
+        
         a: "http://127.0.0.1:3000/v1/users/v1/code",
       },
       rules: {
@@ -136,18 +140,33 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["updateUname"]),
+    
+    ...mapMutations(["updateLoginState","updateLoginStates"]),
     chat() {
       this.ruleForm.a =
         "http://127.0.0.1:3000/v1/users/v1/code?t=" + Date.now();
     },
-
+    usel(){
+      let url="http://127.0.0.1:3000/v1/users/userph?user_phone="+this.ruleForm.phone
+      console.log(url)
+            this.axios.get(url).then((res)=>{
+              this.userid=res.data.data[0].user_id
+              console.log(res.data.data[0].user_id)
+              console.log(res)
+              this.user_name=res.data.data[0].user_name
+              // 更新当前登录的用户名到 vuex中
+              this.updateLoginStates(this.userid)
+            
+              this.updateLoginState(this.user_name)
+            })
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log(this.ruleForm); //登录成功，这里判断数据库有没有  手机号
           const params = `user_phone=${this.ruleForm.phone}&user_pwd=${this.ruleForm.pass}&code=${this.ruleForm.code}`;
           const url = "http://127.0.0.1:3000/v1/users/login";
+
           this.axios.post(url, params).then((res) => {
             console.log(res);
             if (res.data.code == 200) {
@@ -156,9 +175,14 @@ export default {
                 message: "登录成功！",
                 type: "success",
               });
-              // 更新当前登录的用户名到 vuex中
-              this.updateUname(this.ruleForm.phone);
-              this.$router.push("/"); //成功跳转 到主页或者购物界面
+             
+
+               this.usel() 
+              
+              
+              
+
+              // this.$router.push("/"); //成功跳转 到主页或者购物界面
             } else {
               this.$message.error("账号有误，请从新输入"); //，这里提示
               return false;
