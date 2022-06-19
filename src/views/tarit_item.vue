@@ -9,8 +9,8 @@
                 <div v-if="pics">
                   <a
                     ><img
-                      style="margin-left: 40px"
-                      :src="'http://localhost:8080'+pics.data.show_spic"
+                      style="margin-left: 40px; width: 300px; height: 458px"
+                      :src="'/img/10' + a2 + '.png'"
                   /></a>
                 </div>
                 <div>
@@ -346,6 +346,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: ["id"],
   data() {
@@ -355,17 +356,19 @@ export default {
       spetil: "",
       spetilp: "",
       iddd: "2",
-      pics:null
+      pics: null,
+      a2: "",
     };
   },
   mounted() {
     this.getData();
     this.cats();
     this.iddds();
-    this.getPic()
+    this.getPic();
   },
   methods: {
-    getPic(){
+    ...mapState(["img"]),
+    getPic() {
       let url = "http://127.0.0.1:3000/v1/users/shopps";
       this.axios.get(url).then((res) => {
         console.log(res);
@@ -387,12 +390,9 @@ export default {
       }
     },
     getData() {
-      let url =
-        "http://127.0.0.1:3000/v1/users/shopp?show_sid=" +
-        this.id.substring(
-          this.id.substring(0, this.id.indexOf("$")).length + 1
-        );
-
+      let a = Math.ceil(Math.random() * 7);
+      this.a2 = a;
+      let url = "http://127.0.0.1:3000/v1/users/shopp?show_sid=" + a;
       console.log(
         this.id.substring(this.id.substring(0, this.id.indexOf("$")).length + 1)
       );
@@ -434,9 +434,9 @@ export default {
   p {
     margin: 20px;
   }
-  img{
+  img {
     transition: 0.5s;
-    &:hover{
+    &:hover {
       transform: scale(1.05);
     }
   }
@@ -452,9 +452,9 @@ export default {
   border-bottom: 1px solid #333;
   background-image: linear-gradient(#666, #eee);
   width: 100%;
-  margin-top:30px ;
+  margin-top: 30px;
   h4 {
-    margin:  10px;
+    margin: 10px;
   }
 }
 .fuwu {
@@ -462,9 +462,9 @@ export default {
   margin: 5px;
   display: inline-flex;
   background-color: #ddd;
-  span{
+  span {
     transition: 0.5s;
-    &:hover{
+    &:hover {
       transform: scale(1.05);
       background-color: #f5e;
       color: #fff;

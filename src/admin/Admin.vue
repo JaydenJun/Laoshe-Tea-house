@@ -12,8 +12,8 @@
           default-active="2"
         >
           <el-menu-item index="1" style="width: 200px"
-            ><img src="../assets/log2.png" style="width: 100%" alt=""
-          /></el-menu-item>
+            ><router-link to="/"><img src="../assets/log2.png" style="width: 100%" alt=""
+          /></router-link></el-menu-item>
           <el-menu-item
             ><h2 style="height: 60px; line-height: 60px; margin: 0">
               后台管理系统

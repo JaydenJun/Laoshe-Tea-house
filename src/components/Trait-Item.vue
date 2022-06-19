@@ -8,7 +8,8 @@
     >
       <div class="img">
         <router-link :to="'/traits/' + n.show_title+'$'+n.show_id" target="_blank" title=""
-          ><img src="/1.jpg" />
+          ><img :src="img+n.show_spic" />
+          
         </router-link>
       </div>
       <div class="info">
@@ -18,7 +19,7 @@
           }}</router-link>
         </div>
         <!-- <dd>{{ moment.unix(n.show_time).format("yyyy年MM月DD日") }}</dd> -->
-        <div>{{ n.show_time }}</div>
+        <div>{{ n.show_star }}</div>
         <div class="address">
           {{ n.show_address }}
         </div>
@@ -33,7 +34,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+  computed:{...mapState(["img"])},
   props: ["item", "y"],
   
 };

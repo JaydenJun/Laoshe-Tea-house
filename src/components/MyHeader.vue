@@ -5,7 +5,9 @@
         <el-col :xs="24" :sm="5" :md="4"
           ><div class="grid-content bg-purple">
             <div>
-              <img src="../assets/log2.png" alt="" />
+              <router-link to="/admin">
+                <img src="../assets/log2.png" alt=""
+              /></router-link>
             </div></div
         ></el-col>
         <el-col :xs="24" :sm="14" :md="14"
@@ -27,7 +29,9 @@
             <div>
               <ul>
                 <li style="width: 32px">
-                  <router-link to="/login" style="color:blue">登录</router-link>
+                  <router-link to="/login" style="color: blue"
+                    >登录</router-link
+                  >
                 </li>
 
                 <li style="width: 32px">
@@ -37,14 +41,24 @@
             </div>
           </div>
           <div v-else class="grid-content bg-purple-light">
-            <div style="text-align:left;">
-              <ul style="display:flex;">
-                <li style="width:180px">
-                 <span style="color:blue">欢迎{{ loginname}}</span>
-                 <button @click="updateLoginState(null)">退出</button>
-                </li>|
-                <li style="width:84px;padding:4px 5px">
-                  <button style="background-color:red;border:1px solid #fff;color:#fff" @click="personal(loginid)">个人中心</button>
+            <div style="text-align: left">
+              <ul style="display: flex">
+                <li style="width: 180px">
+                  <span style="color: blue">欢迎{{ loginname }}</span>
+                  <button @click="updateLoginState(null)">退出</button>
+                </li>
+                |
+                <li style="width: 84px; padding: 4px 5px">
+                  <button
+                    style="
+                      background-color: red;
+                      border: 1px solid #fff;
+                      color: #fff;
+                    "
+                    @click="personal(loginid)"
+                  >
+                    个人中心
+                  </button>
                 </li>
               </ul>
             </div>
@@ -59,16 +73,16 @@
 import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["loginname","loginid"]),
+    ...mapState(["loginname", "loginid"]),
   },
   methods: {
     ...mapMutations(["updateLoginState"]),
-    personal(i){
-      this.$router.push("/personal/"+i)
+    personal(i) {
+      this.$router.push("/personal/" + i);
     },
-    aa(){
-      this.$router.push("/")
-    }
+    aa() {
+      this.$router.push("/");
+    },
   },
 };
 </script>
@@ -86,7 +100,7 @@ export default {
       width: 100%;
     }
   }
-  
+
   ul {
     list-style: none;
     padding: 0;
@@ -99,10 +113,9 @@ export default {
         color: #333;
         display: inline-block;
         transition: 0.5s;
-        &:hover{
-          color:rgb(48, 120, 255);
+        &:hover {
+          color: rgb(48, 120, 255);
           transform: scale(1.05);
-
         }
       }
     }
