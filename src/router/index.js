@@ -40,6 +40,9 @@ const routes = [
 		props: true,
 		name: "teadetails",
 		component: () => import("../views/TeaDetails.vue"),
+        meta: {
+			title: "茶叶详情",
+		},
 	},
 	// 茶百科
 	{

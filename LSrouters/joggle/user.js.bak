@@ -193,7 +193,7 @@ s.get("/teatype", (req, res, next) => {
 });
 
 // 8.茶百科用户搜索模糊查询
-s.get('/s', (req, res, next) => {
+s.get('/teaque', (req, res, next) => {
     if (req.query.tea_name == '') {
         sql.query('select * from lscg_tea', (err, data) => {
             if (err) {
@@ -222,7 +222,7 @@ s.get('/s', (req, res, next) => {
 });
 
 // 9.茶百科单个茶详情查询 http://127.0.0.1:3000/v1/users/tea?tea_id=多少
-s.get('/teadetails', (req, res, next) => {
+s.get('/tea', (req, res, next) => {
 	var obj=req.query.tea_id
 	console.log(obj)
     sql.query('select * from lscg_tea where tea_id=?', [req.query.tea_id], (err, data) => {
