@@ -16,8 +16,8 @@
                       src="https://assets.puercn.com/xsystem/brands/logos/000/000/031/original/hai-di-300.jpg?1603445849"
                     />
                   </div>
-                  <div class="headerzi">
-                    <h2>还提</h2>
+                  <div class="headerzi" style="padding-left: 2rem">
+                    <h3>还提</h3>
                     <span>咨询:74条</span>
                   </div>
                 </div>
@@ -28,39 +28,30 @@
             </el-row>
             <!-- 左侧头部下面的详情 -->
             <div>
-              <!-- 第一个模块 -->
+              <!-- 第一个模块  标题加上时间和品论-->
               <h1>金字标杆 品味非凡，海堤金中茶·一叶天心肉桂</h1>
-              <div class="zuoshi" style="width: 90%">
+              <div class="zuoshi" style="width: 90%; padding-bottom: 3rem">
                 <div>
                   <i class="el-icon-edit"></i>
-                  <span>2022年6月15日 17:52</span>
+                  <span style="padding-left: 1.5rem">2022年6月15日 17:52</span>
                 </div>
                 <div>
                   <i class="el-icon-edit"></i>
-                  <span>0条评论</span>
+                  <span style="padding-left: 1.5rem">0条评论</span>
                 </div>
               </div>
-              <div style="width: 90%">
-                祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
-              </div>
-              <p>设计理念</p>
-
-              <!-- 第二个模块 -->
-              <div style="width: 90%">
-                祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
-              </div>
-              <p style="width: 90%" v-for="n in 5" :key="n">
-                祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
-              </p>
-
-              <!-- 第三个模块 -->
-              <p style="width: 90%">加工技艺</p>
-              <div style="width: 90%">
-                祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
+              <!-- 中间根据右侧文字显示的文字介绍 -->
+              <div style="width: 90%" v-for="n in 6" :key="n">
+                <p>设计理念</p>
+                <p style="text-indent: 2em; padding-bottom: 2rem">
+                  祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
+                </p>
               </div>
             </div>
 
-            <!-- 根据右侧用户的品论与聊天来进行左侧页面的更新 -->
+            <!-- 根据下侧用户的品论与聊天来进行左侧页面的更新 -->
+
+
 
 
 
@@ -69,24 +60,24 @@
 
 
             <div
-              style="background-color: green; width: 90%; height: 30rem"
+              style="
+                background-color: rgb(123, 123, 123);
+                width: 90%;
+                height: 30rem;
+              "
               class="pinlun"
             >
-              <!-- 每位游客的发言以及上传的照片 -->
+              <!-- 每位游客的发言以及上传的照片灰色部分 大框框的灰色部分-->
               <div class="colume">
                 <!-- <div><img class="pinlun_img" src="" /></div> -->
-                <div ></div>
-                <el-empty description="用户可根据自己掌握最新茶叶咨询上传至此"></el-empty>
+                <div></div>
+                <el-empty
+                  description="用户可根据自己掌握最新茶叶咨询上传至此"
+                ></el-empty>
               </div>
             </div>
 
-
-
-
-
-
-
-            <!-- 聊天室的图样 -->
+            <!-- 聊天室的图样  -->
             <div id="chart-container" style="width: 85%" class="tuyang">
               <!-- 左侧的一列表，登录人员的显示 -->
               <div class="chart-user-list" id="chart-user-list">
@@ -104,7 +95,8 @@
                     ><span id="currentUser"></span>
                   </h4>
                 </div>
-                <!-- 聊天区域，人员发消息的显示 -->
+                <!-- 聊天区域， --> 
+
                 <div class="chart-list" id="chart-list">
                   <!-- <div class="user-logined" id="user-logined"><span id="logined-user"></span>上线了</div>
                     <div class="chart-item">
@@ -113,23 +105,15 @@
                     </div> -->
                 </div>
 
-
-
-
-
-
-
-
-                <!-- 最下面聊天的话语 -->
+                <!-- 最下面聊天的话语    人员发消息的显示  关于茶叶的最新动态输入框-->
                 <div class="chart-form">
                   <div>
                     <textarea
-                    ref="mm"
+                      ref="mm"
                       class="chart-form-message"
                       id="message"
                     ></textarea>
                   </div>
-
 
                   <div>
                     <input
@@ -143,14 +127,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
 
             <!-- 人员关于自己对于新闻的了解，上传的图片以及目前的茶叶目前的状态，来跟新DOM树的显示 -->
             <div style="width: 100%" class="file">
@@ -176,15 +152,10 @@
         <!-- 详情右侧的一列 -->
         <el-col :span="6" :xs="24"
           ><div class="grid-content bg-purple-light"></div>
-                <div v-for="n in 6" :key="n" style="width:100%;" class="youimg"><img width="100%" src="/2.jpg"/></div>
-
-
-
-
-          
-          
-          
-          </el-col>
+          <div v-for="n in 7" :key="n" style="width: 100%" class="youimg">
+            <img width="100%" src="/2.jpg" />
+          </div>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -193,18 +164,16 @@
 <script>
 export default {
   methods: {
-    mess(){
-   this.messa=message.value
-   console.log(this.messa)
-
+    mess() {
+      this.messa = message.value;
+      console.log(this.messa);
     },
-
 
     success(res, file, fileList) {
       alert("图片上传成功");
       console.log(res);
       console.log(res.urls[0]);
-      this.pic.push(res.url[0])
+      this.pic.push(res.url[0]);
       // "http://localhost:3002/799111f5-31ff-4793-9432-95990cf61b14.jpg"
     },
   },
@@ -212,8 +181,8 @@ export default {
   data() {
     return {
       qing: this.$route.query.qing,
-      pic:[],
-      messa:null,
+      pic: [],
+      messa: null,
     };
   },
   mounted() {
@@ -233,10 +202,10 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.youimg{
-    margin-top: 100px;
+.youimg {
+  margin-top: 100px;
 }
-h2 {
+h3 {
   padding: 0;
   margin: 0;
 }

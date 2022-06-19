@@ -4,7 +4,7 @@
    
     <div style="text-align:right;padding:15px" >
       <router-link
-        to="/admin/showdset"
+        to="/admin/showdet"
         style="text-decoration: none;padding:10px:display:block;font-size:20px"
         >插入数据</router-link
       >
@@ -94,7 +94,7 @@ export default {
       });
     },
     deleteRows(index, rows) {
-      this.$router.push("/admin/showdet/" + rows);
+      this.$router.push("/admin/showdets/" + rows);
     },
   },
   watch: {

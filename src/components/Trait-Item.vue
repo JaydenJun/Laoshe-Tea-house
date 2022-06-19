@@ -7,7 +7,7 @@
       v-show="n.family_title == y"
     >
       <div class="img">
-        <router-link :to="'/traits/' + n.show_title+n.show_id" target="_blank" title=""
+        <router-link :to="'/traits/' + n.show_title+'$'+n.show_id" target="_blank" title=""
           ><img src="/1.jpg" />
         </router-link>
       </div>

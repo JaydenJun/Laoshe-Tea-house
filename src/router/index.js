@@ -224,16 +224,26 @@ const routes = [
 				},
 				component: () => import('../admin/Shows.vue')
 			},
-			{
-				path: 'showdet/:show_id',
-				name: 'showdet',
-				props: true,
-				meta: {
-					hide: true
-				},
-				component: () => import('../admin/Show_details.vue'),
-			},
-
+      {
+        path: 'showdets/:show_id',
+        name: 'showdets',
+        props: true,
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Show_details.vue'),
+      },
+			
+      {
+        path: 'showdet',
+        name: 'showdet',
+        props: true,
+        meta: {
+          hide: true
+        },
+        component: () => import('../admin/Show_insert.vue'),
+      },
+			
 			{
 				path: 'teasdet/:tea_id',
 				name: 'teasdet',
@@ -244,12 +254,30 @@ const routes = [
 				component: () => import('../admin/Teasdet.vue'),
 			},
 			{
+				path: 'teasset',
+				name: 'teasset',
+				props: true,
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Teas_insert.vue'),
+			},
+			{
 				path: "users",
 				name: "users",
 				meta: {
 					hide: true,
 				},
 				component: () => import("../admin/Users.vue"),
+			},
+			{
+				path: "userss/:user_id",
+				name: "userss",
+				props:true,
+				meta: {
+					hide: true,
+				},
+				component: () => import("../admin/UserDetaill.vue"),
 			},
 			{
 				path: 'teas',

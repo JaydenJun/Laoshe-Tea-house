@@ -9,13 +9,16 @@
       :options="swiperOptions"
     >
       <swiper-slide class="swiper-slides">
-          <img src="../assets/img/Home_files/b4.jpg" alt="" />
+          <img src="/img/轮播图1.png" alt="" />
       </swiper-slide>
       <swiper-slide>
-          <img src="../assets/img/Home_files/b2.jpg" alt="" />
+          <img src="/img/轮播图2.jpg" alt="" />
       </swiper-slide>
       <swiper-slide>
-          <img src="../assets/img/Home_files/b3.jpg" alt="" />
+          <img src="/img/轮播图3.png" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+          <img src="/img/轮播图4.jpg" alt="" />
       </swiper-slide>
 
       <!-- <swiper-slide v-for="{ cid, img } in data.carouselItems" :key="cid">
@@ -101,12 +104,12 @@ export default {
     width: 100%;
     text-align: center;
     img {
-      width: 65%;
+      width:1000px;
     }
   }
   .swiper-button-prev,
   .swiper-button-next {
-    width: 40vw;
+    width: 34vw;
   }
 
   .swiper-pagination-bullet {

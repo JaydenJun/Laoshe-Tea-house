@@ -2,25 +2,34 @@
   <div class="index-hot">
     <div>
       <div>
-        <h3>热销商品</h3>
+        <h3>茶百科</h3>
         <el-row :gutter="10">
-          <el-col :xs="24" :md="12" :lg="6" v-for="i in 4" :key="i"
-            ><div class="grid-content bg-purple box">
-              <div><img src="../assets/img/index/1.png" alt="" /></div>
-              <span>价格</span>
-              <p>标题</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad
-                saepe laudantium sapiente accusamus perferendis consectetur.
-                Alias quam eaque voluptates pariatur repudiandae minus id
-                eveniet perspiciatis, consectetur eum, cupiditate, quaerat
-                nostrum.
-              </p>
-              <div>
-                <span>品种</span>
-                <span>年份</span>
-                <span>销量</span>
-              </div>
+          <el-col :xs="24" :md="12" :lg="6"
+            ><div class="grid-content bg-purple box" @click="cbk">
+              <div><img src="/img/碧螺春.png" alt="" /></div>
+              <h4>碧螺春</h4>
+              <p>碧螺春是中国传统名茶，中国十大名茶之一，属于绿茶类</p>
+            </div></el-col
+          >
+          <el-col :xs="24" :md="12" :lg="6"
+            ><div class="grid-content bg-purple box" @click="cbk">
+              <div><img src="/img/君山银针.png" alt="" /></div>
+              <h4>君山银针</h4>
+              <p>君山银针是中国名茶之一，中国十大名茶之一。属于黄茶</p>
+            </div></el-col
+          >
+          <el-col :xs="24" :md="12" :lg="6"
+            ><div class="grid-content bg-purple box" @click="cbk">
+              <div><img src="/img/武夷岩茶.png" alt="" /></div>
+              <h4>武夷岩茶</h4>
+              <p>武夷岩茶是中国传统名茶，最著名的武夷岩茶是大红袍茶</p>
+            </div></el-col
+          >
+          <el-col :xs="24" :md="12" :lg="6"
+            ><div class="grid-content bg-purple box" @click="cbk">
+              <div><img src="/img/铁观音.png" alt="" /></div>
+              <h4>铁观音茶</h4>
+              <p>铁观音茶，属于青茶类，是中国十大名茶之一</p>
             </div></el-col
           >
         </el-row>
@@ -30,7 +39,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    cbk() {
+      this.$router.push("/tea");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +70,13 @@ export default {};
       text-overflow: ellipsis;
     }
     img {
-      width: 100%;
+      height: 180px;
+      width: 292px;
+      border: 1px solid #aaa;
+       transition: 0.7s;
+     &:hover{
+        transform: scale(1.1);
+    }
     }
   }
 }

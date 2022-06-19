@@ -15,7 +15,7 @@
         <router-view/>
       </el-container>
      -->
-    
+    <div style="width:88vw;margin:0 auto;">
     <el-container>
   
       <div class="headerul">
@@ -24,11 +24,11 @@
         
           <!-- <li>茶馆简介</li> -->
         
-          <li><i class="el-icon-present"></i><router-link to="/culture/history">茶馆历史</router-link></li>
+          <li><i class="el-icon-present"></i><router-link style="padding-left:1rem;"  to="/culture/history">茶馆历史</router-link></li>
       
-          <li><i class="el-icon-first-aid-kit"></i><router-link to="/culture/person">茶馆宣传片</router-link></li>
+          <li><i class="el-icon-first-aid-kit"></i><router-link style="padding-left:1rem;" to="/culture/person">茶馆宣传片</router-link></li>
           
-          <li><i class="el-icon-edit"></i><router-link to="/culture/room">文化介绍</router-link></li>
+          <li><i class="el-icon-edit"></i><router-link style="padding-left:1rem;" to="/culture/room">文化介绍</router-link></li>
           
         </ul>
         
@@ -38,6 +38,7 @@
     
     </el-container>
      <router-view />
+     </div>
   </div>
 </template>
 
@@ -55,7 +56,9 @@ export default {};
       padding: 1rem 0;
       border: none;
       list-style: none;
-    
+    a{
+      text-decoration: none;
+    }
     }
   }
 }

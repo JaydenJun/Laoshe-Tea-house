@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    img:"http://localhost:8080"
   },
   getters: {
   },

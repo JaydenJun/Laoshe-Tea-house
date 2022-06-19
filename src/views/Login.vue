@@ -185,12 +185,12 @@ export default {
     no-repeat;
   background-size: cover;
   .login_box {
-    padding: 50px 50px 50px 0;
+    padding: 40px 50px 20px 0;
     text-align: center;
     width: 400px;
     background-color: #eee;
     opacity: 0.95;
-    margin: 100px auto;
+    margin: 70px auto;
     border-radius: 10px;
   }
   .logo {

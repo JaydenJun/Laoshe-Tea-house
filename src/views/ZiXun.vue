@@ -1,5 +1,6 @@
 <template>
   <div v-if="show">
+    <div style="width: 88vw; margin: 0 auto">
     <el-row :gutter="10">
       <!-- :index="`/xiaoyin?xiao=${n.class_id}`"  -->
       <el-menu
@@ -17,7 +18,7 @@
         >
       </el-menu>
     </el-row>
-
+  </div>
     <!-- <router-view></router-view> -->
     <!-- <xinwen v-for="n in dat" :key="n.class_id" :item=n></xinwen> -->
     <div style="width: 88vw; margin: 0 auto">
@@ -34,7 +35,7 @@
               <el-row :gutter="20" class="rowcenter">
                 <el-col :span="5" :xs="24"
                   ><div class="rowimg">
-                    <img src="/6.png" /></div
+                    <img :src="`http://localhost:8081/${n.new_pic}`" /></div
                 ></el-col>
                 <el-col :span="19" :xs="24"
                   ><div class="grid-content bg-purple">
@@ -91,7 +92,7 @@ export default {
       data: null,
       dat: null,
       activeIndex: "1",
-      ind: null,
+      ind: "5",
       show: true,
       datt: null,
     };

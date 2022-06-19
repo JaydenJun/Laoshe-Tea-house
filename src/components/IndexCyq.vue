@@ -3,9 +3,21 @@
     <div>
       <h3>茶友圈</h3>
       <el-row :gutter="10">
-        <el-col :xs="24" :sm="12" :md="6" v-for="i in 4" :key="i"
+        <el-col :xs="24" :sm="12" :md="6"
           ><div class="grid-content bg-purple">
-            <img src="../assets/img/index/Snipaste_2022-06-04_11-08-49.png" alt="" /></div
+            <img src="/img/茶友圈1.png" alt="" @click="csss"/></div
+        ></el-col>
+        <el-col :xs="24" :sm="12" :md="6"
+          ><div class="grid-content bg-purple" >
+            <img src="/img/茶友圈2.png" alt="" @click="csss"/></div
+        ></el-col>
+        <el-col :xs="24" :sm="12" :md="6"
+          ><div class="grid-content bg-purple">
+            <img src="/img/茶友圈3.png" alt="" @click="csss"/></div
+        ></el-col>
+        <el-col :xs="24" :sm="12" :md="6"
+          ><div class="grid-content bg-purple">
+            <img src="/img/茶友圈4.png" alt="" @click="csss"/></div
         ></el-col>
       </el-row>
     </div>
@@ -14,20 +26,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    csss(){
+      this.$router.push('/teah')
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .index-cyq {
   width: 88vw;
   margin: 0 auto;
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
   h3 {
     text-align: center;
     // padding: 8vh 0;
   }
   img {
     width: 100%;
+    border: 1px solid #ccc;
+     transition: 0.7s;
+     &:hover{
+        transform: scale(1.1);
+    }
   }
 }
 </style>

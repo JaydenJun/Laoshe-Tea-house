@@ -6,14 +6,15 @@
           <div>
             <div>
               <div class="dingbu">
-                <div>
+                <div v-if="pics">
                   <a
                     ><img
-                      src="https://img.alicdn.com/imgextra/i1/2251059038/O1CN019X1cxL2GdSLnjQVjL_!!2251059038.png"
+                      style="margin-left: 40px"
+                      :src="'http://localhost:8080'+pics.data.show_spic"
                   /></a>
                 </div>
                 <div>
-                  <h3>{{ id.slice(0, -1) }}</h3>
+                  <h3>{{ id.slice(0, -iddd) }}</h3>
                   <div style="display: inline-flex">
                     <p>
                       <img
@@ -37,8 +38,11 @@
                         <li
                           v-for="n in data.data"
                           :key="n.spec_id"
-                          @click="(lid = n.spec_id),(spetil=n.show_subtitle),(spetilp=n.spec_price)"
-                         
+                          @click="
+                            (lid = n.spec_id),
+                              (spetil = n.show_subtitle),
+                              (spetilp = n.spec_price)
+                          "
                         >
                           <div
                             class="fuwu"
@@ -56,11 +60,12 @@
                     <div>
                       <label style="padding: 20px">价格介绍：</label>
                       <ul>
-                        <li class="fuwus"
+                        <li
+                          class="fuwus"
                           style="margin: 10px 10px; padding: 5px"
                           v-for="n in data.data"
                           :key="n.spec_id"
-                          @click="(lid = n.spec_id)"
+                          @click="lid = n.spec_id"
                           :class="{ active: n.spec_id == lid }"
                         >
                           <span
@@ -71,7 +76,9 @@
                     </div>
                   </div>
                   <div style="display: block; text-align: center">
-                    <button style="padding: 20px 40px" @click="Order">立即预定</button>
+                    <button style="padding: 20px 40px" @click="Order">
+                      立即预定
+                    </button>
                   </div>
                 </div>
               </div>
@@ -345,42 +352,73 @@ export default {
     return {
       data: null,
       lid: "",
-      spetil:"",
-      spetilp:""
+      spetil: "",
+      spetilp: "",
+      iddd: "2",
+      pics:null
     };
   },
   mounted() {
     this.getData();
     this.cats();
+    this.iddds();
+    this.getPic()
   },
   methods: {
+    getPic(){
+      let url = "http://127.0.0.1:3000/v1/users/shopps";
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.pics = res.data;
+      });
+    },
     cats() {
-      this.lid = this.id.charAt(this.id.length - 1);
+      this.lid = this.id.substring(
+        this.id.substring(0, this.id.indexOf("$")).length + 1
+      );
+    },
+    iddds() {
+      if (
+        this.id.substring(
+          this.id.substring(0, this.id.indexOf("$")).length + 1
+        ) >= 10
+      ) {
+        this.iddd = 3;
+      }
     },
     getData() {
       let url =
         "http://127.0.0.1:3000/v1/users/shopp?show_sid=" +
-        this.id.charAt(this.id.length - 1);
-      console.log(this.id.charAt(this.id.length - 1));
+        this.id.substring(
+          this.id.substring(0, this.id.indexOf("$")).length + 1
+        );
+
+      console.log(
+        this.id.substring(this.id.substring(0, this.id.indexOf("$")).length + 1)
+      );
       this.axios.get(url).then((res) => {
         this.data = res.data;
         console.log(res);
         this.lid = res.data.data[0].spec_id;
       });
     },
-  Order() {
-    const url = "http://127.0.0.1:3000/v1/users/buy";
-    const params = `show_oid=${this.id.charAt(this.id.length - 1)}&shows_name=${this.id.slice(0,-1)}&show_spec=${this.spetil}&order_pice=${this.spetilp}`;
-    this.axios.post(url,params).then((res) => {
-      console.log(res);
-      if(res.data.code==200){
-        alert(res.data.msg)
-        this.$router.push("/taritditu")
-      }else{
-        alert(res.data.msg)
-      }
-    });
-  },
+    Order() {
+      const url = "http://127.0.0.1:3000/v1/users/buy";
+      const params = `show_oid=${this.id.substring(
+        this.id.substring(0, this.id.indexOf("$")).length + 1
+      )}&shows_name=${this.id.slice(0, -this.iddd)}&show_spec=${
+        this.spetil
+      }&order_pice=${this.spetilp}`;
+      this.axios.post(url, params).then((res) => {
+        console.log(res);
+        if (res.data.code == 200) {
+          alert(res.data.msg);
+          this.$router.push("/taritditu");
+        } else {
+          alert(res.data.msg);
+        }
+      });
+    },
   },
 };
 </script>
@@ -388,14 +426,21 @@ export default {
 <style lang="scss" scoped>
 .dingbu {
   display: inline-flex;
+  margin: 0 auto;
+  text-align: center;
   h3 {
     margin: 5px 20px;
   }
   p {
     margin: 20px;
   }
+  img{
+    transition: 0.5s;
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
   > div:nth-child(2) {
-    padding: 10px;
     li {
       list-style: none;
     }
@@ -404,21 +449,33 @@ export default {
 .biaoti {
   display: inline-flex;
   padding: 20px;
-  width: 100%;
-
-  margin: 20px 0;
   border-bottom: 1px solid #333;
   background-image: linear-gradient(#666, #eee);
+  width: 100%;
+  margin-top:30px ;
+  h4 {
+    margin:  10px;
+  }
 }
 .fuwu {
   padding: 5px;
   margin: 5px;
   display: inline-flex;
   background-color: #ddd;
+  span{
+    transition: 0.5s;
+    &:hover{
+      transform: scale(1.05);
+      background-color: #f5e;
+      color: #fff;
+    }
+  }
   &.active {
     background-color: #f5e;
     color: #fff;
   }
+  width: 397px;
+  text-align: center;
 }
 .fuwus {
   padding: 5px;

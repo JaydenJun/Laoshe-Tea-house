@@ -2,11 +2,11 @@
   <!-- 用户发帖区域 -->
   <div>
     <div class="center-3" v-for="i in data" :key="i.ring_id">
-      <span>匿名</span>
+      <span>{{ i.user_name }}</span>
       <p>{{ i.ring_details }}</p>
       <div>
         <div class="img-1">
-          <img :src="i.ring_pic" alt="" />
+          <img :src="img + i.ring_pic" alt="" id="img-2" />
         </div>
       </div>
       <div class="center-3-2">
@@ -18,11 +18,13 @@
         >
         </el-input>
         <button id="btn1" @click="fbdata(i.ring_id)">点击发表评论</button>
+        <el-divider></el-divider>
         <button id="btn2" @click="dzgetdata(i.ring_prise + 1, i.ring_id)">
           点赞</button
         ><span id="dz">点赞数{{ i.ring_prise }}</span>
       </div>
       <div>
+        <el-divider></el-divider>
         <!-- 绑定点击事件传参啊 i.ring_id-->
         <el-button
           @click="(drawer = true), clickpinglu(i.ring_id)"
@@ -46,7 +48,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["img"]),
+  },
   data() {
     return {
       // 评论输入框双向绑定变量
@@ -71,7 +77,7 @@ export default {
       const params = `ring_prise=${this.b}&ring_id=${ring_id}`;
       this.axios.post(url, params).then((res) => {
         console.log(res);
-        console.log("c:" + ring_id, this.b);
+        // console.log("c:" + ring_id, this.b);
         if (res.data.code == 200) {
           this.getdata();
         }
@@ -109,7 +115,7 @@ export default {
     getdata() {
       const url = "http://127.0.0.1:3000/v1/users/ringss";
       this.axios.get(url).then((res) => {
-        console.log(res);
+        console.log("热门帖子：", res);
         this.data = res.data.data;
       });
     },
@@ -151,6 +157,7 @@ export default {
   border: 1px solid #e8ebf3;
   padding: 30px;
   margin-top: 50px;
+  margin-bottom: 50px;
   .center-3-1 {
     display: flex;
     justify-content: flex-start;
@@ -177,6 +184,9 @@ export default {
     color: white;
     margin-top: 20px;
     margin-right: 10px;
+    &:hover {
+      background-color: #046ff1;
+    }
   }
   #btn2 {
     padding: 10px 15px;
@@ -185,6 +195,9 @@ export default {
     border-radius: 4px;
     color: white;
     margin-top: 20px;
+    &:hover {
+      background-color: #046ff1;
+    }
   }
   #dz {
     border: 1px solid #3390ff;
@@ -193,5 +206,19 @@ export default {
     color: #3390ff;
     border-radius: 4px;
   }
+}
+// 帖子图片样式
+#img-2 {
+  width: 100%;
+  display: block;
+}
+.img-1 {
+  margin: 0 auto;
+  transition: 0.8s;
+  &:hover {
+    transform: scale(1.1);
+  }
+  border: 5px solid #e8ebf3;
+  width: 400px;
 }
 </style>

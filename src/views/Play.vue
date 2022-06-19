@@ -13,20 +13,22 @@
       >
       </el-input>
     </div>
+
     <el-upload
-      class="upload-demo"
-      drag
       action="http://127.0.0.1:3000/upload"
-      name="uploadFile"
       multiple
+      name="uploadFile"
       :on-success="handleUploadSuccess"
+      list-type="picture-card"
+      :limit="1"
     >
-      <i class="el-icon-upload"></i>
-      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-      <div class="el-upload__tip" slot="tip"></div>
+      <i class="el-icon-plus"></i>
     </el-upload>
+    <el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="ring_pic" alt="" />
+    </el-dialog>
     <div class="btn">
-      <button>发布</button>
+      <button @click="postdata">发布</button>
     </div>
   </div>
 </template>
@@ -38,14 +40,30 @@ export default {
       // 评论框值
       ring_pic: "",
       textarea: "",
+
+      dialogVisible: false,
+      user: 2,
     };
   },
   methods: {
+    postdata() {
+      const url = "http://127.0.0.1:3000/v1/users/sendring";
+      const params = `ring_details=${this.textarea}&ring_pic=${this.ring_pic}&user_sid=${this.user}`;
+      this.axios.post(url, params).then((res) => {
+        console.log(res);
+        alert(res.data.msg)
+      });
+    },
+    // 图片上传
     // 图片上传
     handleUploadSuccess(res) {
       // 当文件上传成功后触发
-
-      console.log(res);
+      this.ring_pic = res.urls[0];
+      console.log(res.urls[0]);
+    },
+    handlePictureCardPreview(file) {
+      this.ring_pic = file.url;
+      this.dialogVisible = true;
     },
   },
 };
@@ -55,7 +73,9 @@ export default {
 .play {
   background-color: #ffffff;
   margin-top: 10px;
+  margin-bottom: 50px;
   h1 {
+    font-size: 18px;
     color: gray;
   }
   .play-input {
@@ -71,9 +91,12 @@ export default {
       background-color: rgb(62, 168, 218);
       color: white;
       border-radius: 4px;
-      padding: 15px 20px;
+      padding: 10px 30px;
       font-size: 20px;
       border: 1px solid rgb(62, 168, 218);
+      &:hover {
+        background-color: rgb(9, 150, 243);
+      }
     }
   }
 }

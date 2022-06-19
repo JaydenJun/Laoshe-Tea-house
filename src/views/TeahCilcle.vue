@@ -53,29 +53,20 @@
       <el-col :span="6" :xs="0">
         <div class="grid-content bg-purple">
           <div class="right-1">
-            <p>热门帖子</p>
-            <router-link to=""> 更多 </router-link>
+            <p>快速跳转</p>
+            <el-divider></el-divider>
+
+            <router-link to="/"> 首页 </router-link>
 
             <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
+
+            <router-link to="/trait">茶馆特色</router-link>
             <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
+
+            <router-link to="/tea">茶百科</router-link>
             <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
-            <el-divider></el-divider>
-            <router-link to="">大杂烩</router-link>
+
+            <router-link to="/zixun">茶闻咨询</router-link>
             <el-divider></el-divider>
           </div>
         </div>
@@ -122,8 +113,12 @@ export default {
   margin: 0 auto;
   background-image: linear-gradient(#f6f7fb, #ffffff);
   text-align: center;
+
   a {
     text-decoration: none;
+    &:hover {
+      color: rgb(9, 96, 228);
+    }
   }
 
   // 顶部区域样式
@@ -162,7 +157,11 @@ export default {
           }
         }
 
-        background-image: linear-gradient(#d49030, #734d43);
+        background-image: linear-gradient(
+          rgba(221, 221, 221, 0.76),
+          #d8d0d0,
+          rgba(204, 204, 204, 0.493)
+        );
       }
     }
   }

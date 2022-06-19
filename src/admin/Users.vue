@@ -1,5 +1,7 @@
 <template>
-  <el-table
+<div>
+  <h2 style="text-align:center">用户管理</h2>
+   <el-table
     :data="tableData"
     style="width: 100%; font-size: 15px"
     max-height="500"
@@ -43,6 +45,8 @@
       </template>
     </el-table-column>
   </el-table>
+</div>
+ 
 </template>
 
 <script>
