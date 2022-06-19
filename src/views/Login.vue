@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 export default {
   data() {
     var phones = (rule, value, callback) => {
@@ -105,15 +105,15 @@ export default {
         callback();
       }
     };
-    
+
     return {
-      userid:"",
-      user_name:"",
+      userid: "",
+      user_name: "",
       ruleForm: {
         phone: "",
         pass: "",
         code: "",
-        
+
         a: "http://127.0.0.1:3000/v1/users/v1/code",
       },
       rules: {
@@ -140,25 +140,26 @@ export default {
   },
 
   methods: {
-    
-    ...mapMutations(["updateLoginState","updateLoginStates"]),
+    ...mapMutations(["updateLoginState", "updateLoginStates"]),
     chat() {
       this.ruleForm.a =
         "http://127.0.0.1:3000/v1/users/v1/code?t=" + Date.now();
     },
-    usel(){
-      let url="http://127.0.0.1:3000/v1/users/userph?user_phone="+this.ruleForm.phone
-      console.log(url)
-            this.axios.get(url).then((res)=>{
-              this.userid=res.data.data[0].user_id
-              console.log(res.data.data[0].user_id)
-              console.log(res)
-              this.user_name=res.data.data[0].user_name
-              // 更新当前登录的用户名到 vuex中
-              this.updateLoginStates(this.userid)
-            
-              this.updateLoginState(this.user_name)
-            })
+    usel() {
+      let url =
+        "http://127.0.0.1:3000/v1/users/userph?user_phone=" +
+        this.ruleForm.phone;
+      console.log(url);
+      this.axios.get(url).then((res) => {
+        this.userid = res.data.data[0].user_id;
+        console.log(res.data.data[0].user_id);
+        console.log(res);
+        this.user_name = res.data.data[0].user_name;
+        // 更新当前登录的用户名到 vuex中
+        this.updateLoginStates(this.userid);
+
+        this.updateLoginState(this.user_name);
+      });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
@@ -175,14 +176,10 @@ export default {
                 message: "登录成功！",
                 type: "success",
               });
-             
 
-               this.usel() 
-              
-              
-              
+              this.usel();
 
-              // this.$router.push("/"); //成功跳转 到主页或者购物界面
+              this.$router.push("/"); //成功跳转 到主页或者购物界面
             } else {
               this.$message.error("账号有误，请从新输入"); //，这里提示
               return false;
@@ -213,12 +210,12 @@ export default {
     no-repeat;
   background-size: cover;
   .login_box {
-    padding: 40px 50px 20px 0;
+    padding: 30px 50px 20px 0;
     text-align: center;
     width: 400px;
     background-color: #eee;
     opacity: 0.95;
-    margin: 70px auto;
+    margin: 50px auto;
     border-radius: 10px;
   }
   .logo {

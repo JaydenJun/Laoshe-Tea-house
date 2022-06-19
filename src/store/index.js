@@ -17,13 +17,18 @@ export default new Vuex.Store({
       state.loginname = payload  
       // 将用户名存入sessionStorage, 刷新网页依然存在
       sessionStorage.setItem('name', payload)
+     if(payload==null){
+        sessionStorage.clear('user_id',"name")
+      } 
     },
     updateLoginStates(state, payloads){ // 修改登录状态
       // 将调用当前方法传过来的参数(用户名) 赋值给 state.loginid
       state.loginid = payloads  
       // 将用户名存入sessionStorage, 刷新网页依然存在
       sessionStorage.setItem('user_id', payloads)
-    }
+      
+    },
+    
   },
   actions: {
   },

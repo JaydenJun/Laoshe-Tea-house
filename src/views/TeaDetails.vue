@@ -7,17 +7,17 @@
       </el-col>
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
         <div class="img">
-          <img :src="imgBase + data.data[0].tea_spic" alt="">
+          <img :src="img + data.data[0].tea_spic" alt="">
         </div>
         <div class="img">
-          <img :src="imgBase + data.data[0].tea_sspic" alt="">
+          <img :src="img + data.data[0].tea_sspic" alt="">
         </div>
         <div class="img">
-          <img :src="imgBase + data.data[0].tea_ssspic" alt="">
-
+          <img :src="img + data.data[0].tea_ssspic" alt="">
         </div>
       </el-col>
     </el-row>
+
   </div>
 </template>
 
@@ -25,7 +25,7 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState(['imgBase'])
+    ...mapState(['img'])
   },
   props: ['tea_id'],
   data() {

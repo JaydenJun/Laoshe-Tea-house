@@ -34,7 +34,11 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["loginid", "loginname"]),
+  },
   data() {
     return {
       // 评论框值
@@ -42,16 +46,18 @@ export default {
       textarea: "",
 
       dialogVisible: false,
-      user: 2,
     };
   },
   methods: {
+    ...mapMutations(["updateLoginStates", "updateLoginState"]),
     postdata() {
       const url = "http://127.0.0.1:3000/v1/users/sendring";
-      const params = `ring_details=${this.textarea}&ring_pic=${this.ring_pic}&user_sid=${this.user}`;
+      const params = `ring_details=${this.textarea}&ring_pic=${this.ring_pic}&user_sid=${this.loginid}`;
       this.axios.post(url, params).then((res) => {
         console.log(res);
-        alert(res.data.msg)
+        alert(res.data.msg);
+        this.$router.push("/teah");
+        // console.log("用户id", this.loginid);
       });
     },
     // 图片上传

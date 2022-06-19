@@ -23,11 +23,9 @@
           {{ n.show_address }}
         </div>
         <div>状态：售票中</div>
-        <div class="price">
-          票价：￥<span>{{ n.show_predict }}</span> 元 起
-        </div>
+        
         <div class="order">
-          <router-link :to="'/traits/' + n.show_id" title="" target="_blank">订 票</router-link>
+          <router-link :to="'/traits/' + n.show_id" title="" target="_blank">立即订 票</router-link>
         </div>
       </div>
     </div>
@@ -51,7 +49,8 @@ export default {
 .img {
   width: 50%;
   img {
-    width: 100%;
+    width: 550px;
+    height: 250px;
   }
 }
 .info {
@@ -60,6 +59,7 @@ export default {
   }
   .aa{
     text-decoration: none;
+   color: rgb(48, 120, 255);
   }
   .price{
     span{
@@ -69,6 +69,11 @@ export default {
   }
   .order{
     a{
+      padding:10px 20px;
+      background-color: rgb(48, 120, 255);
+      color: #fff;
+      font-size:14px;
+      border-radius: 5px;
       text-decoration: none;
     }
 

@@ -39,12 +39,12 @@
           <div v-else class="grid-content bg-purple-light">
             <div style="text-align:left;">
               <ul style="display:flex;">
-                <li style="width:145px">
+                <li style="width:180px">
                  <span style="color:blue">欢迎{{ loginname}}</span>
-                   
+                 <button @click="updateLoginState(null)">退出</button>
                 </li>|
-                <li style="width:80px;padding:0 5px">
-                  <button style="background-color:red;border:1px solid #fff;color:#fff" @click="personal()">个人中心</button>
+                <li style="width:84px;padding:4px 5px">
+                  <button style="background-color:red;border:1px solid #fff;color:#fff" @click="personal(loginid)">个人中心</button>
                 </li>
               </ul>
             </div>
@@ -59,12 +59,15 @@
 import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["loginname"]),
+    ...mapState(["loginname","loginid"]),
   },
   methods: {
     ...mapMutations(["updateLoginState"]),
     personal(i){
-      this.$router.push("/personal")
+      this.$router.push("/personal/"+i)
+    },
+    aa(){
+      this.$router.push("/")
     }
   },
 };
@@ -95,6 +98,12 @@ export default {
         text-decoration: none;
         color: #333;
         display: inline-block;
+        transition: 0.5s;
+        &:hover{
+          color:rgb(48, 120, 255);
+          transform: scale(1.05);
+
+        }
       }
     }
   }

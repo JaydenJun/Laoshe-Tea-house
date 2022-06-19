@@ -40,7 +40,9 @@
           :direction="direction"
           :before-close="handleClose"
         >
-          <p v-for="v in pldata" :key="v.ring_id">匿名：{{ v.comment_cont }}</p>
+          <p v-for="v in pldata" :key="v.ring_id">
+            {{ loginname }}：{{ v.comment_cont }}
+          </p>
         </el-drawer>
       </div>
     </div>
@@ -48,10 +50,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["img"]),
+    ...mapState(["img", "loginname"]),
   },
   data() {
     return {

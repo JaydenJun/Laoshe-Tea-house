@@ -4,7 +4,7 @@
       :default-active="selected"
       background-color="#fff"
       text-color="#333"
-      active-text-color="#f5d"
+      active-text-color="rgb(48, 120, 255)"
       mode="horizontal"
     >
       <template>
