@@ -247,6 +247,7 @@ const routes = [
 		children: [
 			{
 				meta: {
+						
 					hide: true,
 				},
 				props: true,
@@ -259,6 +260,7 @@ const routes = [
 				path: "newlr",
 				name: "newlr",
 				meta: {
+					title: "用户管理",
 					hide: true,
 				},
 				component: () => import("../admin/NewLr.vue"),
@@ -268,6 +270,7 @@ const routes = [
 				path: "news",
 				name: "news",
 				meta: {
+					title: "新闻资讯",
 					hide: true,
 				},
 				component: () => import("../admin/News.vue"),
@@ -275,6 +278,7 @@ const routes = [
 				path: 'shows',
 				name: 'shows',
 				meta: {
+					title: "特色茶馆模块",
 					hide: true
 				},
 				component: () => import('../admin/Shows.vue')
@@ -321,6 +325,7 @@ const routes = [
 				path: "users",
 				name: "users",
 				meta: {
+					title: "用户管理",
 					hide: true,
 				},
 				component: () => import("../admin/Users.vue"),
@@ -338,6 +343,7 @@ const routes = [
 				path: 'teas',
 				name: 'teas',
 				meta: {
+					title: "茶百科",
 					hide: true
 				},
 				component: () => import('../admin/Teas.vue')
@@ -347,6 +353,7 @@ const routes = [
 				props: true,
 				name: 'tearing',
 				meta:{
+					title: "茶友圈话题",
 					hide: true
 				},
 				component: () => import('../admin/TeaRing.vue')
