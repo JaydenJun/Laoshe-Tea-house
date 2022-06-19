@@ -22,7 +22,7 @@ s.get('/v1/code', (req, res) => {
         // 字体大小
         fontSize: 36,
         // 噪声线条数
-        noise: 5,
+        noise: 4,
         // 宽度
         width: 80,
         // 高度
@@ -44,6 +44,7 @@ s.get('/v1/code', (req, res) => {
     // 	color:true,
     // })	
     a = req.session.captcha = cap.text; // session 存储验证码数值 1+5 = 6
+    b = req.session.captcha = cap.text;
     console.log(req.session.captcha)
 
     res.type('svg'); // 响应的类型
@@ -85,28 +86,29 @@ s.post('/login', (req, res, next) => {
 // 2.注册接口 http://127.0.0.1:3000/v1/users/register --- 用户名/用户密码/用户手机号必填
 s.post('/register', (req, res, next) => {
     //获取用户输入验证码
-    var code = req.body.code;
-    console.log(code, a)
+    var codes = req.body.codes;
+    console.log(codes, b)
     //与系统验证 和用户输入验证码比较
-    if (code != a) {
+    if (codes != b) {
         res.send("400");    //不一样返回-1验证码输入错误
         return;
     }
     //.........................稍等
-    a = "";
-    if (a) {
+    b = "";
+    if (b) {
         res.send("200");
         return;
     }
-    sql.query('insert into lscg_users set?', [req.body], (err, r) => {
+    let obj = req.body
+    sql.query('insert into lscg_users set user_phone=? and user_pwd=?', [obj.user_phone,obj.user_pwd], (err, r) => {
         if (err) {
             next(err)
             return;
         };
         if (r.affectedRows === 0) {
-            res.send({ code: 505, msg: '录入失败' })
+            res.send({ code: 505, msg: '注册失败' })
         } else {
-            res.send({ code: 200, msg: '录入成功' })
+            res.send({ code: 200, msg: '注册成功' })
         }
     })
 });
@@ -453,6 +455,27 @@ s.get('/zixun', (req, res, next) => {
             res.send({ code: 200, msg: '查询成功', data: data })
         }
     })
+});
+
+//用户个人详情接口(get /detail/编号)
+//接口地址：http://127.0.0.1:3000/v1/users/detailss/1
+//请求方式：get
+s.get("/detailss/:user_phone",(req,res,next)=>{
+	var obj=req.params;
+	console.log(obj);
+	sql.query("select * from lscg_users where user_phone=?",[obj.user_phone],(err,result)=>{
+	if(err){
+		next(err);
+		return;
+	}
+	console.log(result);
+	//结果是数组，如果是空数组，说明用户不存在，否则存在
+	if(result.length===0){
+	res.send({code:500,msg:'查无此人'});
+	}else{
+	res.send({code:200,msg:'查询成功',data:result});
+	}
+	});
 });
 
 //暴露路由对象

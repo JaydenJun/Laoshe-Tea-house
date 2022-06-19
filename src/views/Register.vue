@@ -1,170 +1,168 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :span="24"
-        ><div class="grid-content bg-purple-dark">
-          <div id="from">
-            <h1>
-              欢迎注册
-              <p>
-                已有账号？
-                <router-link to="/login">登录</router-link>
-              </p>
-            </h1>
-            <!-- 
-        ref：获取组件对象
-        :model ：指明表单绑定的数据对象，管理ruleForm; 用于验证，由data中的ruleForm收集表单数据
-        v-model：双向数据绑定ruleForm, 在data中声明rulrForm用于双向数据绑定
-        :rules :通过rules对象对表单进行表单验证
-        rules：用于定义form中每个表单项的规则。指明错误消息，如果表单不通过将会通过prop中显示错误消息
-        prop:
-       -->
-            <div class="form-item">
-              <el-form :rules="rules" :model="ruleForm" ref="form" class="item">
-                <!-- 用户名-->
-                <el-form-item label="用戶名" prop="name" label-width="70px">
-                  <el-input
-                    v-model="ruleForm.name"
-                    placeholder="请设置用户名"
-                  ></el-input>
-                </el-form-item>
-                <!-- 手机号 -->
-                <el-form-item label="手机号" prop="phone" label-width="70px">
-                  <el-input
-                    v-model="ruleForm.phone"
-                    placeholder="请设置手机号"
-                  ></el-input>
-                </el-form-item>
-                <!-- 密码-->
-                <el-form-item label="密码" prop="password" label-width="70px">
-                  <el-input
-                    type="password"
-                    v-model="ruleForm.password"
-                    placeholder="请设置登录密码"
-                  ></el-input>
-                </el-form-item>
-                <!-- 邮箱 -->
-                <el-form-item label="邮箱" prop="email" label-width="70px">
-                  <el-input
-                    v-model="ruleForm.email"
-                    placeholder="请设置邮箱"
-                  ></el-input>
-                </el-form-item>
-                <!-- 注册 -->
-                <el-form-item>
-                  <el-button type="primary" @click="submitForm"
-                    >立即创建</el-button
-                  >
-                  <input
-                    id="reset"
-                    type="reset"
-                    @click="resetForm('ruleForm')"
-                    value="重置"
-                  />
-                </el-form-item>
-              </el-form>
-            </div>
+  <div class="login">
+    <!-- 外框 -->
+
+    <div class="login_box">
+      <!-- 表单 -->
+      <div
+        style="
+          width: 100%;
+          text-align: center;
+          background-color: #eee;
+          margin-bottom: 50px;
+        "
+      >
+        <router-link to="/"
+          ><img style="width: 50%" src="../assets/log2.png" alt=""
+        /></router-link>
+      </div>
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+      >
+        <p class="biao">
+          <span>欢迎注册</span
+          ><router-link to="/login">已有账号？立即登录</router-link>
+        </p>
+        <el-form-item label="手机号" prop="phone">
+          <el-input
+            placeholder="请输入手机号"
+            type="text"
+            v-model="ruleForm.phone"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item label="密码" prop="pass">
+          <el-input
+            placeholder="请输入密码"
+            type="password"
+            v-model="ruleForm.pass"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item style="display:flex:">
+          <div
+            @click="chat"
+            style="background-color: #333; margin-bottom: 10px"
+          >
+            <img
+              width="150px"
+              :src="ruleForm.a"
+              id="code2"
+              title="看不清点击换一张"
+            />
           </div>
-        </div>
-      </el-col>
-    </el-row>
+          <div style="margin-left: -100px; width: 300px">
+            <el-form-item
+              label="验证码"
+              prop="code"
+              style="margin: 0 50px 30px 0"
+            >
+              <el-input
+                style="display: inline-block"
+                placeholder="验证码"
+                type="text"
+                v-model="ruleForm.code"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+          </div>
+          <el-button type="primary" @click="submitForm('ruleForm')"
+            >立即登录</el-button
+          >
+          <el-button style="width: 98px" @click="resetForm('ruleForm')"
+            >重置</el-button
+          >
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    // 手机号验证
-    var phonenumber = (rule, value, callback) => {
-      const phonenumber = /^1[3|4|5|7|8][0-9]{9}$/;
-      if (!value) {
-        return callback(new Error("电话号码不能为空"));
+    var phones = (rule, value, callback) => {
+      if (value == "") {
+        callback(new Error("请输入手机号"));
+      } else {
+        callback();
       }
-      setTimeout(() => {
-        // Number.isInteger是es6验证数字是否为整数的方法,实际输入的数字总是识别成字符串
-        // 所以在前面加了一个+实现隐式转换
-
-        if (!Number.isInteger(+value)) {
-          callback(new Error("请输入数字值"));
-        } else {
-          if (phonenumber.test(value)) {
-            callback();
-          } else {
-            callback(new Error("电话号码格式不正确"));
-          }
-        }
-      }, 100);
-    };
-    // 邮箱验证
-    var chekemail = (rule, value, callback) => {
-      const chekemail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-      if (!value) {
-        return callback(new Error("邮箱不能为空"));
-      }
-      setTimeout(() => {
-        if (chekemail.test(value)) {
-          callback();
-        } else {
-          callback(new Error("请输入正确的邮箱格式"));
-        }
-      }, 100);
     };
 
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm.checkPass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
+        }
+        callback();
+      }
+    };
     return {
       ruleForm: {
-        email: "",
         phone: "",
-        name: "",
-        password: "",
+        pass: "",
+        code: "",
+        a: "http://127.0.0.1:3000/v1/users/v1/code",
       },
       rules: {
-        name: [
-          // required：name字段为必填项
-          //  message：如果验证失败后显示的信息
-          // trigge：验证触发方式，blur即焦点失去后触发验证
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3到 10个字符", trigger: "blur" },
-          {
-            required: true,
-            pattern: /^[u4e00-\u9fa5_a-zA-Z0]+$/,
-            message: "姓名不支持特殊字符",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          { required: true, message: "密码设置不符合要求", trigger: "blur" },
-          {
-            min: 6,
-            max: 15,
-            message: "长度在 6 到 15 个字符",
-            trigger: "blur",
-          },
-        ],
         phone: [
-          { required: true, message: "手机号必填", trigger: "blur" },
-          { validator: phonenumber, trigger: "blur" },
+          { validator: phones, trigger: "blur" },
           {
             pattern: /^1[3-9]\d{9}$/,
-            message: "手机号不合法",
+            message: "请输入正确的手机号",
             trigger: "blur",
           },
         ],
-        email: [
-          { required: true, message: "请填写正确的邮箱", trigger: "blur" },
-          { validator: chekemail, trigger: "blur" },
+        pass: [
+          { validator: validatePass, trigger: "blur" },
+          {
+            min: 8,
+            max: 16,
+            // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z\\W]{6,18}$/,
+            message: "密码必须包含字母和数字，且在8-15位之间",
+            trigger: "blur",
+          },
         ],
       },
     };
   },
+
   methods: {
-    submitForm() {
-      // valid用于表单
-      this.$refs["form"].validate((valid) => {
+    chat() {
+      this.ruleForm.a =
+        "http://127.0.0.1:3000/v1/users/v1/code?t=" + Date.now();
+    },
+
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
-          // 如果验证成功，valid将会返回true
-          console.log("提交表单：", this.ruleForm);
+          console.log(this.ruleForm); //登录成功，这里判断数据库有没有  手机号
+          const params = `user_phone=${this.ruleForm.phone}&user_pwd=${this.ruleForm.pass}&codes=${this.ruleForm.code}`;
+          const url = "http://127.0.0.1:3000/v1/users/register";
+          this.axios.post(url, params).then((res) => {
+            console.log(res);
+            if (res.data.code == 200) {
+              this.$message({
+                //提示成功信息
+                message: "注册成功！",
+                type: "success",
+              });
+              this.$router.push("/login"); //成功跳转
+            } else {
+              this.$message.error("注册失败"); //，这里提示
+              return false;
+            }
+          });
         } else {
-          console.warn("请完善表单");
+          this.$message.error("账号有误，请从新输入"); //，这里提示
+          return false;
         }
       });
     },
@@ -175,47 +173,41 @@ export default {
 };
 </script>
 
-<style scoped>
-.grid-content {
-  width: 100%;
-  height: 100%;
-  background: url("https://passport.baidu.com/static/passpc-account/img/reg_bg_min.jpg");
- 
+<style lang="scss" scoped>
+.login {
+  margin: 0 auto;
   position: fixed;
-}
-#from {
-  width: 500px;
-  height: 500px;
-  
-  margin: 200px auto;
-  padding: 10px;
-
-  background: rgba(252, 252, 252, 0.8);
-  border-radius: 20px;
-}
-
-.form-item {
-  width: 400px;
-  height: 50px;
-  text-align: center;
-  padding: 20px;
-}
-h1 {
-  color: black;
-}
-p {
-  font-size: 10px;
-  color: gray;
-  text-decoration: none;
-  margin-left: 100px;
-}
-#reset {
-  padding: 10px 20px;
-  width: 80px;
-  margin-left: 10px;
-  border-radius: 4px;
-  background-color: #bdcefc;
-  color: white;
-  border-color: #bdcefc;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(https://img1.baidu.com/it/u=2042976038,4015865224&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500)
+    no-repeat;
+  background-size: cover;
+  .login_box {
+    padding: 40px 50px 20px 0;
+    text-align: center;
+    width: 400px;
+    background-color: #eee;
+    opacity: 0.95;
+    margin: 70px auto;
+    border-radius: 10px;
+  }
+  .logo {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .biao {
+    display: flex;
+    justify-content: space-evenly;
+    span {
+      font-size: 30px;
+    }
+    a {
+      text-decoration: none;
+      line-height: 50px;
+    }
+  }
 }
 </style>

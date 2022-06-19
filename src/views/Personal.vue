@@ -42,7 +42,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:["user_phone"]
+};
 </script>
 
 <style lang="scss" scoped>

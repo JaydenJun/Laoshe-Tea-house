@@ -20,28 +20,27 @@
           </div>
         </div></el-col
       >
-      <el-col :xs="24" :md="12"
+      <el-col :xs="24" :md="12" v-if="data"
         ><div class="grid-content bg-purple-light">
           <h3>茶闻资讯</h3>
           <div class="xq">
-            <div v-for="i in 15" :key="i">
+            <div v-for="i in data.data" :key="i.class_id">
               <div>
                 <a href="">
-                  <img src="../assets/img/index/XPe0Ick4Rd-ge3furzw2aw.jpg" alt="" />
+                  <img :src="'http://localhost:8080' + i.new_pic" alt="" />
                 </a>
               </div>
               <div>
-                <h4>标题</h4>
+                <h4>{{ i.new_title }}</h4>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Reiciendis ex excepturi soluta voluptatem sunt doloribus sint
-                  nisi minima corporis totam deleniti commodi est, quas incidunt
-                  ea voluptas deserunt. Natus, nisi.
+                  {{i.new_subtitle }}
                 </p>
                 <div>
-                  <span>发布人</span>
-                  <span>点击量</span>
-                  <span>评论</span>
+                  <span>{{
+                    moment
+                      .unix(new Date(i.new_time).getTime() / 1000)
+                      .format("yyyy年MM月DD日 HH:mm")
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -53,7 +52,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: null,
+    };
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      const url = "http://localhost:3000/v1/users/xiang?xiao=5";
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.data = res.data;
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -61,13 +78,13 @@ export default {};
   width: 88vw;
   margin: 0 auto;
   text-align: center;
-  h3{
+  h3 {
     // padding: 10vh 0;
   }
   div {
     position: relative;
     padding: 3px;
-    
+
     img {
       width: 100%;
     }
@@ -84,7 +101,7 @@ export default {};
     }
   }
   .xq {
-    max-height:100vh;
+    max-height: 100vh;
     overflow-y: auto;
     > div {
       display: flex;

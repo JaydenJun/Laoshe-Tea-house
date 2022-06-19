@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     var phones = (rule, value, callback) => {
@@ -135,6 +136,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["updateUname"]),
     chat() {
       this.ruleForm.a =
         "http://127.0.0.1:3000/v1/users/v1/code?t=" + Date.now();
@@ -148,13 +150,15 @@ export default {
           const url = "http://127.0.0.1:3000/v1/users/login";
           this.axios.post(url, params).then((res) => {
             console.log(res);
-            if (res.code == 200) {
+            if (res.data.code == 200) {
               this.$message({
                 //提示成功信息
                 message: "登录成功！",
                 type: "success",
-                //   this.$router.push("/login"); //成功跳转 到主页或者购物界面
               });
+              // 更新当前登录的用户名到 vuex中
+              this.updateUname(this.ruleForm.phone);
+              this.$router.push("/"); //成功跳转 到主页或者购物界面
             } else {
               this.$message.error("账号有误，请从新输入"); //，这里提示
               return false;

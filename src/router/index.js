@@ -6,9 +6,20 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
+		path: '/',
+		name: 'index',
+		component: Index,
+		meta: {
+			title: "老舍茶馆首页",
+		},
+	},
+	{
 		path: "/xiaoyin",
 		name: "xiaoyin",
 		component: () => import("../views/xiaoyin.vue"),
+		meta: {
+			title: "茶闻资讯",
+		},
 	},
 	{
 		path: "/traitdetails",
@@ -19,6 +30,9 @@ const routes = [
 		path: "/zixun",
 		name: "zixun",
 		component: () => import("../views/ZiXun.vue"),
+		meta: {
+			title: "茶闻资讯",
+		},
 	},
 
 	{
@@ -32,6 +46,9 @@ const routes = [
 		path: "/tea",
 		name: "tea",
 		component: () => import("../views/Tea.vue"),
+		meta: {
+			title: "茶百科",
+		},
 	},
 
 	// 茶馆特色
@@ -40,12 +57,17 @@ const routes = [
 		path: "/trait",
 		name: "trait",
 		component: () => import("../views/Trait-index.vue"),
-		// children: []
+		meta: {
+			title: "老舍茶馆特色",
+		},
 	},
 	{
 		path: "/taritditu",
 		name: "taritditu",
 		component: () => import("../views/Trait-ditu.vue"),
+		meta: {
+			title: "茶馆位置",
+		},
 		// children: []
 	},
 	{
@@ -53,6 +75,9 @@ const routes = [
 		name: "routeName",
 		props: true,
 		component: () => import("../views/tarit_item.vue"),
+		meta: {
+			title: "特色演出详情",
+		},
 	},
 
 	{
@@ -66,31 +91,47 @@ const routes = [
 		name: "teah",
 		component: () => import("../views/TeahCilcle.vue"),
 		redirect: "/teah/latest",
+		
 		children: [
 			{
 				path: "hottest",
 				name: "hottest",
 				component: () => import("../views/Hottest.vue"),
+				meta: {
+					title: "茶友圈",
+				},
 			},
 			{
 				path: "latest",
 				name: "latest",
 				component: () => import("../views/Latest.vue"),
+				meta: {
+					title: "茶友圈",
+				},
 			},
 			{
 				path: "week",
 				name: "week",
 				component: () => import("../views/Week.vue"),
+				meta: {
+					title: "茶友圈",
+				},
 			},
 			{
 				path: "month",
 				name: "month",
 				component: () => import("../views/Month.vue"),
+				meta: {
+					title: "茶友圈",
+				},
 			},
 			{
 				path: "play",
 				name: "play",
 				component: () => import("../views/Play.vue"),
+				meta: {
+					title: "茶友圈",
+				},
 			},
 		],
 	},
@@ -102,19 +143,29 @@ const routes = [
 		redirect: "/culture/history",
 		component: () => import("../views/culture.vue"),
 		// component: () => import("../views/guanyushou.vue"),
-
+		
 		children: [
 			{
 				path: "person", //信息
 				component: () => import("../views/person.vue"),
+				meta: {
+					title: "茶馆资讯",
+				},
+			
 			},
 			{
 				path: "history",
 				component: () => import("../views/history.vue"),
+				meta: {
+					title: "茶馆历史",
+				},
 			},
 			{
 				path: "room",
 				component: () => import("../views/Room.vue"),
+				meta: {
+					title: "文化介绍",
+				},
 			},
 		],
 	},
@@ -122,12 +173,16 @@ const routes = [
 	{
 		path: "/personal",
 		name: "Personal",
+		props:true,
 		component: () => import("../views/Personal.vue"),
 		redirect: "/personal/myper",
 		children: [
 			{
 				path: "myper", //信息
 				component: () => import("../components/Myper.vue"),
+				meta: {
+					title: "个人信息中心",
+				},
 			},
 			{
 				path: "myorder", //订单
@@ -305,5 +360,15 @@ const router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes,
 });
+
+
+// 全局前置守卫:
+// 凡是路由的跳转操作, 都会触发守卫
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+
+  next() //放行: 让路由继续后续工作
+})
+
 
 export default router;

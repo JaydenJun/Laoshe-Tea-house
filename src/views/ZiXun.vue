@@ -35,7 +35,7 @@
               <el-row :gutter="20" class="rowcenter">
                 <el-col :span="5" :xs="24"
                   ><div class="rowimg">
-                    <img :src="`http://localhost:8081/${n.new_pic}`" /></div
+                    <img :src="`http://localhost:8080/${n.new_pic}`" /></div
                 ></el-col>
                 <el-col :span="19" :xs="24"
                   ><div class="grid-content bg-purple">
