@@ -52,7 +52,7 @@ export default {
 .img {
   width: 50%;
   img {
-    width: 550px;
+    width: 44vw;
     height: 250px;
   }
 }
