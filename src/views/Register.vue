@@ -72,7 +72,7 @@
             >
               <el-input
                 style="display: inline-block"
-                placeholder="验证码"
+                placeholder="注意区分大小写"
                 type="text"
                 v-model="ruleForm.code"
                 autocomplete="off"
@@ -80,7 +80,7 @@
             </el-form-item>
           </div>
           <el-button type="primary" @click="submitForm('ruleForm')"
-            >立即登录</el-button
+            >立即注册</el-button
           >
           <el-button style="width: 98px" @click="resetForm('ruleForm')"
             >重置</el-button
@@ -180,8 +180,11 @@ var aaaa = (rule, value, callback) => {
                 type: "success",
               });
               this.$router.push("/login"); //成功跳转
+            } else if (res.data.code ==505) {
+               this.$message.error("注册失败");
+              return false;
             } else {
-              this.$message.error("注册失败"); //，这里提示
+              this.$message.error("验证码错误！"); //，这里提示
               return false;
             }
           });

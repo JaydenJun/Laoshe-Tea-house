@@ -100,7 +100,7 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           alert(res.data.msg);
-          // this.$router.push("/admin/shows");
+          this.$router.push("/admin/shows");
         } else {
           alert(res.data.msg);
         }

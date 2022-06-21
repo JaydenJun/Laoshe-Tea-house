@@ -466,7 +466,7 @@ export default {
     transition: 0.5s;
     &:hover {
       transform: scale(1.05);
-      background-color: #f5e;
+      background-color: #0477ec;
       color: #fff;
     }
   }

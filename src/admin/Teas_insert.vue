@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="tea_id" prop="tea_id">
-        <el-input type="text" v-model="ruleForm.tea_id"></el-input>
+      <el-form-item label="tea_id" prop="tea_id" >
+        <el-input type="text" v-model="ruleForm.tea_id" placeholder="可以不填写"></el-input>
       </el-form-item>
-      <el-form-item label="teaclass_sid" prop="teaclass_sid">
-        <el-input type="text" v-model="ruleForm.teaclass_sid"></el-input>
+      <el-form-item label="teaclass_sid" prop="teaclass_sid" >
+        <el-input type="text" v-model="ruleForm.teaclass_sid" placeholder="1-6"></el-input>
       </el-form-item>
       <el-form-item label="茶名称" prop="tea_name">
         <el-input type="text" v-model="ruleForm.tea_name"></el-input>
@@ -101,7 +101,7 @@ export default {
         if (res.data.code == 200) {
           alert(res.data.msg);
 
-          // this.$router.push("/admin/shows");
+           this.$router.push("/admin/teas");
         } else {
           alert(res.data.msg);
         }

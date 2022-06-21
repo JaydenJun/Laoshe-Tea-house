@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 style="font-size: 30px; text-align: center">特色演出列表</h2>
+    <h2 style="font-size: 30px; text-align: center;margin:0">特色演出列表</h2>
    
     <div style="text-align:right;padding:15px" >
       <router-link
@@ -9,7 +9,7 @@
         >插入数据</router-link
       >
     </div>
-    <el-table :data="tableData" style="width: 100%" max-height="600">
+    <el-table :data="tableData" style="width: 100%" max-height="460">
       <el-table-column fixed prop="show_id" label="编号" width="50">
       </el-table-column>
       <el-table-column prop="show_title" label="标题" width="50">

@@ -31,7 +31,7 @@ export default {
 
   methods: {
     logindata() {
-      const url = "http://127.0.0.1:3000/v1/admin/login";
+      const url = "/v1/admin/login";
       const params = `aname=${this.formLabelAlign.name}&apwd=${this.formLabelAlign.password}`;
       this.axios.post(url, params).then((res) => {
         console.log(res);

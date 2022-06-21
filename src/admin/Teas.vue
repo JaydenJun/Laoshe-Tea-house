@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 style="font-size: 30px; text-align: center">茶百科列表</h1>
+    <h1 style="font-size: 30px; text-align: center;margin:0">茶百科列表</h1>
     <div style="text-align: right; padding: 15px">
       <router-link
         to="/admin/teasset"
@@ -8,7 +8,7 @@
         >插入数据</router-link
       >
     </div>
-    <el-table :data="tableData" style="width: 100%" max-height="650">
+    <el-table :data="tableData" style="width: 100%" max-height="460">
       <el-table-column fixed prop="tea_id" label="编号" width="150">
       </el-table-column>
       <el-table-column prop="tea_name" label="名称" width="120">

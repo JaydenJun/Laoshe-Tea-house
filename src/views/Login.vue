@@ -64,7 +64,7 @@
             >
               <el-input
                 style="display: inline-block"
-                placeholder="验证码"
+                placeholder="注意区分大小写"
                 type="text"
                 v-model="ruleForm.code"
                 autocomplete="off"
@@ -146,7 +146,9 @@ export default {
         "http://47.110.235.8:3000/v1/users/v1/code?t=" + Date.now();
     },
     usel() {
-      let url = "/v1/users/userph?user_phone=" + this.ruleForm.phone;
+      let url =
+        "/v1/users/userph?user_phone=" +
+        this.ruleForm.phone;
       console.log(url);
       this.axios.get(url).then((res) => {
         this.userid = res.data.data[0].user_id;
@@ -168,7 +170,6 @@ export default {
 
           this.axios.post(url, params).then((res) => {
             console.log(res);
-
             if (res.data.code == 200) {
               this.$message({
                 //提示成功信息

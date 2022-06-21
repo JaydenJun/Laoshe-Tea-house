@@ -236,7 +236,7 @@ router.get('/lists', (req, res, next) => {
   //将每页的数据量转为数值
   var size = parseInt(obj.count);
   //执行SQL命令
-  pool.query('select * from show_details limit ?,?', [start, size], (err, r) => {
+  pool.query('select * from show_details limit ?,? ', [start, size], (err, r) => {
     if (err) {
       next(err);
       return;

@@ -22,7 +22,7 @@ s.get('/v1/code', (req, res) => {
         // 字体大小
         fontSize: 36,
         // 噪声线条数
-        noise: 4,
+        noise: 2,
         // 宽度
         width: 80,
         // 高度
@@ -59,7 +59,7 @@ s.post('/login', (req, res, next) => {
     console.log(code, a)
     //与系统验证 和用户输入验证码比较
     if (code != a) {
-        res.send({code: 400});    //不一样返回-1验证码输入错误
+        res.send("400");    //不一样返回-1验证码输入错误
         return;
     }
     //.........................稍等

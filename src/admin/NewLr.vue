@@ -12,7 +12,9 @@
         <el-form-item label="标题" prop="new_title">
           <el-input type="text" v-model="ruleForm.new_title"></el-input>
         </el-form-item>
-
+ <el-form-item label="新闻类型" prop="new_title">
+          <el-input placeholder="1茶文趣事 2建党新闻 3百名元首 4公益活动 5小饮茶会" type="text" v-model="ruleForm.new_class_id"></el-input>
+        </el-form-item>
         <!-- <el-form-item label="图片" prop="new_pic">
           <el-input v-model="ruleForm.new_pic"></el-input>
         </el-form-item> -->
@@ -63,6 +65,7 @@ export default {
         new_content: "",
         new_subtitle: "",
         new_time: "",
+        new_class_id:"",
       },
     };
   },
@@ -77,7 +80,7 @@ export default {
     submitForm(formName) {
       console.log(this.ruleForm);
       const url = "/v1/admin/insertsbd";
-      const params = `new_title=${this.ruleForm.new_title}&new_content=${this.ruleForm.new_content}&new_time=${this.ruleForm.new_time}&new_subtitle=${this.ruleForm.new_subtitle}&new_pic=${this.ruleForm.new_pic}`;
+      const params = `class_nid=${this.ruleForm.new_class_id}&new_title=${this.ruleForm.new_title}&new_content=${this.ruleForm.new_content}&new_time=${this.ruleForm.new_time}&new_subtitle=${this.ruleForm.new_subtitle}&new_pic=${this.ruleForm.new_pic}`;
 
       this.axios.post(url, params).then((res) => {
         console.log(res);
