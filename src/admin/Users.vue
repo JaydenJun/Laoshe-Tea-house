@@ -23,7 +23,7 @@
     </el-table-column>
     <el-table-column prop="user_birth" label="生日" width="300">
       <template slot-scope="scope">
-        {{ scope.row.user_birth.slice(0, 10) }}
+        {{ scope.row.user_birth}}
       </template>
     </el-table-column>
     <el-table-column fixed="right" label="操作" width="150" prop="user_id">

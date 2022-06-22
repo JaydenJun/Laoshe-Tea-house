@@ -1,80 +1,48 @@
 <template>
-  <div>
-    <!-- 个人信息 -->
-    <i class="el-icon-user-solid mytitle">个人信息</i>
-    <hr />
-    <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="头像：">
-        <el-avatar
-          src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        ></el-avatar>
-      </el-form-item>
-      <!-- 用户名 -->
-      <el-form-item label="用户名">
-        <el-input
-          v-model="form.name"
-          placeholder="数据库拿"
-          clearable
-          style="width: 400px"
-        ></el-input>
-      </el-form-item>
-      <!-- 手机 -->
-      <el-form-item label="手机号">
-        <el-input
-          v-model="form.phone"
-          placeholder="数据库拿"
-          maxlength="11"
-          clearable
-          style="width: 400px"
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱">
-        <el-input
-          v-model="form.email"
-          placeholder="数据库拿"
-          clearable
-          style="width: 400px"
-        ></el-input>
-      </el-form-item>
-      <!-- 年龄 -->
-      <el-form-item
-        label="年龄"
-        prop="age"
-        :rules="[
-          { required: false, message: '年龄不能为空' },
-          { type: 'number', message: '年龄必须为数字值' },
-        ]"
-      >
-        <el-input
-          clearable
-          maxlength="3"
-          type="age"
-          v-model.number="form.age"
-          placeholder="数据库拿"
-          style="width: 300px"
-        ></el-input>
-      </el-form-item>
+  <div id="form">
+    <el-table
+      :data="tableData"
+      style="width: 100%; font-size: 15px"
+      max-height="500"
+    >
+      <el-table-column fixed prop="user_id" width="40"> </el-table-column>
+      <el-table-column prop="user_name" label="姓名" width="150">
+      </el-table-column>
+      <el-table-column prop="user_pwd" label="密码" width="150">
+      </el-table-column>
+      <el-table-column prop="user_phone" label="手机" width="150">
+      </el-table-column>
 
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit('form')">立即修改</el-button>
-      </el-form-item>
-    </el-form>
+      <el-table-column fixed="right" label="操作" width="100">
+        <template>
+          <button @click="UpdataRows">修改</button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["loginid"]),
+  },
   data() {
     return {
-      form: {
-        name: "",
-        phone: "",
-        age: "",
-        email: "",
-      },
+      tableData: [],
     };
   },
+
   methods: {
+    getdata() {
+      const url = `/v1/admin/detail/${this.loginid}`;
+      this.axios.get(url).then((res) => {
+        console.log(res);
+        this.tableData = res.data.data;
+        console.log("登录用户id", this.loginid);
+      });
+    },
     onSubmit(form) {
       this.$refs[form].validate((valid) => {
         if (valid) {
@@ -86,13 +54,18 @@ export default {
         }
       });
     },
+    UpdataRows() {
+      this.$router.push("/personal/myUser");
+    },
+  },
+  mounted() {
+    this.getdata();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.mytitle {
-  font-size: 2em;
-  margin: 9px;
+#form {
+  width: 600px;
 }
 </style>

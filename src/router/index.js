@@ -40,7 +40,7 @@ const routes = [
 		props: true,
 		name: "teadetails",
 		component: () => import("../views/TeaDetails.vue"),
-        meta: {
+		meta: {
 			title: "茶叶详情",
 		},
 	},
@@ -94,7 +94,7 @@ const routes = [
 		name: "teah",
 		component: () => import("../views/TeahCilcle.vue"),
 		redirect: "/teah/latest",
-		
+
 		children: [
 			{
 				path: "hottest",
@@ -146,7 +146,7 @@ const routes = [
 		redirect: "/culture/history",
 		component: () => import("../views/culture.vue"),
 		// component: () => import("../views/guanyushou.vue"),
-		
+
 		children: [
 			{
 				path: "person", //信息
@@ -154,7 +154,7 @@ const routes = [
 				meta: {
 					title: "茶馆资讯",
 				},
-			
+
 			},
 			{
 				path: "history",
@@ -176,10 +176,19 @@ const routes = [
 	{
 		path: "/personal",
 		name: "Personal",
-		props:true,
+		props: true,
 		component: () => import("../views/Personal.vue"),
 		redirect: "/personal/myper",
 		children: [
+			{
+
+				path: 'myUser',
+				name: 'myuser',
+				component: () => import('../components/Usersss.vue'),
+				meta: {
+					title: "个人信息中心",
+				},
+			},
 			{
 				path: "myper", //信息
 				component: () => import("../components/Myper.vue"),
@@ -187,22 +196,7 @@ const routes = [
 					title: "个人信息中心",
 				},
 			},
-			{
-				path: "myorder", //订单
-				component: () => import("../components/Myorder.vue"),
-			},
-			{
-				path: "myaddress", //地址
-				component: () => import("../components/Myaddress.vue"),
-			},
-			{
-				path: "mycollect", //收藏
-				component: () => import("../components/Mycollect.vue"),
-			},
-			{
-				path: "myforum", //帖子
-				component: () => import("../components/Myforum.vue"),
-			},
+
 		],
 	},
 	// 登录
@@ -237,11 +231,11 @@ const routes = [
 	},
 
 	// 管理员路由
-{
-        path: '/admins',
-        name: 'admins',
-        component: () => import('../admin/Admins.vue'),
-    },
+	{
+		path: '/admins',
+		name: 'admins',
+		component: () => import('../admin/Admins.vue'),
+	},
 
 	{
 		path: "/admin",
@@ -255,7 +249,7 @@ const routes = [
 		children: [
 			{
 				meta: {
-						
+
 					hide: true,
 				},
 				props: true,
@@ -291,26 +285,26 @@ const routes = [
 				},
 				component: () => import('../admin/Shows.vue')
 			},
-      {
-        path: 'showdets/:show_id',
-        name: 'showdets',
-        props: true,
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Show_details.vue'),
-      },
-			
-      {
-        path: 'showdet',
-        name: 'showdet',
-        props: true,
-        meta: {
-          hide: true
-        },
-        component: () => import('../admin/Show_insert.vue'),
-      },
-			
+			{
+				path: 'showdets/:show_id',
+				name: 'showdets',
+				props: true,
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Show_details.vue'),
+			},
+
+			{
+				path: 'showdet',
+				name: 'showdet',
+				props: true,
+				meta: {
+					hide: true
+				},
+				component: () => import('../admin/Show_insert.vue'),
+			},
+
 			{
 				path: 'teasdet/:tea_id',
 				name: 'teasdet',
@@ -341,7 +335,7 @@ const routes = [
 			{
 				path: "userss/:user_id",
 				name: "userss",
-				props:true,
+				props: true,
 				meta: {
 					hide: true,
 				},
@@ -360,7 +354,7 @@ const routes = [
 				path: 'tearing',
 				props: true,
 				name: 'tearing',
-				meta:{
+				meta: {
 					title: "茶友圈话题",
 					hide: true
 				},
@@ -380,9 +374,9 @@ const router = new VueRouter({
 // 全局前置守卫:
 // 凡是路由的跳转操作, 都会触发守卫
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
+	document.title = to.meta.title
 
-  next() //放行: 让路由继续后续工作
+	next() //放行: 让路由继续后续工作
 })
 
 

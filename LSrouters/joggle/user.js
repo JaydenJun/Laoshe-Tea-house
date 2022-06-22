@@ -192,6 +192,8 @@ s.get("/teatype", (req, res, next) => {
     }
 });
 
+
+
 // 8.茶百科用户搜索模糊查询
 s.get('/s', (req, res, next) => {
     if (req.query.tea_name == '') {
@@ -485,6 +487,22 @@ s.get("/detailss/:user_phone",(req,res,next)=>{
 s.get('/userph', (req, res, next) => {
     let obj = req.query
     sql.query('select * from lscg_users where user_phone=?', [obj.user_phone], (err, data) => {
+        if (err) {
+            next(err)
+            return;
+        }
+        if (!data.length) {
+            res.send({ code: 505, msg: '查询失败' })
+        } else {
+            res.send({ code: 200, msg: '查询成功', data: data })
+        }
+    })
+});
+
+// 主页
+s.get('/indexss', (req, res, next) => {
+    let obj = req.query
+    sql.query('select  *  from index_img', (err, data) => {
         if (err) {
             next(err)
             return;

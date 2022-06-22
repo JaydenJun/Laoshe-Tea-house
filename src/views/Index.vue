@@ -7,19 +7,12 @@
       ref="swiper"
       class="swiper"
       :options="swiperOptions"
+      v-if="imgimg"
     >
-      <swiper-slide class="swiper-slides">
-          <img src="/img/轮播图1.png" alt="" />
+      <swiper-slide class="swiper-slides" v-for="i in imgimg" :key="i.img_id">
+          <img :src="img+i.img_src" alt="" />
       </swiper-slide>
-      <swiper-slide>
-          <img src="/img/轮播图2.jpg" alt="" />
-      </swiper-slide>
-      <swiper-slide>
-          <img src="/img/轮播图3.png" alt="" />
-      </swiper-slide>
-      <swiper-slide>
-          <img src="/img/轮播图4.jpg" alt="" />
-      </swiper-slide>
+      
 
       <!-- <swiper-slide v-for="{ cid, img } in data.carouselItems" :key="cid">
         <img :src="imgBase + img" alt="" />
@@ -47,10 +40,13 @@ import IndexTs from '@/components/IndexTs.vue';
 import IndexZx from '@/components/IndexZx.vue';
 import IndexHot from '@/components/IndexHot.vue';
 import IndexCyq from '@/components/IndexCyq.vue';
+import { mapState } from 'vuex';
 export default {
   components: { IndexTs, IndexZx, IndexHot, IndexCyq },
+  computed:{...mapState(["img"])},
   data() {
     return {
+      imgimg:null,
       data: null, // 把请求数据存储到本地
       // swiper配置项:
       swiperOptions: {
@@ -76,6 +72,12 @@ export default {
         },
       },
     };
+  },
+  mounted(){
+    this.axios.get("/v1/users/indexss").then((res)=>{
+console.log(res)
+this.imgimg=res.data.data
+    })
   },
   methods: {
     // 鼠标进入时
@@ -104,12 +106,12 @@ export default {
     width: 100%;
     text-align: center;
     img {
-      width:1000px;
+      width:88vw;
     }
   }
   .swiper-button-prev,
   .swiper-button-next {
-    width: 34vw;
+    width: 12vw;
   }
 
   .swiper-pagination-bullet {

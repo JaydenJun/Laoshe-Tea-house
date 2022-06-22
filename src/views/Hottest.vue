@@ -19,9 +19,13 @@
         </el-input>
         <button id="btn1" @click="fbdata(i.ring_id)">点击发表评论</button>
         <el-divider></el-divider>
-        <button id="btn2" @click="dzgetdata(i.ring_prise + 1, i.ring_id)">
-          点赞</button
-        ><span id="dz">点赞数{{ i.ring_prise }}</span>
+        <el-badge :value="i.ring_prise" class="item">
+          <el-button
+            size="small"
+            @click="dzgetdata(i.ring_prise + 1, i.ring_id)"
+            >点赞</el-button
+          >
+        </el-badge>
       </div>
       <div>
         <el-divider></el-divider>
@@ -190,22 +194,11 @@ export default {
       background-color: #046ff1;
     }
   }
-  #btn2 {
-    padding: 10px 15px;
-    border: 1px solid #3390ff;
-    background-color: #3390ff;
-    border-radius: 4px;
-    color: white;
-    margin-top: 20px;
-    &:hover {
-      background-color: #046ff1;
-    }
-  }
-  #dz {
-    border: 1px solid #3390ff;
-    margin-left: 10px;
-    display: inline-block;
-    color: #3390ff;
+
+  // 点赞按钮样式
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
     border-radius: 4px;
   }
 }

@@ -24,7 +24,9 @@
 
 <script>
 import TraitItem from "@/components/Trait-Item.vue";
+import { mapState } from 'vuex';
 export default {
+  computed:{...mapState(["name"])},
   components: { TraitItem: TraitItem },
   data() {
     return {
@@ -34,6 +36,10 @@ export default {
     };
   },
   mounted() {
+    if (!this.name) {
+      alert("温馨提示：请先登录！");
+      this.$router.push("/login");
+    };
     this.list();
   },
   methods: {

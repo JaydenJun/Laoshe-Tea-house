@@ -12,18 +12,18 @@ const app = express();
 
 app.use(cors({
 
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080',"http://47.110.235.8:8080","http://47.110.235.8:3000",
+ origin: ['http://localhost:8080', 'http://127.0.0.1:8080',"http://47.110.235.8:8080","http://47.110.235.8:3000",'http://localhost:8081','http://127.0.0.1:8081',
     'http://localhost:5500', 'http://127.0.0.1:5500'
   ], //指定接收的地址
   methods: ['GET', 'POST', 'DELETE', 'PUT'], //指定接收的请求类型
-  alloweHeaders: ['Content-Type', 'Authorization'] //指定header
+ alloweHeaders: ['Content-Type', 'Authorization'] //指定header
 
 	
 }))
 
-// app.all('*', (req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*')
-//    next()
+//app.all('*', (req, res, next) => {
+ // res.header('Access-Control-Allow-Origin', '*')
+ //   next()
 // })
 
 //npm install express multer --save

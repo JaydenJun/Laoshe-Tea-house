@@ -14,12 +14,12 @@
           ><div class="grid-content bg-purple">
             <div>
               <ul>
-                <li><router-link to="/">首页</router-link></li>
-                <li><router-link to="/trait">茶馆特色</router-link></li>
-                <li><router-link to="/teah">茶友圈</router-link></li>
-                <li><router-link to="/zixun">茶闻资讯</router-link></li>
-                <li><router-link to="/tea">茶百科</router-link></li>
-                <li><router-link to="/culture">关于我们</router-link></li>
+                <li :class="{active:a==1}" @click="a=1"><router-link to="/">首页</router-link></li>
+                <li :class="{active:a==2}" @click="a=2"><router-link to="/trait">茶馆特色</router-link></li>
+                <li :class="{active:a==3}" @click="a=3"><router-link to="/teah">茶友圈</router-link></li>
+                <li :class="{active:a==4}" @click="a=4"><router-link to="/zixun">茶闻资讯</router-link></li>
+                <li :class="{active:a==5}" @click="a=5"><router-link to="/tea">茶百科</router-link></li>
+                <li :class="{active:a==6}" @click="a=6"><router-link to="/culture">关于我们</router-link></li>
               </ul>
             </div>
           </div></el-col
@@ -72,6 +72,11 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 export default {
+  data() {
+    return {
+      a:1
+    }
+  },
   computed: {
     ...mapState(["loginname", "loginid"]),
   },
@@ -120,5 +125,12 @@ export default {
       }
     }
   }
+}
+.active {
+  a{
+    color: rgb(56, 56, 248) !important;
+    border-bottom: 1px solid rgb(56, 56, 248) !important;
+  }
+  
 }
 </style>

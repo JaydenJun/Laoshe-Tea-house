@@ -23,15 +23,7 @@
         <el-menu-item index="/personal/myorder">
           <i class="el-icon-s-goods"></i>我的订单</el-menu-item
         >
-        <el-menu-item index="/personal/myaddress"
-          ><i class="el-icon-s-home"></i>我的地址</el-menu-item
-        >
-        <el-menu-item index="/personal/mycollect"
-          ><i class="el-icon-s-claim"></i>我的收藏</el-menu-item
-        >
-        <el-menu-item index="/personal/myforum"
-          ><i class="el-icon-set-up"></i>帖子管理</el-menu-item
-        >
+        
       </el-menu>
     </el-aside>
     <!-- 右侧下 -->

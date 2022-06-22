@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 88vw; margin: 0 auto">
-      <el-row :gutter="10">
+      <el-row :gutter="10" v-if="data">
         <!-- 详情左侧的一列 -->
         <el-col :span="18" :xs="24"
           ><div class="grid-content bg-purple">
@@ -13,11 +13,11 @@
                   <div>
                     <img
                       style="width: 5rem"
-                      src="https://assets.puercn.com/xsystem/brands/logos/000/000/031/original/hai-di-300.jpg?1603445849"
+                      src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                     />
                   </div>
                   <div class="headerzi" style="padding-left: 2rem">
-                    <h3>还提</h3>
+                    <h3>匿名</h3>
                     <span>咨询:74条</span>
                   </div>
                 </div>
@@ -29,35 +29,33 @@
             <!-- 左侧头部下面的详情 -->
             <div>
               <!-- 第一个模块  标题加上时间和品论-->
-              <h1>金字标杆 品味非凡，海堤金中茶·一叶天心肉桂</h1>
+              <h1>{{ data[0].new_title }}</h1>
               <div class="zuoshi" style="width: 90%; padding-bottom: 3rem">
                 <div>
                   <i class="el-icon-edit"></i>
-                  <span style="padding-left: 1.5rem">2022年6月15日 17:52</span>
+                  <span style="padding-left: 1.5rem">{{
+                    moment
+                      .unix(new Date(data[0].new_time).getTime() / 1000)
+                      .format("yyyy年MM月DD日 HH:mm")
+                  }}</span>
                 </div>
                 <div>
                   <i class="el-icon-edit"></i>
-                  <span style="padding-left: 1.5rem">0条评论</span>
+                  <span style="padding-left: 1.5rem">10条评论</span>
                 </div>
               </div>
               <!-- 中间根据右侧文字显示的文字介绍 -->
-              <div style="width: 90%" v-for="n in 6" :key="n">
+              <!-- <div style="width: 90%" v-for="n in 6" :key="n">
                 <p>设计理念</p>
                 <p style="text-indent: 2em; padding-bottom: 2rem">
                   祥云寓意祥瑞之气，表达了吉祥、喜庆和幸福的愿望以及对生命的美好向往。金色“八中茶”商标作为画面的中心，光芒线条向四周辐射，形成视觉引导线，重点突出品牌视觉。
                 </p>
-              </div>
+              </div> -->
+              <h4>{{ data[0].new_subtitle }}</h4>
+              <div v-html="data[0].new_content"></div>
             </div>
 
             <!-- 根据下侧用户的品论与聊天来进行左侧页面的更新 -->
-
-
-
-
-
-
-
-
 
             <div
               style="
@@ -95,7 +93,7 @@
                     ><span id="currentUser"></span>
                   </h4>
                 </div>
-                <!-- 聊天区域， --> 
+                <!-- 聊天区域， -->
 
                 <div class="chart-list" id="chart-list">
                   <!-- <div class="user-logined" id="user-logined"><span id="logined-user"></span>上线了</div>
@@ -153,7 +151,7 @@
         <el-col :span="6" :xs="24"
           ><div class="grid-content bg-purple-light"></div>
           <div v-for="n in 7" :key="n" style="width: 100%" class="youimg">
-            <img width="100%" src="/2.jpg" />
+            <img width="100%" :src="img + data[0].new_pic" />
           </div>
         </el-col>
       </el-row>
@@ -162,7 +160,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: { ...mapState(["img"]) },
   methods: {
     mess() {
       this.messa = message.value;
@@ -183,16 +183,17 @@ export default {
       qing: this.$route.query.qing,
       pic: [],
       messa: null,
+      data: null,
     };
   },
   mounted() {
     console.log(this);
-    const url =
-      "/v1/users/qin?qing=" + this.$route.query.qing;
+    const url = "/v1/users/qin?qing=" + this.$route.query.qing;
     console.log(url);
     this.axios.get(url).then((res) => {
       console.log(res);
       this.data = res.data.data;
+      console.log(this.data);
     });
   },
 };

@@ -75,12 +75,7 @@
                   <img src="/3.jpg" /></div
               ></el-col>
             </el-row>
-            <el-row :gutter="10">
-              <el-col :xs="24" :sm="8" v-for="n in 3" :key="n"
-                ><div class="grid-content bg-purple-light">
-                  <img src="/1.jpg" /></div
-              ></el-col>
-            </el-row>
+            
           </el-row>
         </el-main>
       </el-container>

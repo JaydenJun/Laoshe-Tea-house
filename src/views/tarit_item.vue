@@ -366,6 +366,7 @@ export default {
     this.iddds();
     this.getPic();
   },
+
   methods: {
     ...mapState(["img"]),
     getPic() {
@@ -403,6 +404,7 @@ export default {
       });
     },
     Order() {
+     
       const url = "/v1/users/buy";
       const params = `show_oid=${this.id.substring(
         this.id.substring(0, this.id.indexOf("$")).length + 1

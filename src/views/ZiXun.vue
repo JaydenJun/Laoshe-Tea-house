@@ -22,12 +22,13 @@
     <!-- <router-view></router-view> -->
     <!-- <xinwen v-for="n in dat" :key="n.class_id" :item=n></xinwen> -->
     <div style="width: 88vw; margin: 0 auto">
-      <el-row :gutter="20">
+      <el-row :gutter="20" >
         <!-- 第一列 -->
         <el-col :span="18" :xs="24"
           ><div class="grid-content bg-purple">
             <!-- v-for="n in item" :key="n"  -->
             <div
+            
               v-for="n in dat"
               :key="n.class_id"
               @click="$router.push(`./xiaoyin?qing=${n.new_id}`)"
@@ -39,9 +40,12 @@
                 ></el-col>
                 <el-col :span="19" :xs="24"
                   ><div class="grid-content bg-purple">
-                    <div>
-                      <h4>{{ n.new_title }}</h4>
+                    <div style="width:50vw">
+                      <h4 >{{ n.new_title }}</h4>
+                      <div class="til">
+
                       <p>{{ n.new_subtitle }}</p>
+                      </div>
                       <span>{{
                         moment
                           .unix(new Date(n.new_time).getTime() / 1000)
@@ -172,5 +176,10 @@ span {
 .active{
      background-color:#0477ec !important;
  border-radius: 10% !important;
+}
+.til{
+  overflow: hidden;
+  white-space: nowrap;
+text-overflow: ellipsis;
 }
 </style>

@@ -77,6 +77,31 @@ router.get('/list', (req, res, next) => {
   });
 });
 
+
+// 个人用户修改接口
+//修改信息接口
+//接口地址：http://127.0.0.1:3000/v1/admin/putuu
+//请求方式：put
+router.put("/putuu",(req,res,next)=>{
+ var obj=req.body;
+ console.log(obj);
+ 
+ pool.query("update lscg_users set user_name=?,user_phone=?,user_pwd=? where user_id=?",[obj.user_name,obj.user_phone,obj.user_pwd,obj.user_id],(err,result)=>{
+ if(err){
+ next(err);
+ return;
+ }
+ if(result.affectedRows==0){
+   res.send({code:500,msg:'修改失败'});
+ }else{
+   res.send({code:200,msg:'修改成功'});
+ }
+ });
+});
+
+
+
+
 //(3)删除用户接口(delete /编号)
 //接口地址：http://127.0.0.1:3000/v1/admin/u/6
 //请求方式：delete
