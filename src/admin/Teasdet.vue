@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <el-image src="http://127.0.0.1:3000/img/0fdc58a9-787b-40a2-8af8-41a34ee0e621.jpg"></el-image>
+    <el-image :src="'http://47.110.235.8:8080'+data[0].tea_pic"></el-image>
     <el-descriptions :title="data[0].tea_details" :column="1">
       <el-descriptions-item label="编号">{{
         data[0].tea_id
