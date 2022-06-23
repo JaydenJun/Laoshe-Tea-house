@@ -17,8 +17,15 @@
           v-model="textarea"
         >
         </el-input>
-        <button id="btn1" @click="fbdata(i.ring_id)">点击发表评论</button>
+        <el-button
+          :disabled="textarea == '' ? true : false"
+          id="btn1"
+          :plain="true"
+          @click="fbdata(i.ring_id)"
+          >发表评论</el-button
+        >
         <el-divider></el-divider>
+
         <el-badge :value="i.ring_prise" class="item">
           <el-button
             size="small"
@@ -44,9 +51,7 @@
           :direction="direction"
           :before-close="handleClose"
         >
-          <p v-for="v in pldata" :key="v.ring_id">
-            {{ loginname }}：{{ v.comment_cont }}
-          </p>
+          <p v-for="v in pldata" :key="v.ring_id">匿名：{{ v.comment_cont }}</p>
         </el-drawer>
       </div>
     </div>
@@ -54,18 +59,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["img", "loginname"]),
   },
   data() {
     return {
+      //评论按钮过滤空
+      nums: false,
       // 评论输入框双向绑定变量
       textarea: "",
 
       data: null,
       pldata: null,
+
+      //保存点赞量
+      prises: "",
 
       // 历史评论信息
       drawer: false,
@@ -77,31 +87,53 @@ export default {
   methods: {
     //发送点赞请求
     dzgetdata(ring_prise, ring_id) {
-      this.b = ring_prise;
+      if (this.loginname != null) {
+        this.b = ring_prise;
 
-      const url = "/v1/users/give";
-      const params = `ring_prise=${this.b}&ring_id=${ring_id}`;
-      this.axios.post(url, params).then((res) => {
-        console.log(res);
-        // console.log("c:" + ring_id, this.b);
-        if (res.data.code == 200) {
-          this.getdata();
-        }
-      });
+        const url = "/v1/users/give";
+        const params = `ring_prise=${this.b}&ring_id=${ring_id}`;
+        this.axios.post(url, params).then((res) => {
+          console.log(res);
+          console.log("c:" + ring_id, this.b);
+          if (res.data.code == 200) {
+            this.getdata();
+          }
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "用户未登录，请登录后再进行点赞",
+          type: "success",
+        });
+      }
     },
 
     //发送发表评论请求
     fbdata(ring_id) {
-      const url = "/v1/users/sendcm";
-      const params = `ring_sid=${ring_id}&comment_cont=${this.textarea}`;
-      this.axios.post(url, params).then((res) => {
-        console.log(res);
-        if (res.data.code == 200) {
-          alert("评论成功");
-          this.textarea = "";
-          this.a = true;
-        }
-      });
+      if (this.loginname != null) {
+        const url = "/v1/users/sendcm";
+        const params = `ring_sid=${ring_id}&comment_cont=${this.textarea}`;
+        this.axios.post(url, params).then((res) => {
+          console.log(res);
+
+          if (res.data.code == 200) {
+            this.$message({
+              showClose: true,
+              message: "恭喜你，发表成功",
+              type: "success",
+            });
+
+            this.textarea = "";
+            this.a = true;
+          }
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "用户未登录，请登录后再进行评论",
+          type: "success",
+        });
+      }
     },
     //发送历史记录的请求
     clickpinglu(id) {
@@ -117,22 +149,16 @@ export default {
         this.drawer = true;
       }
     },
-    // 最热帖子查询接口
+    // 最新帖子查询接口
     getdata() {
       const url = "/v1/users/ringss";
       this.axios.get(url).then((res) => {
-        console.log("热门帖子：", res);
+        console.log(res);
         this.data = res.data.data;
       });
     },
     // 历史评论信息
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then((_) => {
-          done();
-        })
-        .catch((_) => {});
-    },
+
     // 评论框
     handleChange(val) {
       console.log(val);
@@ -164,48 +190,49 @@ export default {
   padding: 30px;
   margin-top: 50px;
   margin-bottom: 50px;
-  .center-3-1 {
-    display: flex;
-    justify-content: flex-start;
-  }
+}
+.center-3-1 {
+  display: flex;
+  justify-content: flex-start;
+}
 
-  // 评论区域样式
-  .center-3-2 {
-    padding: 20px;
-    i {
-      margin: 10px;
-    }
-    a {
-      color: #3390ff;
-    }
-    span {
-      margin-top: 10px;
-    }
+// 评论区域样式
+.center-3-2 {
+  padding: 20px;
+  i {
+    margin: 10px;
   }
-  #btn1 {
-    padding: 10px 10px;
-    border: 1px solid #3390ff;
-    background-color: #3390ff;
-    border-radius: 4px;
-    color: white;
-    margin-top: 20px;
-    margin-right: 10px;
-    &:hover {
-      background-color: #046ff1;
-    }
+  a {
+    color: #3390ff;
   }
-
-  // 点赞按钮样式
-  .item {
+  span {
     margin-top: 10px;
-    margin-right: 40px;
-    border-radius: 4px;
+    display: block;
   }
 }
+#btn1 {
+  padding: 10px 10px;
+  border: 1px solid #3390ff;
+  background-color: #3390ff;
+  border-radius: 4px;
+  color: white;
+  margin-top: 20px;
+  margin-right: 10px;
+  &:hover {
+    background-color: #046ff1;
+  }
+}
+
+// 点赞按钮样式
+.item {
+  margin-top: 10px;
+  margin-right: 40px;
+  border-radius: 4px;
+}
+
 // 帖子图片样式
 #img-2 {
   width: 100%;
-  display: block;
 }
 .img-1 {
   margin: 0 auto;

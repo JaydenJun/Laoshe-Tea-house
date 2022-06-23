@@ -80,6 +80,7 @@ export default {
   computed: {
     ...mapState(["loginname", "loginid"]),
   },
+    
   methods: {
     ...mapMutations(["updateLoginState"]),
     personal(i) {

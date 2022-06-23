@@ -146,9 +146,7 @@ export default {
         "http://47.110.235.8:3000/v1/users/v1/code?t=" + Date.now();
     },
     usel() {
-      let url =
-        "/v1/users/userph?user_phone=" +
-        this.ruleForm.phone;
+      let url = "/v1/users/userph?user_phone=" + this.ruleForm.phone;
       console.log(url);
       this.axios.get(url).then((res) => {
         this.userid = res.data.data[0].user_id;
@@ -172,16 +170,16 @@ export default {
             console.log(res);
             if (res.data.code == 200) {
               this.$message({
-                //提示成功信息
-                message: "登录成功！",
+                showClose: true,
+                message: "登录成功",
                 type: "success",
               });
 
               this.usel();
 
               this.$router.push("/"); //成功跳转 到主页或者购物界面
-            } else if (res.data.code ==505) {
-               this.$message.error("账号有误，请从新输入");
+            } else if (res.data.code == 505) {
+              this.$message.error("账号有误，请从新输入");
               return false;
             } else {
               this.$message.error("验证码错误！"); //，这里提示

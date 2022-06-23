@@ -39,8 +39,10 @@ export default {
     if (!this.name) {
       alert("温馨提示：请先登录！");
       this.$router.push("/login");
-    };
-    this.list();
+    }else{
+
+      this.list();
+    }
   },
   methods: {
     list() {

@@ -45,7 +45,7 @@ export default {
     // padding: 8vh 0;
   }
   img {
-    width: 100%;
+    width: 70%;
     border: 1px solid #ccc;
      transition: 0.7s;
      &:hover{

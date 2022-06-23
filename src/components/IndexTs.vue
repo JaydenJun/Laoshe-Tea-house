@@ -84,15 +84,16 @@ export default {
   }
   div {
     // padding: 0 3px;
+    padding: 10px;
     h4 {
       margin: 5px 0;
     }
     img {
-      width: 80%;
+      width: 70%;
       border: 1px solid #aaa;
       transition: 0.7s;
      &:hover{
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     }
   }

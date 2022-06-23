@@ -43,7 +43,11 @@ export default {
       this.axios.put(url, params).then((res) => {
         console.log(res);
         if (res.data.code == 200) {
-          alert("修改成功");
+          this.$message({
+            showClose: true,
+            message: "修改成功",
+            type: "success",
+          });
           this.$router.push("/personal/myper");
           this.updateLoginState(this.user_name);
         }

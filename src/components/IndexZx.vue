@@ -24,7 +24,7 @@
         ><div class="grid-content bg-purple-light">
           <h3>茶闻资讯</h3>
           <div class="xq">
-            <div v-for="i in 10" :key="i">
+            <div v-for="i in 9" :key="i">
               <div>
                 <router-link to="/zixun">
                   <img :src="img+'/img/100'+i+'.jpg'" alt="" />

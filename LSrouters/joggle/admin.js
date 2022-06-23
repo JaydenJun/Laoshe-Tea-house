@@ -44,59 +44,59 @@ router.post('/login', (req, res, next) => {
 //(2).用户列表接口(get /list)
 //接口地址：http://127.0.0.1:3000/v1/admin/list?pno=1&count=3
 //请求方式：get
-router.get('/list', (req, res, next) => {
-  //接收get传递的参数
-  var obj = req.query;
-  console.log(obj);
+// router.get('/list', (req, res, next) => {
+//   //接收get传递的参数
+//   var obj = req.query;
+//   console.log(obj);
 
-  //如果页码为空，默认第1页
-  if (!obj.pno) {
-    obj.pno = 1;
-  }
-  //如果每页数据量为空，默认显示4条
-  if (!obj.count) {
-    obj.count = 4;
-  }
-  //计算开始查询的值
-  var start = (obj.pno - 1) * obj.count; //最终是数字
-  //将每页的数据量转为数值
-  var size = parseInt(obj.count);
-  //执行SQL命令
-  pool.query('select * from lscg_users limit ?,?', [start, size], (err, r) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    console.log(r);
-    //查询到的是数组，直接把数组响应过去
-    res.send({
-      code: 200,
-      msg: '查询成功',
-      data: r
-    });
-  });
-});
+//   //如果页码为空，默认第1页
+//   if (!obj.pno) {
+//     obj.pno = 1;
+//   }
+//   //如果每页数据量为空，默认显示4条
+//   if (!obj.count) {
+//     obj.count = 4;
+//   }
+//   //计算开始查询的值
+//   var start = (obj.pno - 1) * obj.count; //最终是数字
+//   //将每页的数据量转为数值
+//   var size = parseInt(obj.count);
+//   //执行SQL命令
+//   pool.query('select * from lscg_users limit ?,?', [start, size], (err, r) => {
+//     if (err) {
+//       next(err);
+//       return;
+//     }
+//     console.log(r);
+//     //查询到的是数组，直接把数组响应过去
+//     res.send({
+//       code: 200,
+//       msg: '查询成功',
+//       data: r
+//     });
+//   });
+// });
 
 
 // 个人用户修改接口
 //修改信息接口
 //接口地址：http://127.0.0.1:3000/v1/admin/putuu
 //请求方式：put
-router.put("/putuu",(req,res,next)=>{
- var obj=req.body;
- console.log(obj);
- 
- pool.query("update lscg_users set user_name=?,user_phone=?,user_pwd=? where user_id=?",[obj.user_name,obj.user_phone,obj.user_pwd,obj.user_id],(err,result)=>{
- if(err){
- next(err);
- return;
- }
- if(result.affectedRows==0){
-   res.send({code:500,msg:'修改失败'});
- }else{
-   res.send({code:200,msg:'修改成功'});
- }
- });
+router.put("/putuu", (req, res, next) => {
+  var obj = req.body;
+  console.log(obj);
+
+  pool.query("update lscg_users set user_name=?,user_phone=?,user_pwd=? where user_id=?", [obj.user_name, obj.user_phone, obj.user_pwd, obj.user_id], (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.affectedRows == 0) {
+      res.send({ code: 500, msg: '修改失败' });
+    } else {
+      res.send({ code: 200, msg: '修改成功' });
+    }
+  });
 });
 
 
@@ -193,21 +193,21 @@ router.post("/inserts", (req, res, next) => {
 //修改信息接口
 //接口地址：http://127.0.0.1:3000/v1/admin/putt
 //请求方式：put
-router.put("/putt",(req,res,next)=>{
-	var obj=req.body;
-	console.log(obj);
-	
-	pool.query("update show_details set? where show_id=?",[obj,obj.show_id],(err,result)=>{
-	if(err){
-	next(err);
-	return;
-	}
-	if(result.affectedRows==0){
-	  res.send({code:500,msg:'修改失败'});
-	}else{
-	  res.send({code:200,msg:'修改成功'});
-	}
-	});
+router.put("/putt", (req, res, next) => {
+  var obj = req.body;
+  console.log(obj);
+
+  pool.query("update show_details set? where show_id=?", [obj, obj.show_id], (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.affectedRows == 0) {
+      res.send({ code: 500, msg: '修改失败' });
+    } else {
+      res.send({ code: 200, msg: '修改成功' });
+    }
+  });
 });
 
 
@@ -338,21 +338,21 @@ router.post("/insertsb", (req, res, next) => {
 //修改信息接口
 //接口地址：http://127.0.0.1:3000/v1/admin/putb
 //请求方式：put
-router.put("/putb",(req,res,next)=>{
-	var obj=req.body;
-	console.log(obj);
-	
-	pool.query("update lscg_tea set? where tea_id=?",[obj,obj.tea_id],(err,result)=>{
-	if(err){
-	next(err);
-	return;
-	}
-	if(result.affectedRows==0){
-	  res.send({code:500,msg:'修改失败'});
-	}else{
-	  res.send({code:200,msg:'修改成功'});
-	}
-	});
+router.put("/putb", (req, res, next) => {
+  var obj = req.body;
+  console.log(obj);
+
+  pool.query("update lscg_tea set? where tea_id=?", [obj, obj.tea_id], (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.affectedRows == 0) {
+      res.send({ code: 500, msg: '修改失败' });
+    } else {
+      res.send({ code: 200, msg: '修改成功' });
+    }
+  });
 });
 
 
@@ -510,21 +510,21 @@ router.delete("/:new_id", (req, res, next) => {
 //修改信息接口
 //接口地址：http://127.0.0.1:3000/v1/admin/putn
 //请求方式：put
-router.put("/putn",(req,res,next)=>{
-	var obj=req.body;
-	console.log(obj);
-	
-	pool.query("update new_details set? where new_id=?",[obj,obj.new_id],(err,result)=>{
-	if(err){
-	next(err);
-	return;
-	}
-	if(result.affectedRows==0){
-	  res.send({code:500,msg:'修改失败'});
-	}else{
-	  res.send({code:200,msg:'修改成功'});
-	}
-	});
+router.put("/putn", (req, res, next) => {
+  var obj = req.body;
+  console.log(obj);
+
+  pool.query("update new_details set? where new_id=?", [obj, obj.new_id], (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.affectedRows == 0) {
+      res.send({ code: 500, msg: '修改失败' });
+    } else {
+      res.send({ code: 200, msg: '修改成功' });
+    }
+  });
 });
 
 
@@ -637,19 +637,19 @@ router.delete("/bss/:ring_id", (req, res, next) => {
 //接口地址：http://127.0.0.1:3000/v1/admin/listsbqs?ring_sid=1&page=1
 //请求方式：get
 // 获取指定分类下包含文章数据的接口
-router.get('/listsbqs', (req, res,next) => {
+router.get('/listsbqs', (req, res, next) => {
   // 获取客户端传递的cid参数
- pool.query('select ring_id,user_id,user_name,ring_details,ring_prise,ring_pic from lscg_users as u inner join tea_ring as t on u.user_id=t.user_sid group by ring_id order by ring_id desc',(err,data)=>{
-  if(err){
-    next(err)
-    return
-  }
-  if(!data.length){
-    res.send({code:505,msg:'查询失败'})
-  }else{
-    res.send({code:200,msg:'查询成功',data:data})
-  }
- })
+  pool.query('select ring_id,user_id,user_name,ring_details,ring_prise,ring_pic from lscg_users as u inner join tea_ring as t on u.user_id=t.user_sid group by ring_id order by ring_id desc', (err, data) => {
+    if (err) {
+      next(err)
+      return
+    }
+    if (!data.length) {
+      res.send({ code: 505, msg: '查询失败' })
+    } else {
+      res.send({ code: 200, msg: '查询成功', data: data })
+    }
+  })
 });
 
 
@@ -660,23 +660,48 @@ router.get('/listsbqs', (req, res,next) => {
 //修改信息接口(put /)
 //接口地址：http://127.0.0.1:3000/v1/admin/
 //请求方式：put
-router.put("/put",(req,res,next)=>{
-	var obj=req.body;
-	console.log(obj);
-	
-	pool.query("update products set? where u_id=?",[obj,obj.u_id],(err,result)=>{
-	if(err){
-	next(err);
-	return;
-	}
-	if(result.affectedRows==0){
-	  res.send({code:500,msg:'修改失败'});
-	}else{
-	  res.send({code:200,msg:'修改成功'});
-	}
-	});
+router.put("/put", (req, res, next) => {
+  var obj = req.body;
+  console.log(obj);
+
+  pool.query("update products set? where u_id=?", [obj, obj.u_id], (err, result) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.affectedRows == 0) {
+      res.send({ code: 500, msg: '修改失败' });
+    } else {
+      res.send({ code: 200, msg: '修改成功' });
+    }
+  });
 });
 
+// 用户列表分页查询
+//http://127.0.0.1：3000/v1/admin/list
+router.get('/list', (req, res, next) => {
+  var page = req.query.pno ? req.query.pno : 1 //pno 客户端输入想查询第几页
+  var sl = req.query.count ? req.query.count : 4 // count 客户端想查询的个数
+  var shw = (page - 1) * sl // 运算得到limit需要的数
+  var pages; // 声明变量用于保存 数据表一共的数
+  let sq = 'select count(user_id) as c from lscg_users'
+  pool.query(sq, (err, r) => {
+    if (err) throw err
+    pages = r[0].c
+    let zys = Math.ceil(pages / sl) //得到总页数
+    pool.query(`select * from lscg_users limit ${shw},${sl}`, (err, data) => {
+      if (err) {
+        next(err)
+        return;
+      }
+      if (data.length > 0) {
+        res.send({ code: 200, msg: '查询成功', zys: zys, zsl: pages, data: data })
+      } else {
+        res.send({ code: 505, msg: '查询失败' })
+      }
+    })
+  })
+})
 
 
 //最后一步，导出（暴露）路由对象

@@ -101,7 +101,7 @@ s.post('/register', (req, res, next) => {
     }
     let obj = req.body
     console.log(obj);
-    sql.query('INSERT INTO lscg_users (user_id,user_name,user_pwd,user_phone) VALUES(null,?,?,?)', [obj.user_name,obj.user_pwd,obj.user_phone], (err, r) => {
+    sql.query('INSERT INTO lscg_users (user_id,user_name,user_pwd,user_phone) VALUES(null,?,?,?)', [obj.user_name, obj.user_pwd, obj.user_phone], (err, r) => {
         if (err) {
             next(err)
             return;
@@ -225,8 +225,8 @@ s.get('/s', (req, res, next) => {
 
 // 9.茶百科单个茶详情查询 http://127.0.0.1:3000/v1/users/tea?tea_id=多少
 s.get('/teadetails', (req, res, next) => {
-	var obj=req.query.tea_id
-	console.log(obj)
+    var obj = req.query.tea_id
+    console.log(obj)
     sql.query('select * from lscg_tea where tea_id=?', [req.query.tea_id], (err, data) => {
         if (err) {
             next(err)
@@ -465,22 +465,22 @@ s.get('/zixun', (req, res, next) => {
 //用户个人详情接口(get /detail/编号)
 //接口地址：http://127.0.0.1:3000/v1/users/detailss/1
 //请求方式：get
-s.get("/detailss/:user_phone",(req,res,next)=>{
-	var obj=req.params;
-	console.log(obj);
-	sql.query("select * from lscg_users where user_phone=?",[obj.user_phone],(err,result)=>{
-	if(err){
-		next(err);
-		return;
-	}
-	console.log(result);
-	//结果是数组，如果是空数组，说明用户不存在，否则存在
-	if(result.length===0){
-	res.send({code:500,msg:'查无此人'});
-	}else{
-	res.send({code:200,msg:'查询成功',data:result});
-	}
-	});
+s.get("/detailss/:user_phone", (req, res, next) => {
+    var obj = req.params;
+    console.log(obj);
+    sql.query("select * from lscg_users where user_phone=?", [obj.user_phone], (err, result) => {
+        if (err) {
+            next(err);
+            return;
+        }
+        console.log(result);
+        //结果是数组，如果是空数组，说明用户不存在，否则存在
+        if (result.length === 0) {
+            res.send({ code: 500, msg: '查无此人' });
+        } else {
+            res.send({ code: 200, msg: '查询成功', data: result });
+        }
+    });
 });
 
 // 手机号查询接口 http://127.0.0.1:3000/v1/users/userph
@@ -514,6 +514,7 @@ s.get('/indexss', (req, res, next) => {
         }
     })
 });
+
 
 
 //暴露路由对象

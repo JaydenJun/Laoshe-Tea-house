@@ -17,7 +17,13 @@
           v-model="textarea"
         >
         </el-input>
-        <button id="btn1" @click="fbdata(i.ring_id)">点击发表评论</button>
+        <el-button
+          :disabled="textarea == '' ? true : false"
+          id="btn1"
+          :plain="true"
+          @click="fbdata(i.ring_id)"
+          >发表评论</el-button
+        >
         <el-divider></el-divider>
 
         <el-badge :value="i.ring_prise" class="item">
@@ -60,11 +66,16 @@ export default {
   },
   data() {
     return {
+      //评论按钮过滤空
+      nums: false,
       // 评论输入框双向绑定变量
       textarea: "",
 
       data: null,
       pldata: null,
+
+      //保存点赞量
+      prises: "",
 
       // 历史评论信息
       drawer: false,
@@ -76,31 +87,53 @@ export default {
   methods: {
     //发送点赞请求
     dzgetdata(ring_prise, ring_id) {
-      this.b = ring_prise;
+      if (this.loginname != null) {
+        this.b = ring_prise;
 
-      const url = "/v1/users/give";
-      const params = `ring_prise=${this.b}&ring_id=${ring_id}`;
-      this.axios.post(url, params).then((res) => {
-        console.log(res);
-        console.log("c:" + ring_id, this.b);
-        if (res.data.code == 200) {
-          this.getdata();
-        }
-      });
+        const url = "/v1/users/give";
+        const params = `ring_prise=${this.b}&ring_id=${ring_id}`;
+        this.axios.post(url, params).then((res) => {
+          console.log(res);
+          console.log("c:" + ring_id, this.b);
+          if (res.data.code == 200) {
+            this.getdata();
+          }
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "用户未登录，请登录后再进行点赞",
+          type: "success",
+        });
+      }
     },
 
     //发送发表评论请求
     fbdata(ring_id) {
-      const url = "/v1/users/sendcm";
-      const params = `ring_sid=${ring_id}&comment_cont=${this.textarea}`;
-      this.axios.post(url, params).then((res) => {
-        console.log(res);
-        if (res.data.code == 200) {
-          alert("评论成功");
-          this.textarea = "";
-          this.a = true;
-        }
-      });
+      if (this.loginname != null) {
+        const url = "/v1/users/sendcm";
+        const params = `ring_sid=${ring_id}&comment_cont=${this.textarea}`;
+        this.axios.post(url, params).then((res) => {
+          console.log(res);
+
+          if (res.data.code == 200) {
+            this.$message({
+              showClose: true,
+              message: "恭喜你，发表成功",
+              type: "success",
+            });
+
+            this.textarea = "";
+            this.a = true;
+          }
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "用户未登录，请登录后再进行评论",
+          type: "success",
+        });
+      }
     },
     //发送历史记录的请求
     clickpinglu(id) {
@@ -125,13 +158,7 @@ export default {
       });
     },
     // 历史评论信息
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then((_) => {
-          done();
-        })
-        .catch((_) => {});
-    },
+
     // 评论框
     handleChange(val) {
       console.log(val);
