@@ -46,12 +46,7 @@ import { mapState } from "vuex";
 export default {
   computed: { ...mapState(["img", "name"]) },
   props: ["item", "y"],
-  mounted() {
-    if (!this.name) {
-      alert("温馨提示：请先登录！");
-      this.$router.push("/login");
-    }
-  },
+  
 };
 </script>
 

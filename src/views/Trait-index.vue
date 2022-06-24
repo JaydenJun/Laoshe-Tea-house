@@ -24,9 +24,9 @@
 
 <script>
 import TraitItem from "@/components/Trait-Item.vue";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
-  computed:{...mapState(["name"])},
+  computed: { ...mapState(["name", "loginname"]) },
   components: { TraitItem: TraitItem },
   data() {
     return {
@@ -36,22 +36,23 @@ export default {
     };
   },
   mounted() {
-    if (!this.name) {
-      alert("温馨提示：请先登录！");
-      this.$router.push("/login");
-    }else{
-
+    
       this.list();
-    }
+    
   },
   methods: {
     list() {
       console.log(this.y);
-      let url = "/v1/users/shopps";
-      this.axios.get(url).then((res) => {
-        console.log(res);
-        this.data = res.data;
-      });
+      if (this.loginname != null) {
+        let url = "/v1/users/shopps";
+        this.axios.get(url).then((res) => {
+          console.log(res);
+          this.data = res.data;
+        });
+      } else {
+        alert("温馨提示：请先登录！");
+        this.$router.push("/login");
+      }
     },
   },
   watch: {

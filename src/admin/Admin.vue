@@ -62,9 +62,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+  computed:{...mapState(["aname"])},
   mounted() {
-    
+    if(!this.aname){
+      alert("请登录！")
+      this.$router.push("/admins")
+    }
     console.log(this.$route.path);
   },
 };

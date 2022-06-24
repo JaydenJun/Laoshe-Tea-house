@@ -46,39 +46,11 @@
       </el-table-column>
     </el-table>
     <div class="zys">
-      <!-- <el-button-group>
-        <el-button
-          :class="{ disabled: tableData.pno == 1 }"
-          type="primary"
-          icon="el-icon-arrow-left"
-          @click="getdata(tableData.pno - 1)"
-          >上一页</el-button
-        >
+      <el-button-group>
         <el-button @click="getdata(i)" v-for="i in nums" :key="i">{{
           i
         }}</el-button>
-        <el-button
-          type="primary"
-          @click="getdata(tableData.pno + 1)"
-          :class="{ disabled: tableData.pno == nums }"
-          >下一页<i class="el-icon-arrow-right el-icon--right"></i
-        ></el-button>
-      </el-button-group> -->
-
-      <el-pagination
-        @current-change="getpage"
-        点击页吗执行的方法
-        当前页数
-        当前页码大小
-        layout="total, sizes,prev, pager, next"
-        页码工具
-        :total="nums"
-        :page-sizes="[2, 5, 10, 15]"
-        @size-change="handlesize"
-        :page-size="pagesize"
-        总的数据length长度
-      >
-      </el-pagination>
+      </el-button-group>
     </div>
   </div>
 </template>
@@ -87,21 +59,15 @@
 export default {
   data() {
     return {
-      pno: 1,
-      pagesize: 5,
       // 分页总页数
-      currentPage: 1,
       nums: "",
       tableData: null,
       data: null,
       a: "",
+      b:1
     };
   },
   methods: {
-    handlesize(val) {
-      this.pagesize = val;
-      this.getdata();
-    },
     deleteRow(index, rows) {
       console.log(index);
       const url = `/v1/admin/u/${rows}`;
@@ -123,8 +89,9 @@ export default {
       console.log(val);
       this.pno = val;
     },
-    getdata() {
-      const url = `/v1/admin/list?pno=${this.pno}&count=${this.pagesize}`;
+    getdata(i = 1) {
+      this.b=i
+      const url = `/v1/admin/list?pno=${i}`;
       this.axios.get(url).then((res) => {
         console.log(res);
         this.data = res.data;
@@ -138,12 +105,9 @@ export default {
     this.getdata("1");
   },
   watch: {
-    // a(newvalue, oldvalue) {
-    //   if (newvalue == true) {
-    //     this.getdata();
-    //     this.a = false;
-    //   }
-    // },
+    i() {
+      this.getdata();
+    },
   },
 };
 </script>
@@ -159,5 +123,9 @@ export default {
       background-color: gray;
     }
   }
+}
+.ac{
+  border-color: #c6e2ff;
+  color: #619fff;
 }
 </style>

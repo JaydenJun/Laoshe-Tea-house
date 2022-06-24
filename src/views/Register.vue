@@ -29,6 +29,7 @@
         </p>
         <el-form-item label="用户" prop="uname">
           <el-input
+            v-focus
             placeholder="请输入用户"
             type="text"
             v-model="ruleForm.uname"
@@ -72,10 +73,11 @@
             >
               <el-input
                 style="display: inline-block"
-                placeholder="注意区分大小写"
+                placeholder="请输入结果"
                 type="text"
                 v-model="ruleForm.code"
                 autocomplete="off"
+                @keyup.enter.native="submitForm('ruleForm')"
               ></el-input>
             </el-form-item>
           </div>
@@ -93,6 +95,18 @@
 
 <script>
 export default {
+  // 自动获取焦点事件
+  directives: {
+    //注册一个局部的自定义指令 v-focus
+    focus: {
+      // 指令的定义
+      inserted: function (el) {
+        // 聚焦元素
+        el.querySelector("input").focus();
+      },
+    },
+  },
+
   data() {
     var phones = (rule, value, callback) => {
       if (value == "") {
@@ -102,14 +116,13 @@ export default {
       }
     };
 
-var aaaa = (rule, value, callback) => {
+    var aaaa = (rule, value, callback) => {
       if (value == "") {
         callback(new Error("请输入用户名"));
       } else {
         callback();
       }
     };
-
 
     var validatePass = (rule, value, callback) => {
       if (value === "") {
@@ -180,11 +193,13 @@ var aaaa = (rule, value, callback) => {
                 type: "success",
               });
               this.$router.push("/login"); //成功跳转
-            } else if (res.data.code ==505) {
-               this.$message.error("注册失败");
+            } else if (res.data.code == 505) {
+              this.$message.error("注册失败");
               return false;
             } else {
               this.$message.error("验证码错误！"); //，这里提示
+              this.ruleForm.a =
+        "http://47.110.235.8:3000/v1/users/v1/code?t=" + Date.now();
               return false;
             }
           });

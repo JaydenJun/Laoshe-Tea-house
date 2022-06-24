@@ -28,7 +28,13 @@
       <img width="100%" :src="ring_pic" alt="" />
     </el-dialog>
     <div class="btn">
-      <button @click="postdata">发布</button>
+      <el-button
+        :disabled="textarea == '' ? true : false"
+        id="btn1"
+        :plain="true"
+        @click="postdata"
+        >发表帖子</el-button
+      >
     </div>
   </div>
 </template>
@@ -55,8 +61,21 @@ export default {
       const params = `ring_details=${this.textarea}&ring_pic=${this.ring_pic}&user_sid=${this.loginid}`;
       this.axios.post(url, params).then((res) => {
         console.log(res);
-        alert(res.data.msg);
-        this.$router.push("/teah");
+        if (this.loginid != null) {
+          this.$message({
+            showClose: true,
+            message: "恭喜你，发表成功",
+            type: "success",
+          });
+          this.$router.push("/teah");
+        } else {
+          this.$message({
+            showClose: true,
+            message: "用户未登录，请登录后在进行发表，谢谢！",
+            type: "success",
+          });
+        }
+
         // console.log("用户id", this.loginid);
       });
     },
@@ -92,6 +111,18 @@ export default {
     margin-top: 20px;
     background-color: #ffffff;
     height: 50px;
+    #btn1 {
+      padding: 10px 10px;
+      border: 1px solid #3390ff;
+      background-color: #3390ff;
+      border-radius: 4px;
+      color: white;
+      margin-top: 20px;
+      margin-right: 10px;
+      &:hover {
+        background-color: #046ff1;
+      }
+    }
 
     button {
       background-color: rgb(62, 168, 218);

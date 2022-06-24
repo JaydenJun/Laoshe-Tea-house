@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -30,6 +31,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["anamess"]),
     logindata() {
       const url = "/v1/admin/login";
       const params = `aname=${this.formLabelAlign.name}&apwd=${this.formLabelAlign.password}`;
@@ -37,7 +39,9 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           alert("登录成功");
+          
           this.$router.push("/admin");
+          this.anamess(this.formLabelAlign.name)
         }
       });
     },

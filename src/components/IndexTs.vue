@@ -89,7 +89,7 @@ export default {
       margin: 5px 0;
     }
     img {
-      width: 70%;
+      width: 80%;
       border: 1px solid #aaa;
       transition: 0.7s;
      &:hover{

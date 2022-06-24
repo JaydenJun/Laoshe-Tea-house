@@ -14,12 +14,12 @@
           ><div class="grid-content bg-purple">
             <div>
               <ul>
-                <li :class="{active:a==1}" @click="a=1"><router-link to="/">首页</router-link></li>
-                <li :class="{active:a==2}" @click="a=2"><router-link to="/trait">茶馆特色</router-link></li>
-                <li :class="{active:a==3}" @click="a=3"><router-link to="/teah">茶友圈</router-link></li>
-                <li :class="{active:a==4}" @click="a=4"><router-link to="/zixun">茶闻资讯</router-link></li>
-                <li :class="{active:a==5}" @click="a=5"><router-link to="/tea">茶百科</router-link></li>
-                <li :class="{active:a==6}" @click="a=6"><router-link to="/culture">关于我们</router-link></li>
+                <li :class="{active:a=='/'}" ><router-link to="/">首页</router-link></li>
+                <li :class="{active:a=='/trait'}" ><router-link to="/trait">茶馆特色</router-link></li>
+                <li :class="{active:a=='/teah/latest'}" ><router-link to="/teah">茶友圈</router-link></li>
+                <li :class="{active:a=='/zixun'}"><router-link to="/zixun">茶闻资讯</router-link></li>
+                <li :class="{active:a=='/tea' }" ><router-link to="/tea">茶百科</router-link></li>
+                <li :class="{active:a=='/culture/history'}" ><router-link to="/culture">关于我们</router-link></li>
               </ul>
             </div>
           </div></el-col
@@ -74,14 +74,20 @@ import { mapMutations, mapState } from "vuex";
 export default {
   data() {
     return {
-      a:1
+      a:"/"
     }
   },
+  watch:{
+  '$route':'getPath'
+},
   computed: {
     ...mapState(["loginname", "loginid"]),
   },
     
   methods: {
+    getPath(){
+      this.a=this.$route.path
+    },
     ...mapMutations(["updateLoginState"]),
     personal(i) {
       this.$router.push("/personal/");
